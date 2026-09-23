@@ -15,6 +15,6 @@ pnpm dev
 
 在 Vercel 导入本 GitHub 仓库，框架保持自动识别的 Next.js，根目录为仓库根目录，点击 Deploy 即可。`main` 分支后续提交会自动触发重新部署。
 
-当前版本使用仓库里的 `data/catalog-snapshot.json` 和 `data/specs-snapshot.json`。这是 2026-09-23 核查快照，页面不会自动抓取新商品。原网站的在线刷新依赖 Cloudflare D1；Vercel 版本没有继承该数据库，因此按钮已标注为不可用。要恢复多人共享、持久化在线刷新，需要另外接入数据库和刷新任务，不能只改部署平台。
+当前版本使用仓库里的 `data/catalog-snapshot.json` 和 `data/specs-snapshot.json` 作为可用性快照。页面加载与“刷新 Shark 产品”通过同域 API 路由向原站的公开数据服务读取/写入记录，因此原站仍需保持运行。可选环境变量 `SHARK_DATA_ORIGIN` 可更换数据服务根地址。若要完全停用原站，还须迁移 Cloudflare D1 中的持久化数据与刷新服务，单独部署本仓库不足以替代数据后端。
 
 商品照片取自对应官方或零售商品页，部分外部图片源可能失效；卡片会回退显示型号文字。
