@@ -1,0 +1,1514 @@
+{
+  "IP3251": {
+    "power": "380W",
+    "weight": "18.47lb",
+    "runtime": "最长70分钟",
+    "dust": "0.7qt",
+    "charge": "6小时",
+    "width": "10.2in",
+    "voltage": "21.6V",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "BU3626": {
+    "runtime": "最长40分钟",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "IA3241": {
+    "power": "350W",
+    "weight": "14.2lb",
+    "runtime": "最长60分钟",
+    "dust": "0.5qt",
+    "charge": "6小时",
+    "width": "8.3in",
+    "voltage": "120V",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "IP3256": {
+    "power": "380W",
+    "weight": "19.38lb",
+    "runtime": "最长70分钟",
+    "dust": "0.7qt",
+    "charge": "6小时",
+    "width": "10.2in",
+    "voltage": "21.6V",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "IP1251": {
+    "power": "380W",
+    "weight": "8.11lb",
+    "runtime": "最长70分钟",
+    "dust": "0.7qt",
+    "charge": "6小时",
+    "width": "10.2in",
+    "voltage": "21.6V",
+    "filter": "HEPA"
+  },
+  "IY143H": {
+    "power": "52W",
+    "weight": "7.08lb",
+    "runtime": "最长40分钟",
+    "dust": "0.7qt",
+    "charge": "3小时",
+    "width": "8.4in",
+    "voltage": "21.6V",
+    "filter": "HEPA"
+  },
+  "SV2002": {
+    "weight": "6.55lb"
+  },
+  "IZ382H": {
+    "power": "181W",
+    "weight": "9.33lb",
+    "runtime": "最长50分钟",
+    "dust": "0.8qt",
+    "width": "10.4in",
+    "voltage": "21.6V",
+    "filter": "HEPA"
+  },
+  "BU3521": {
+    "power": "240W",
+    "weight": "16.64lb",
+    "runtime": "最长40分钟",
+    "width": "10.4in",
+    "voltage": "120V",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "IX141": {
+    "power": "181W",
+    "weight": "10.32lb",
+    "runtime": "最长40分钟",
+    "dust": "0.3qt",
+    "width": "10.6in",
+    "voltage": "21.6V"
+  },
+  "IZ373H": {
+    "power": "181W",
+    "weight": "7.03lb",
+    "runtime": "最长50分钟",
+    "dust": "0.8qt",
+    "width": "10.4in",
+    "voltage": "21.6V",
+    "filter": "HEPA"
+  },
+  "BU1621": {
+    "weight": "6.17lb",
+    "runtime": "最长40分钟"
+  },
+  "IA1241": {
+    "power": "350W",
+    "weight": "7.1lb",
+    "runtime": "最长60分钟",
+    "dust": "0.5qt",
+    "charge": "6小时",
+    "width": "8.3in",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "HZ4002": {
+    "power": "600W",
+    "weight": "9.3lb",
+    "dust": "0.9qt",
+    "cord": "30ft",
+    "width": "9.4in",
+    "voltage": "120V",
+    "height": "46.26in",
+    "filter": "HEPA"
+  },
+  "TV301": {
+    "weight": "8.11lb",
+    "height": "49.69in"
+  },
+  "HV371": {
+    "power": "500W",
+    "weight": "18.52lb",
+    "dust": "0.7qt",
+    "cord": "25ft",
+    "width": "8.5in",
+    "voltage": "120V",
+    "height": "29.65in"
+  },
+  "ZS501": {
+    "weight": "8.4lb",
+    "height": "46.06in"
+  },
+  "HZ752": {
+    "power": "680W",
+    "weight": "7.91lb",
+    "dust": "0.4qt",
+    "cord": "25ft",
+    "width": "8.6in",
+    "voltage": "120V",
+    "height": "45.87in"
+  },
+  "HV251": {
+    "power": "500W",
+    "weight": "8.16lb",
+    "voltage": "120V",
+    "height": "47.64in"
+  },
+  "HZ702": {
+    "power": "680W",
+    "weight": "9.74lb",
+    "dust": "0.4qt",
+    "cord": "25ft",
+    "width": "8.6in",
+    "voltage": "120V",
+    "height": "48.43in"
+  },
+  "LU252": {
+    "power": "960W",
+    "weight": "11.66lb",
+    "dust": "1.6qt",
+    "cord": "25ft",
+    "voltage": "120V",
+    "height": "45.55in",
+    "filter": "HEPA"
+  },
+  "AZ3002": {
+    "power": "1300W",
+    "weight": "22.71lb",
+    "dust": "1.5qt",
+    "cord": "25ft",
+    "width": "10.6in",
+    "voltage": "120V",
+    "height": "46.06in",
+    "filter": "HEPA"
+  },
+  "LX5000": {
+    "power": "1272W",
+    "weight": "17.68lb",
+    "dust": "1.1qt",
+    "cord": "30ft",
+    "voltage": "120V",
+    "height": "46.14in"
+  },
+  "LA802": {
+    "power": "960W",
+    "weight": "14.51lb",
+    "cord": "25ft",
+    "width": "12in",
+    "voltage": "120V",
+    "height": "45.67in",
+    "filter": "HEPA"
+  },
+  "NV360": {
+    "power": "1200W",
+    "weight": "14.42lb",
+    "dust": "0.9qt",
+    "cord": "25ft",
+    "width": "9.5in",
+    "voltage": "120V",
+    "height": "24.53in",
+    "filter": "HEPA"
+  },
+  "ZU102": {
+    "power": "1150W",
+    "weight": "15.19lb",
+    "cord": "25.7ft",
+    "width": "6.7in",
+    "voltage": "120V",
+    "height": "45.02in",
+    "filter": "HEPA"
+  },
+  "LA492": {
+    "power": "960W",
+    "weight": "13.12lb",
+    "dust": "0.7qt",
+    "cord": "25ft",
+    "width": "10.7in",
+    "voltage": "120V",
+    "height": "45.55in",
+    "filter": "HEPA"
+  },
+  "LA362": {
+    "power": "800W",
+    "weight": "16.29lb",
+    "dust": "0.8qt",
+    "cord": "25ft",
+    "width": "10in",
+    "voltage": "120V",
+    "height": "34.65in",
+    "filter": "HEPA"
+  },
+  "BH102": {
+    "power": "181W",
+    "weight": "2.49lb",
+    "runtime": "最长40分钟",
+    "dust": "0.4qt",
+    "voltage": "18V"
+  },
+  "WV410BL": {
+    "power": "160W",
+    "weight": "2.43lb",
+    "runtime": "最长20分钟",
+    "dust": "0.1qt",
+    "charge": "3.5小时",
+    "width": "7.6in",
+    "voltage": "14.4V"
+  },
+  "WV201": {
+    "power": "115W",
+    "weight": "2.29lb",
+    "dust": "0.1qt",
+    "width": "3.4in",
+    "voltage": "10.8V"
+  },
+  "CH951": {
+    "power": "80W",
+    "weight": "3.09lb",
+    "runtime": "最长10分钟",
+    "dust": "0.5qt",
+    "charge": "4小时",
+    "voltage": "10.8V"
+  },
+  "RV2920XE": {
+    "power": "650W",
+    "weight": "26.92lb",
+    "runtime": "最长3小时",
+    "dust": "0.4qt",
+    "charge": "4小时",
+    "width": "12.4in",
+    "voltage": "120V",
+    "autoEmpty": "支持",
+    "mode": "吸拖一体"
+  },
+  "RV2310AE": {
+    "power": "35.3W",
+    "weight": "15.43lb",
+    "runtime": "最长90分钟",
+    "dust": "0.2qt",
+    "charge": "6小时",
+    "width": "5.7in",
+    "voltage": "14.4V",
+    "mode": "吸尘"
+  },
+  "RV2820ZE": {
+    "power": "650W",
+    "weight": "24.85lb",
+    "dust": "0.3qt",
+    "width": "5.7in",
+    "voltage": "120V",
+    "autoEmpty": "支持",
+    "mode": "吸拖一体"
+  },
+  "RV2120AE": {
+    "power": "650W",
+    "weight": "13.23lb",
+    "dust": "0.2qt",
+    "voltage": "120V",
+    "autoEmpty": "支持",
+    "mode": "吸尘"
+  },
+  "RV2610WA": {
+    "power": "650W",
+    "weight": "22.6lb",
+    "runtime": "最长110分钟",
+    "dust": "0.2qt",
+    "width": "5.7in",
+    "voltage": "120V",
+    "mode": "吸拖一体"
+  },
+  "RV2720ZE": {
+    "power": "650W",
+    "weight": "24.85lb",
+    "width": "12in",
+    "voltage": "120V",
+    "autoEmpty": "支持",
+    "mode": "吸拖一体"
+  },
+  "WD563": {
+    "power": "150W",
+    "weight": "12.81lb",
+    "runtime": "最长60分钟",
+    "cord": "5.9ft",
+    "charge": "3小时",
+    "voltage": "25.2V",
+    "height": "43.9in"
+  },
+  "WD321": {
+    "weight": "8.4lb",
+    "height": "43.73in"
+  },
+  "VM401": {
+    "weight": "4.41lb",
+    "height": "47.72in"
+  },
+  "WW201": {
+    "weight": "9.68lb",
+    "runtime": "最长30分钟",
+    "charge": "2小时",
+    "width": "9.3in",
+    "voltage": "7.2V",
+    "height": "26.42in"
+  },
+  "WD161": {
+    "power": "2W",
+    "weight": "15.39lb",
+    "dust": "0.4qt",
+    "cord": "20ft",
+    "width": "9.3in",
+    "voltage": "120V",
+    "height": "26.69in"
+  },
+  "SD201": {
+    "power": "1230W",
+    "weight": "7.01lb",
+    "cord": "25ft",
+    "width": "9.3in",
+    "voltage": "120V",
+    "height": "44.5in"
+  },
+  "VM252": {
+    "power": "85W",
+    "weight": "3.99lb",
+    "voltage": "10.8V",
+    "height": "4.76in"
+  },
+  "VS101": {
+    "power": "780W",
+    "weight": "12.85lb",
+    "cord": "20ft",
+    "voltage": "120V",
+    "height": "17.87in"
+  },
+  "EX301": {
+    "power": "1140W",
+    "weight": "22lb",
+    "cord": "22ft",
+    "voltage": "120V"
+  },
+  "EX201": {
+    "power": "960W",
+    "weight": "22.71lb",
+    "cord": "20ft",
+    "width": "10in",
+    "voltage": "120V"
+  },
+  "EX500": {},
+  "EX551": {
+    "weight": "15.21lb"
+  },
+  "HX101": {
+    "power": "100W",
+    "weight": "6.26lb",
+    "runtime": "最长15分钟",
+    "charge": "5小时",
+    "voltage": "120V"
+  },
+  "PX201": {
+    "power": "450W",
+    "weight": "13.23lb",
+    "cord": "12ft",
+    "voltage": "120V"
+  },
+  "VX101": {
+    "power": "780W",
+    "weight": "10.3lb",
+    "voltage": "120V"
+  },
+  "PX251": {
+    "power": "450W",
+    "weight": "8.51lb",
+    "cord": "12ft",
+    "voltage": "120V"
+  },
+  "EX502": {
+    "weight": "15.21lb"
+  },
+  "S8201": {
+    "power": "1120W",
+    "weight": "8.91lb",
+    "cord": "18.6ft",
+    "width": "14.5in",
+    "voltage": "120V",
+    "height": "31.3in"
+  },
+  "S2001": {
+    "power": "1200W",
+    "weight": "4.81lb",
+    "cord": "19ft",
+    "voltage": "120V",
+    "height": "46in"
+  },
+  "S3972BRN": {
+    "weight": "7.01lb",
+    "height": "30in"
+  },
+  "S1000": {
+    "power": "1050W",
+    "weight": "4.94lb",
+    "cord": "18ft",
+    "width": "11in",
+    "voltage": "120V",
+    "height": "29.72in"
+  },
+  "HD700-byob": {
+    "power": "1750W"
+  },
+  "HD542": {
+    "weight": "1.63lb"
+  },
+  "HD731": {
+    "power": "1750W",
+    "weight": "1.65lb",
+    "voltage": "120V"
+  },
+  "HD400SN": {
+    "power": "1600W",
+    "weight": "1.5lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD6000PKSN": {
+    "power": "1500W",
+    "weight": "1.6lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD840": {
+    "power": "1700W",
+    "weight": "1.5lb",
+    "cord": "7.9ft",
+    "voltage": "120V"
+  },
+  "HD6051S": {
+    "power": "1500W",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD430": {
+    "power": "1600W",
+    "weight": "3.72lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD440BK": {
+    "power": "1600W",
+    "weight": "4.5lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD449PK1": {
+    "power": "1600W",
+    "weight": "6.64lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD435": {
+    "power": "1600W",
+    "weight": "4.08lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HD434": {
+    "power": "1600W",
+    "weight": "1.54lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "HT400": {
+    "power": "1000W",
+    "weight": "1.69lb",
+    "cord": "7ft",
+    "voltage": "120V"
+  },
+  "HD6052S": {
+    "power": "1500W",
+    "weight": "1.63lb",
+    "voltage": "120V"
+  },
+  "HT302": {
+    "power": "1300W",
+    "weight": "1.63lb",
+    "voltage": "120V"
+  },
+  "FH220": {
+    "power": "10W",
+    "weight": "0.6lb",
+    "voltage": "5V"
+  },
+  "FH310": {
+    "power": "10W",
+    "weight": "1.28lb",
+    "voltage": "5V"
+  },
+  "FH320": {},
+  "FW350": {
+    "power": "10W",
+    "weight": "1.7lb",
+    "charge": "4小时"
+  },
+  "FW312": {
+    "power": "16.92W",
+    "weight": "1.69lb",
+    "runtime": "最长138分钟",
+    "charge": "3小时",
+    "voltage": "7.2V",
+    "treatment": "6分钟"
+  },
+  "FW312S": {
+    "treatment": "6分钟"
+  },
+  "HP062": {
+    "power": "20W",
+    "weight": "5.58lb",
+    "voltage": "120V",
+    "coverage": "300ft²",
+    "filterLife": "最长6年",
+    "filter": "HEPA"
+  },
+  "HP362": {
+    "power": "60W",
+    "weight": "13.56lb",
+    "voltage": "120V",
+    "coverage": "1,650ft²",
+    "filterLife": "最长6年",
+    "filter": "HEPA"
+  },
+  "HP162": {
+    "power": "25W",
+    "weight": "8.32lb",
+    "voltage": "120V",
+    "coverage": "750ft²",
+    "filterLife": "最长6年",
+    "filter": "HEPA"
+  },
+  "HP152": {
+    "power": "26W",
+    "weight": "9.74lb",
+    "cord": "6ft",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "HP302": {
+    "power": "54W",
+    "weight": "13.45lb",
+    "cord": "6ft",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "HP072": {
+    "power": "16W",
+    "weight": "4.41lb",
+    "cord": "5ft",
+    "voltage": "24V",
+    "filter": "HEPA"
+  },
+  "HP102": {
+    "power": "24W",
+    "weight": "6.02lb",
+    "cord": "6ft",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "HP202": {
+    "power": "36W",
+    "weight": "10.47lb",
+    "cord": "6ft",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "HP232": {
+    "power": "36W",
+    "weight": "13.6lb",
+    "cord": "6ft",
+    "voltage": "120V",
+    "filter": "HEPA"
+  },
+  "TF202S": {
+    "power": "92W",
+    "weight": "14.33lb",
+    "cord": "6ft",
+    "voltage": "120V"
+  },
+  "FA022": {
+    "power": "15W",
+    "weight": "0.77lb",
+    "runtime": "最长11小时",
+    "cord": "1.4ft",
+    "charge": "3.5小时",
+    "voltage": "5V"
+  },
+  "FA302": {
+    "power": "36W",
+    "weight": "16.34lb",
+    "runtime": "最长24小时",
+    "cord": "6ft",
+    "charge": "6小时",
+    "voltage": "12V"
+  },
+  "FA056": {
+    "power": "36W",
+    "weight": "3.99lb",
+    "voltage": "120V",
+    "speed": "5挡"
+  },
+  "FA222": {
+    "power": "36W",
+    "weight": "18.3lb",
+    "voltage": "110V"
+  },
+  "FA202": {
+    "power": "36W",
+    "weight": "12.19lb",
+    "cord": "6ft",
+    "charge": "6小时",
+    "voltage": "110V"
+  },
+  "LC950J": {
+    "weight": "1.8kg",
+    "runtime": "最长36分钟",
+    "charge": "3.5小时",
+    "size": "1040×228×198mm"
+  },
+  "LC900J": {
+    "weight": "1.6kg",
+    "runtime": "最长36分钟",
+    "charge": "3.5小时",
+    "size": "1040×228×198mm"
+  },
+  "LC800J": {
+    "weight": "1.6kg",
+    "runtime": "最长36分钟",
+    "charge": "3.5小时",
+    "size": "1040×228×198mm"
+  },
+  "IW5271J": {
+    "weight": "2.3kg",
+    "runtime": "最长36分钟",
+    "cord": "1.2m",
+    "charge": "4.5小时",
+    "size": "1076×228×321mm"
+  },
+  "LC602J": {
+    "weight": "1.5kg",
+    "runtime": "最长30分钟",
+    "charge": "3.5小时",
+    "size": "1038×228×160mm"
+  },
+  "LC702J": {
+    "weight": "1.6kg",
+    "runtime": "最长30分钟",
+    "charge": "3.5小时",
+    "size": "1038×228×160mm"
+  },
+  "FA022J": {
+    "weight": "285g",
+    "runtime": "最长11小时"
+  },
+  "TF200SJ": {
+    "weight": "6.5kg",
+    "cord": "1.5m",
+    "size": "130.0×25.0×29.9cm"
+  },
+  "LC103J": {
+    "weight": "1.7kg",
+    "runtime": "最长34分钟",
+    "charge": "3.5小时",
+    "size": "1041×267×152mm"
+  },
+  "LC152J": {
+    "weight": "1.7kg",
+    "runtime": "最长34分钟",
+    "charge": "3.5小时",
+    "size": "1041×267×152mm"
+  },
+  "LC102J": {
+    "weight": "1.7kg",
+    "runtime": "最长34分钟",
+    "charge": "3.5小时",
+    "size": "1041×267×152mm"
+  },
+  "HX100J": {
+    "weight": "1,090g",
+    "runtime": "约14.5分钟",
+    "charge": "4小时",
+    "size": "452×79×99mm"
+  },
+  "LC600J": {
+    "weight": "1.5kg",
+    "runtime": "最长30分钟",
+    "charge": "3.5小时",
+    "size": "1038×228×160mm"
+  },
+  "LC701J": {
+    "weight": "1.6kg",
+    "runtime": "最长60分钟",
+    "charge": "3.5小时",
+    "size": "1038×228×160mm"
+  },
+  "LC751J": {
+    "weight": "1.7kg",
+    "runtime": "最长60分钟",
+    "charge": "3.5小时",
+    "size": "1038×228×160mm"
+  },
+  "IW4171J": {
+    "weight": "2.0kg",
+    "runtime": "最长38分钟",
+    "charge": "4.5小时",
+    "size": "1080×228×321mm"
+  },
+  "FA302J": {
+    "weight": "7.0kg",
+    "runtime": "最长24小时",
+    "cord": "1.8m",
+    "size": "93.4×35.5×36.9cm"
+  },
+  "FA052J": {
+    "weight": "2.0kg",
+    "runtime": "最长12小时",
+    "cord": "1.8m",
+    "charge": "3小时",
+    "size": "29.1×21.2×22.0cm"
+  },
+  "FA222J": {
+    "weight": "5.5kg",
+    "runtime": "最长24小时",
+    "cord": "1.8m",
+    "size": "94×35×35cm"
+  },
+  "LC100J": {
+    "weight": "1.7kg",
+    "runtime": "最长34分钟",
+    "charge": "3.5小时",
+    "size": "1041×267×152mm"
+  },
+  "LC150J": {
+    "weight": "1.7kg",
+    "runtime": "最长34分钟",
+    "charge": "3.5小时",
+    "size": "1041×267×152mm"
+  },
+  "CS102J": {
+    "weight": "1.9kg",
+    "runtime": "最长13分钟",
+    "charge": "3.5小时",
+    "size": "1030×267×124mm"
+  },
+  "S8201J": {
+    "weight": "3.5kg",
+    "size": "1045×377.95×189mm"
+  },
+  "LC400J": {
+    "weight": "1.5kg",
+    "runtime": "最长25分钟",
+    "charge": "3.5小时",
+    "size": "1040×228×160mm"
+  },
+  "WV515J": {
+    "weight": "680g",
+    "charge": "3.5小时",
+    "size": "398×68×90mm"
+  },
+  "WV516J": {
+    "weight": "680g",
+    "charge": "3.5小时",
+    "size": "398×68×90mm"
+  },
+  "WV517J": {
+    "weight": "680g",
+    "charge": "3.5小时",
+    "size": "398×68×90mm"
+  },
+  "LC200J": {
+    "weight": "1.5kg",
+    "runtime": "最长25分钟",
+    "charge": "3.5小时",
+    "size": "1040×228×160mm"
+  },
+  "IW2241J": {
+    "weight": "2.2kg",
+    "runtime": "最长32分钟",
+    "charge": "4小时",
+    "size": "1068×260×316mm"
+  },
+  "IW3241J": {
+    "weight": "2.2kg",
+    "runtime": "最长32分钟",
+    "charge": "4小时",
+    "size": "1068×260×316mm"
+  },
+  "CS150JAE": {
+    "weight": "1.9kg",
+    "runtime": "最长13分钟",
+    "charge": "3.5小时",
+    "size": "1030×267×124mm"
+  },
+  "CS100J": {
+    "weight": "1.9kg",
+    "runtime": "最长13分钟",
+    "charge": "3.5小时",
+    "size": "1030×267×124mm"
+  },
+  "WV280J": {
+    "weight": "620g",
+    "runtime": "约24分钟",
+    "charge": "2.5小时",
+    "size": "419.1×53.5×60.96mm"
+  },
+  "WV270J": {
+    "weight": "620g",
+    "runtime": "约12分钟",
+    "charge": "2.5小时",
+    "size": "419.1×53.5×60.96mm"
+  },
+  "S1000J": {
+    "weight": "1.7kg",
+    "size": "1085×280×145mm"
+  },
+  "CS601J": {
+    "weight": "1.9kg",
+    "runtime": "最长50分钟",
+    "charge": "3.5小时",
+    "size": "1040×258×114mm"
+  },
+  "CH966J": {
+    "weight": "1.66kg",
+    "runtime": "最长20分钟",
+    "charge": "4小时",
+    "size": "1045×260×192mm"
+  },
+  "CH951J": {
+    "weight": "1,010g",
+    "runtime": "约10分钟",
+    "charge": "4小时",
+    "size": "110×97×433mm"
+  },
+  "CH901J": {
+    "weight": "950g",
+    "runtime": "约10分钟",
+    "charge": "6小时",
+    "size": "110×97×433mm"
+  },
+  "IW4176J": {
+    "weight": "2.1kg",
+    "runtime": "最长38分钟",
+    "charge": "4.5小时",
+    "size": "1080×228×321mm"
+  },
+  "AB2111J": {
+    "weight": "660g",
+    "runtime": "最长49分钟",
+    "charge": "3小时",
+    "size": "342×54×89mm"
+  },
+  "AB2000J": {
+    "weight": "660g",
+    "runtime": "最长49分钟",
+    "charge": "3小时",
+    "size": "342×54×89mm"
+  },
+  "HP062J": {
+    "weight": "2.6kg",
+    "cord": "1.8m",
+    "speed": "5挡",
+    "size": "294×234×238mm"
+  },
+  "HP162J": {
+    "weight": "3.8kg",
+    "cord": "1.8m",
+    "speed": "5挡",
+    "size": "378×267×262mm"
+  },
+  "RVD120X1JP": {
+    "weight": "5.0kg（主机）",
+    "runtime": "最长4小时",
+    "charge": "3小时",
+    "size": "364×352×95mm"
+  },
+  "AZ3901": {
+    "power": "1416W",
+    "weight": "16.5lb",
+    "cord": "30ft",
+    "width": "12in"
+  },
+  "IZ381UK": {
+    "weight": "3.19kg",
+    "runtime": "最长50分钟"
+  },
+  "IZ400UK": {
+    "power": "309W",
+    "weight": "4.1kg",
+    "runtime": "最长60分钟",
+    "dust": "0.19L",
+    "charge": "3.5小时",
+    "voltage": "240V"
+  },
+  "IA1241UK-MASTER": {
+    "power": "350W",
+    "weight": "3.22kg",
+    "runtime": "最长60分钟",
+    "dust": "0.47L",
+    "charge": "5小时",
+    "width": "21.08cm",
+    "filter": "HEPA"
+  },
+  "IZ420UKT": {
+    "power": "309W",
+    "weight": "2.16kg",
+    "runtime": "最长2小时",
+    "dust": "0.57L",
+    "charge": "3.5小时",
+    "width": "28.45cm",
+    "voltage": "240V"
+  },
+  "IP1251UK": {
+    "power": "380W",
+    "weight": "3.71kg",
+    "runtime": "最长70分钟",
+    "dust": "0.38L",
+    "width": "30.48cm",
+    "voltage": "21.6V"
+  },
+  "IA1241UKPU": {
+    "power": "350W",
+    "weight": "3.22kg",
+    "runtime": "最长60分钟",
+    "charge": "5小时",
+    "width": "21.08cm",
+    "filter": "HEPA"
+  },
+  "SV2000UK-MASTER": {
+    "weight": "2.94kg",
+    "voltage": "220V",
+    "height": "114cm"
+  },
+  "IY143HUK": {
+    "power": "52W",
+    "weight": "3.24kg",
+    "runtime": "最长40分钟",
+    "dust": "0.66L",
+    "charge": "3小时",
+    "width": "21.34cm",
+    "voltage": "21.6V",
+    "filter": "HEPA"
+  },
+  "IZ380UKFDB": {
+    "power": "181W",
+    "weight": "3.45kg",
+    "runtime": "最长51.5分钟",
+    "dust": "1.61L",
+    "charge": "3.5小时",
+    "width": "14.48cm",
+    "voltage": "240V"
+  },
+  "IZ400UKT": {
+    "power": "309W",
+    "weight": "4.1kg",
+    "runtime": "最长60分钟",
+    "charge": "3.5小时",
+    "width": "25.91cm",
+    "voltage": "240V"
+  },
+  "IP3251UKT": {
+    "power": "380W",
+    "weight": "3.71kg",
+    "runtime": "最长70分钟",
+    "charge": "6小时",
+    "voltage": "240V",
+    "autoEmpty": "支持"
+  },
+  "BU3621UKT": {
+    "power": "350W",
+    "weight": "5.87kg",
+    "runtime": "最长40分钟",
+    "dust": "0.38L",
+    "charge": "5小时",
+    "width": "20.83cm",
+    "filter": "HEPA",
+    "autoEmpty": "支持"
+  },
+  "IZ381UKT": {
+    "weight": "3.19kg",
+    "runtime": "最长50分钟"
+  },
+  "IZ380UKT": {
+    "power": "181W",
+    "weight": "3.45kg",
+    "runtime": "最长51.5分钟",
+    "dust": "0.38L",
+    "charge": "3.5小时",
+    "width": "25.91cm",
+    "voltage": "240V"
+  },
+  "IP1251UKT": {
+    "power": "380W",
+    "weight": "3.71kg",
+    "runtime": "最长70分钟",
+    "charge": "6小时",
+    "voltage": "21.6V"
+  },
+  "NZ801UKT": {
+    "power": "750W",
+    "weight": "9.9kg",
+    "voltage": "240V",
+    "height": "74.3cm"
+  },
+  "LX5000UKT": {
+    "weight": "8.02kg",
+    "height": "117.2cm",
+    "filter": "HEPA"
+  },
+  "LA791UKT": {
+    "power": "600W",
+    "weight": "6.73kg",
+    "dust": "0.57L",
+    "width": "24.89cm",
+    "voltage": "240V",
+    "height": "115.29cm"
+  },
+  "LU251UK": {
+    "weight": "5.5kg",
+    "height": "115.7cm",
+    "filter": "HEPA"
+  },
+  "LX5001UKT": {
+    "weight": "8.02kg",
+    "height": "117.2cm",
+    "filter": "HEPA"
+  },
+  "LU250UK": {
+    "weight": "5.19kg",
+    "height": "115.7cm",
+    "filter": "HEPA"
+  },
+  "LA450UKT-MASTER": {
+    "power": "600W",
+    "weight": "6.09kg",
+    "width": "25.91cm",
+    "voltage": "240V",
+    "height": "115.29cm"
+  },
+  "LU251UKT": {
+    "weight": "5.5kg",
+    "height": "115.7cm",
+    "filter": "HEPA"
+  },
+  "AZ3900UKT-MASTER": {
+    "power": "600W",
+    "weight": "7.61kg",
+    "dust": "1.32L",
+    "width": "30.48cm",
+    "voltage": "240V",
+    "height": "78.79cm"
+  },
+  "NV603UK": {
+    "weight": "5.6kg",
+    "height": "83.79cm"
+  },
+  "NZ780UKT": {
+    "power": "700W",
+    "weight": "6.5kg",
+    "width": "24.89cm",
+    "voltage": "220V",
+    "height": "84.61cm"
+  },
+  "LU250UKT": {
+    "weight": "5.19kg",
+    "height": "115.7cm",
+    "filter": "HEPA"
+  },
+  "WV501UK-MASTER": {
+    "weight": "2kg"
+  },
+  "BH102UK": {
+    "power": "181W",
+    "weight": "1.13kg"
+  },
+  "WV270UK-MASTER": {
+    "power": "160W",
+    "weight": "1.11kg",
+    "runtime": "最长15分钟",
+    "dust": "0.09L",
+    "charge": "3.5小时",
+    "width": "9.91cm",
+    "voltage": "240V"
+  },
+  "CH901UK": {
+    "power": "70W",
+    "weight": "2kg"
+  },
+  "CH950UKT": {
+    "power": "80W",
+    "weight": "1.71kg",
+    "runtime": "最长10分钟",
+    "dust": "0.09L",
+    "charge": "4小时",
+    "voltage": "240V"
+  },
+  "CH951UKBR": {
+    "power": "80W",
+    "weight": "2kg",
+    "dust": "1.04L",
+    "width": "24.89cm",
+    "voltage": "10.8V"
+  },
+  "AV2820ZEUKWH": {
+    "weight": "6.7kg",
+    "mode": "吸拖一体"
+  },
+  "RV2620WAUK-MASTER": {
+    "power": "650W",
+    "weight": "9kg",
+    "charge": "6小时",
+    "width": "14.48cm",
+    "voltage": "240V",
+    "autoEmpty": "支持",
+    "mode": "吸拖一体"
+  },
+  "AV3020XEUK": {
+    "power": "650W",
+    "weight": "2kg",
+    "runtime": "最长3小时",
+    "dust": "0.38L",
+    "charge": "4小时",
+    "width": "31.5cm",
+    "mode": "吸拖一体"
+  },
+  "AV2810ZEUKWH": {
+    "weight": "6.7kg",
+    "mode": "吸拖一体"
+  },
+  "RV2110AEUK": {
+    "power": "650W",
+    "weight": "2kg",
+    "runtime": "最长2小时",
+    "dust": "0.47L",
+    "charge": "4小时",
+    "voltage": "19V",
+    "autoEmpty": "支持",
+    "mode": "吸尘"
+  },
+  "RV2620WDUK-MASTER": {
+    "power": "650W",
+    "weight": "6.42kg",
+    "charge": "6小时",
+    "width": "14.48cm",
+    "voltage": "240V",
+    "mode": "吸拖一体"
+  },
+  "AV2910XEUKWH": {
+    "power": "650W",
+    "weight": "12.4kg",
+    "runtime": "最长3小时",
+    "charge": "4小时",
+    "width": "30.48cm",
+    "voltage": "240V",
+    "mode": "吸拖一体"
+  },
+  "RV2900XEUK-MASTER": {
+    "mode": "吸拖一体"
+  },
+  "RV2800ZEUK-MASTER": {
+    "autoEmpty": "支持",
+    "mode": "吸拖一体"
+  },
+  "AV2820VEUKWH": {
+    "power": "650W",
+    "weight": "6.7kg",
+    "dust": "0.66L",
+    "charge": "6小时",
+    "width": "30.48cm",
+    "voltage": "240V",
+    "autoEmpty": "支持",
+    "mode": "吸尘"
+  },
+  "AV3010XEUKWH": {
+    "power": "650W",
+    "weight": "2kg",
+    "runtime": "最长3小时",
+    "dust": "0.38L",
+    "charge": "4小时",
+    "width": "31.5cm",
+    "mode": "吸拖一体"
+  },
+  "AV2800ZEUKWH": {
+    "power": "650W",
+    "weight": "11.85kg",
+    "dust": "0.19L",
+    "charge": "4小时",
+    "width": "29.97cm",
+    "voltage": "240V",
+    "mode": "吸拖一体"
+  },
+  "EX200UK": {
+    "power": "960W",
+    "weight": "10.3kg",
+    "width": "33.02cm",
+    "voltage": "240V"
+  },
+  "PX200UK": {
+    "power": "450W",
+    "weight": "5.84kg",
+    "dust": "0.66L",
+    "cord": "3.66m",
+    "width": "33.02cm",
+    "voltage": "240V"
+  },
+  "VX110UK": {
+    "power": "780W",
+    "weight": "2kg",
+    "dust": "1.04L",
+    "width": "25.91cm"
+  },
+  "EX500UK": {
+    "weight": "6.9kg"
+  },
+  "EX300UK": {
+    "power": "1000W",
+    "weight": "7.9kg",
+    "dust": "0.85L",
+    "cord": "6.71m",
+    "voltage": "240V"
+  },
+  "PX250UKT-MASTER": {
+    "power": "450W",
+    "weight": "2kg",
+    "dust": "1.61L",
+    "width": "25.91cm",
+    "voltage": "240V"
+  },
+  "EX150UK": {
+    "power": "960W",
+    "weight": "8.5kg",
+    "width": "14.48cm",
+    "voltage": "240V"
+  },
+  "PX200UKT-MASTER": {
+    "power": "450W",
+    "weight": "6.4kg",
+    "dust": "0.57L",
+    "cord": "3.66m",
+    "voltage": "240V"
+  },
+  "EX220UK": {
+    "power": "1000W",
+    "weight": "7.9kg",
+    "dust": "0.28L",
+    "width": "30.48cm",
+    "voltage": "240V"
+  },
+  "EX150UKCP": {
+    "weight": "2kg"
+  },
+  "PX200UKCP": {
+    "weight": "2kg"
+  },
+  "EX550UKT": {
+    "weight": "6.9kg"
+  },
+  "EX250UK": {
+    "power": "1000W",
+    "weight": "7.9kg",
+    "width": "30.48cm",
+    "voltage": "220V"
+  },
+  "PX200UKDB": {
+    "weight": "3.76kg"
+  },
+  "EX550UKCP": {
+    "weight": "6.9kg"
+  },
+  "S8201UK": {
+    "weight": "4.28kg",
+    "width": "5.59cm",
+    "height": "79.5cm"
+  },
+  "S8201UKDB": {
+    "weight": "4.28kg",
+    "height": "81.31cm"
+  },
+  "SD200UK": {
+    "weight": "2kg",
+    "width": "14.48cm",
+    "height": "66.8cm"
+  },
+  "S6005UK": {
+    "power": "1050W",
+    "weight": "5.5kg",
+    "width": "25.91cm",
+    "height": "72.11cm"
+  },
+  "S6003UK": {
+    "power": "1200W",
+    "weight": "3.75kg",
+    "width": "30.48cm",
+    "height": "68.81cm"
+  },
+  "S2001UK": {
+    "power": "1200W",
+    "weight": "2.3kg",
+    "voltage": "120V",
+    "height": "116.99cm"
+  },
+  "S1000UK": {
+    "power": "1050W",
+    "weight": "2.61kg",
+    "width": "24.89cm",
+    "height": "62.31cm"
+  },
+  "HD542UK-MASTER": {
+    "weight": "0.68kg",
+    "cord": "2.44m"
+  },
+  "HD752UK": {
+    "weight": "2kg",
+    "voltage": "240V"
+  },
+  "HD731UK": {
+    "weight": "0.75kg"
+  },
+  "HD701UK": {
+    "power": "1750W",
+    "weight": "0.34kg",
+    "cord": "2.41m",
+    "voltage": "240V"
+  },
+  "HD840UKPU": {
+    "power": "1750W",
+    "weight": "0.68kg",
+    "cord": "2.44m"
+  },
+  "HD850UKPK": {
+    "power": "1750W",
+    "weight": "0.68kg",
+    "cord": "2.44m"
+  },
+  "HD6051SUK-MASTER": {
+    "power": "1500W",
+    "weight": "0.74kg",
+    "voltage": "240V"
+  },
+  "HD6041SUK": {
+    "power": "1500W",
+    "weight": "0.74kg",
+    "voltage": "240V"
+  },
+  "HD851UKPK": {
+    "power": "1750W",
+    "weight": "0.68kg",
+    "cord": "2.44m"
+  },
+  "HD6042SUKPL": {
+    "weight": "0.36kg"
+  },
+  "HD432PKUK": {
+    "power": "1650W",
+    "weight": "0.7kg",
+    "cord": "2.44m",
+    "voltage": "120V"
+  },
+  "HD446UK-MASTER": {
+    "power": "1650W",
+    "weight": "3.6kg",
+    "voltage": "240V"
+  },
+  "HD426SLUK": {
+    "weight": "1.59kg",
+    "cord": "2.44m"
+  },
+  "HD434UKPU": {
+    "power": "1600W",
+    "weight": "1.73kg",
+    "cord": "2.44m",
+    "voltage": "230V"
+  },
+  "HD449UKPK1": {
+    "weight": "3.01kg",
+    "cord": "2.44m"
+  },
+  "HD6052SUK": {
+    "power": "1500W",
+    "weight": "0.74kg",
+    "voltage": "240V"
+  },
+  "HP062UK-MASTER": {
+    "power": "20W",
+    "weight": "2.58kg",
+    "voltage": "120V",
+    "filterLife": "最长6年",
+    "filter": "HEPA"
+  },
+  "HP162UK-MASTER": {
+    "power": "25W",
+    "weight": "3.77kg",
+    "voltage": "120V",
+    "filterLife": "最长6年",
+    "filter": "HEPA"
+  },
+  "HP072UK-MASTER": {
+    "power": "16W",
+    "weight": "2.19kg",
+    "cord": "1.52m",
+    "filter": "HEPA"
+  },
+  "HP150UK": {
+    "power": "26W",
+    "weight": "4.44kg",
+    "voltage": "240V"
+  },
+  "AV2820AE": {
+    "power": "35W",
+    "weight": "14.55lb",
+    "width": "5.7in",
+    "voltage": "14.4V"
+  },
+  "HD840PU": {
+    "power": "1700W",
+    "weight": "1.5lb",
+    "cord": "8ft",
+    "voltage": "120V"
+  },
+  "FA052-MASTER": {
+    "power": "36W",
+    "weight": "3.88lb",
+    "runtime": "最长12小时",
+    "voltage": "120V"
+  },
+  "NV181": {
+    "power": "700W",
+    "weight": "13.34lb",
+    "cord": "25ft",
+    "dust": "0.85qt"
+  },
+  "FA050UK-MASTER": {
+    "power": "36W",
+    "weight": "1.71kg",
+    "runtime": "最长12小时",
+    "charge": "3小时",
+    "voltage": "240V"
+  },
+  "FA022UK": {
+    "power": "15W",
+    "weight": "0.35kg",
+    "runtime": "最长11小时",
+    "cord": "0.43m",
+    "charge": "3.5小时",
+    "voltage": "5V"
+  },
+  "FA300UK": {
+    "power": "36W",
+    "weight": "7kg",
+    "runtime": "最长24小时",
+    "charge": "6小时",
+    "voltage": "7.2V"
+  },
+  "TF200SUK": {
+    "power": "90W",
+    "weight": "6.18kg",
+    "voltage": "220V"
+  },
+  "FA220UK": {
+    "power": "36W",
+    "weight": "5.67kg",
+    "runtime": "最长24小时",
+    "charge": "5小时",
+    "voltage": "240V"
+  }
+}
