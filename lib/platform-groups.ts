@@ -11,6 +11,7 @@ export type PlatformGroup = {
 
 export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"lc-fit",label:"EVOPOWER SYSTEM FIT / FIT+",category:"无线吸尘器",models:["LC100J","LC102J","LC103J","LC150J","LC152J"],rationale:"FIT 与 FIT+ 同系列，机身型号相邻，配置以 SKU 区分。"},
+  {id:"lc-neo",label:"EVOPOWER SYSTEM NEO / NEO II",category:"无线吸尘器",models:["LC200J","LC400J"],rationale:"用户指定合并 NEO 与 NEO II；关键参数一致，代际差异保留在各型号卡片中。"},
   {id:"lc-boost",label:"EVOPOWER SYSTEM BOOST",category:"无线吸尘器",models:["LC600J","LC602J"],rationale:"同一 BOOST 比较表中的颜色／配置型号。",evidence:"https://www.sharkninja.jp/pages/shark-stickcleaner-evopowersystem_boost-spec"},
   {id:"lc-boost-plus",label:"EVOPOWER SYSTEM BOOST+",category:"无线吸尘器",models:["LC701J","LC702J","LC751J"],rationale:"同一 BOOST+ 比较表中的配置型号。",evidence:"https://www.sharkninja.jp/pages/shark-stickcleaner-evopowersystem_boost-spec"},
   {id:"lc-acticlean",label:"Shark ActiClean",category:"无线吸尘器",models:["LC800J","LC900J","LC950J"],rationale:"同一 ActiClean 系列的配置型号。",evidence:"https://www.sharkninja.jp/blogs/news/news260820-01"},
