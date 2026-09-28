@@ -63,12 +63,12 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
   </article>;
 }
 
-function StackPreview({products,onOpen,open}:{products:Product[];onOpen:()=>void;open:boolean}) {
+function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
   const cover=products.find(p=>p.model==="LC100J")||products[0];
   const [imageFailed,setImageFailed]=useState(false);
-  return <div className={`stack-preview ${open?"is-hidden":""}`} aria-hidden={open}>
+  return <div className="stack-preview">
     <div className="stack-preview-layers" aria-hidden="true"><span/><span/><span/></div>
-    <button type="button" tabIndex={open?-1:undefined} className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
+    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
@@ -100,25 +100,32 @@ function FitStackInline({products,globalKeys,onClose}:{products:Product[];global
     const onOutside=(event:PointerEvent)=>{
       if(event.button===0&&!rootRef.current?.contains(event.target as Node))onClose(false);
     };
+    const onWheel=(event:WheelEvent)=>{
+      if(Math.abs(event.deltaY)<5&&Math.abs(event.deltaX)<5)return;
+      event.preventDefault();
+      if(Date.now()-lastWheel.current<480)return;
+      lastWheel.current=Date.now();
+      const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
+      setSelected(current=>(current+(delta>0?1:-1)+products.length)%products.length);
+    };
     window.addEventListener("keydown",onKey);
     document.addEventListener("pointerdown",onOutside);
-    return ()=>{window.removeEventListener("keydown",onKey);document.removeEventListener("pointerdown",onOutside);};
+    const root=rootRef.current;
+    root?.addEventListener("wheel",onWheel,{passive:false});
+    return ()=>{window.removeEventListener("keydown",onKey);document.removeEventListener("pointerdown",onOutside);root?.removeEventListener("wheel",onWheel);};
   },[onClose,products.length]);
-  const onWheel=(event:React.WheelEvent)=>{
-    event.preventDefault();
-    if(Math.abs(event.deltaY)<5 || Date.now()-lastWheel.current<480)return;
-    lastWheel.current=Date.now();
-    shift(event.deltaY>0?1:-1);
-  };
-  return <section ref={rootRef} className="stack-inline" role="region" aria-label="EVOPOWER SYSTEM FIT 产品合集" onWheel={onWheel}>
+  return <section ref={rootRef} className="stack-inline" role="region" aria-label="EVOPOWER SYSTEM FIT 产品合集">
       <div className="stack-inline-top">
         <div><span className="stack-inline-kicker">PRODUCT PLATFORM / EXPERIMENT</span><h2>EVOPOWER SYSTEM FIT <span>/ FIT+</span></h2><p>{products.length} 个型号 · 原位展开</p></div>
         <button ref={closeRef} className="stack-close" type="button" onClick={()=>onClose()} aria-label="关闭合集"><X size={20}/></button>
       </div>
       <div className="stack-stage" aria-live="polite">
         {products.map((product,index)=>{
-          const depth=(index-selected+products.length)%products.length;
-          const style={"--depth":depth,zIndex:10-depth} as CSSProperties;
+          let offset=index-selected;
+          if(offset>products.length/2)offset-=products.length;
+          if(offset< -products.length/2)offset+=products.length;
+          const depth=Math.abs(offset);
+          const style={"--offset":offset,"--depth":depth,zIndex:10-depth} as CSSProperties;
           return <div key={product.id} className={`stack-slide ${depth===0?"is-current":""}`} style={style}
             onClick={()=>{if(depth!==0)setSelected(index);}} aria-hidden={depth!==0}>
             <ProductCard product={product} globalKeys={globalKeys} inactive={depth!==0}/>
@@ -129,6 +136,9 @@ function FitStackInline({products,globalKeys,onClose}:{products:Product[];global
         <button type="button" onClick={()=>shift(-1)} aria-label="上一个型号"><ChevronLeft size={22}/></button>
         <div className="stack-position"><strong>{products[selected].model}</strong><span>{selected+1} / {products.length}</span></div>
         <button type="button" onClick={()=>shift(1)} aria-label="下一个型号"><ChevronRight size={22}/></button>
+      </div>
+      <div className="stack-model-nav" aria-label="选择型号">
+        {products.map((product,index)=><button key={product.id} type="button" className={index===selected?"is-selected":""} onClick={()=>setSelected(index)} aria-current={index===selected?"true":undefined}>{product.model}</button>)}
       </div>
       <p className="stack-hint">滚轮 / 方向键切换 · 点击外部或按 Esc 退出</p>
     </section>;
@@ -202,8 +212,7 @@ export default function Home() {
               if(label==="无线吸尘器"&&name==="LC 系列"&&fitModels.has((p.model||"").toUpperCase())&&fitProducts.length>1){
                 if(p.model!==fitProducts[0].model)return null;
                 return <div key="lc-fit-stack" className={`stack-trigger ${fitOpen?"is-open":""}`} ref={node=>{stackTrigger.current=node?.querySelector(".stack-preview-face")||null;}}>
-                  <StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)} open={fitOpen}/>
-                  {fitOpen&&<FitStackInline products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>}
+                  {fitOpen?<FitStackInline products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>:<StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)}/>}
                 </div>;
               }
               return <ProductCard key={p.id} product={p} globalKeys={globalKeys}/>;
