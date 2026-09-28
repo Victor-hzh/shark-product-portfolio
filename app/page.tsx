@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { ArrowUpRight, RefreshCw, Globe2, CalendarDays, Layers3, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -63,12 +63,12 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
   </article>;
 }
 
-function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
+function StackPreview({products,onOpen,open}:{products:Product[];onOpen:()=>void;open:boolean}) {
   const cover=products.find(p=>p.model==="LC100J")||products[0];
   const [imageFailed,setImageFailed]=useState(false);
-  return <div className="stack-preview">
-    <div className="stack-preview-layers" aria-hidden="true"><span/><span/></div>
-    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
+  return <div className={`stack-preview ${open?"is-hidden":""}`} aria-hidden={open}>
+    <div className="stack-preview-layers" aria-hidden="true"><span/><span/><span/></div>
+    <button type="button" tabIndex={open?-1:undefined} className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
@@ -84,31 +84,25 @@ function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
   </div>;
 }
 
-function FitStackDialog({products,globalKeys,onClose}:{products:Product[];globalKeys:Set<string>;onClose:()=>void}) {
+function FitStackInline({products,globalKeys,onClose}:{products:Product[];globalKeys:Set<string>;onClose:(restoreFocus?:boolean)=>void}) {
   const [selected,setSelected]=useState(0);
   const lastWheel=useRef(0);
+  const rootRef=useRef<HTMLElement>(null);
   const closeRef=useRef<HTMLButtonElement>(null);
   const shift=(direction:number)=>setSelected(current=>(current+direction+products.length)%products.length);
   useEffect(()=>{
-    const previousOverflow=document.body.style.overflow;
-    const main=document.querySelector<HTMLElement>(".app-shell main");
-    const previousInert=main?.inert;
-    document.body.style.overflow="hidden";
-    if(main)main.inert=true;
     closeRef.current?.focus();
     const onKey=(event:KeyboardEvent)=>{
       if(event.key==="Escape"){event.preventDefault();onClose();}
       if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>(current+1)%products.length);}
       if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>(current-1+products.length)%products.length);}
-      if(event.key==="Tab"){
-        const elements=Array.from(document.querySelectorAll<HTMLElement>(".stack-dialog button:not([tabindex='-1']), .stack-dialog a:not([tabindex='-1'])"));
-        const first=elements[0],last=elements[elements.length-1];
-        if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
-        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
-      }
+    };
+    const onOutside=(event:PointerEvent)=>{
+      if(event.button===0&&!rootRef.current?.contains(event.target as Node))onClose(false);
     };
     window.addEventListener("keydown",onKey);
-    return ()=>{document.body.style.overflow=previousOverflow;if(main)main.inert=previousInert||false;window.removeEventListener("keydown",onKey);};
+    document.addEventListener("pointerdown",onOutside);
+    return ()=>{window.removeEventListener("keydown",onKey);document.removeEventListener("pointerdown",onOutside);};
   },[onClose,products.length]);
   const onWheel=(event:React.WheelEvent)=>{
     event.preventDefault();
@@ -116,21 +110,18 @@ function FitStackDialog({products,globalKeys,onClose}:{products:Product[];global
     lastWheel.current=Date.now();
     shift(event.deltaY>0?1:-1);
   };
-  return <div className="stack-backdrop" onClick={event=>{if(event.target===event.currentTarget)onClose();}} onWheel={onWheel}>
-    <section className="stack-dialog" role="dialog" aria-modal="true" aria-label="EVOPOWER SYSTEM FIT 产品合集">
-      <div className="stack-dialog-top">
-        <div><span className="stack-dialog-kicker">PRODUCT PLATFORM / EXPERIMENT</span><h2>EVOPOWER SYSTEM FIT <span>/ FIT+</span></h2><p>同一平台候选 · {products.length} 个 SKU</p></div>
-        <button ref={closeRef} className="stack-close" type="button" onClick={onClose} aria-label="关闭合集"><X size={22}/></button>
+  return <section ref={rootRef} className="stack-inline" role="region" aria-label="EVOPOWER SYSTEM FIT 产品合集" onWheel={onWheel}>
+      <div className="stack-inline-top">
+        <div><span className="stack-inline-kicker">PRODUCT PLATFORM / EXPERIMENT</span><h2>EVOPOWER SYSTEM FIT <span>/ FIT+</span></h2><p>{products.length} 个型号 · 原位展开</p></div>
+        <button ref={closeRef} className="stack-close" type="button" onClick={()=>onClose()} aria-label="关闭合集"><X size={20}/></button>
       </div>
-      <div className="stack-stage" aria-live="polite" onClick={event=>{if(event.target===event.currentTarget)onClose();}}>
+      <div className="stack-stage" aria-live="polite">
         {products.map((product,index)=>{
-          let offset=index-selected;
-          if(offset>products.length/2)offset-=products.length;
-          if(offset< -products.length/2)offset+=products.length;
-          const style={"--offset":offset,"--depth":Math.abs(offset),zIndex:10-Math.abs(offset)} as CSSProperties;
-          return <div key={product.id} className={`stack-slide ${offset===0?"is-current":""}`} style={style}
-            onClick={()=>{if(offset!==0)setSelected(index);}} aria-hidden={offset!==0}>
-            <ProductCard product={product} globalKeys={globalKeys} inactive={offset!==0}/>
+          const depth=(index-selected+products.length)%products.length;
+          const style={"--depth":depth,zIndex:10-depth} as CSSProperties;
+          return <div key={product.id} className={`stack-slide ${depth===0?"is-current":""}`} style={style}
+            onClick={()=>{if(depth!==0)setSelected(index);}} aria-hidden={depth!==0}>
+            <ProductCard product={product} globalKeys={globalKeys} inactive={depth!==0}/>
           </div>;
         })}
       </div>
@@ -139,9 +130,8 @@ function FitStackDialog({products,globalKeys,onClose}:{products:Product[];global
         <div className="stack-position"><strong>{products[selected].model}</strong><span>{selected+1} / {products.length}</span></div>
         <button type="button" onClick={()=>shift(1)} aria-label="下一个型号"><ChevronRight size={22}/></button>
       </div>
-      <p className="stack-hint">滚轮或方向键切换 · 点击外部或按 Esc 退出</p>
-    </section>
-  </div>;
+      <p className="stack-hint">滚轮 / 方向键切换 · 点击外部或按 Esc 退出</p>
+    </section>;
 }
 
 export default function Home() {
@@ -182,7 +172,7 @@ export default function Home() {
   }
   const filtered=useMemo(()=>active==="全部"?products:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products]);
   const fitProducts=useMemo(()=>products.filter(p=>fitModels.has((p.model||"").toUpperCase())).sort((a,b)=>(a.model||"").localeCompare(b.model||"",undefined,{numeric:true})),[products]);
-  const closeFit=()=>{setFitOpen(false);requestAnimationFrame(()=>stackTrigger.current?.focus());};
+  const closeFit=useCallback((restoreFocus=true)=>{setFitOpen(false);if(restoreFocus)requestAnimationFrame(()=>stackTrigger.current?.focus());},[]);
   const groups=groupOrder.map(group=>({group,categories:CATEGORIES.filter(c=>c.group===group).map(c=>{
     const items=filtered.filter(p=>p.category===c.label);
     const bySeries=new Map<string,Product[]>();
@@ -211,8 +201,9 @@ export default function Home() {
             <div className="product-grid">{members.map(p=>{
               if(label==="无线吸尘器"&&name==="LC 系列"&&fitModels.has((p.model||"").toUpperCase())&&fitProducts.length>1){
                 if(p.model!==fitProducts[0].model)return null;
-                return <div key="lc-fit-stack" className="stack-trigger" ref={node=>{stackTrigger.current=node?.querySelector("button")||null;}}>
-                  <StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)}/>
+                return <div key="lc-fit-stack" className={`stack-trigger ${fitOpen?"is-open":""}`} ref={node=>{stackTrigger.current=node?.querySelector(".stack-preview-face")||null;}}>
+                  <StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)} open={fitOpen}/>
+                  {fitOpen&&<FitStackInline products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>}
                 </div>;
               }
               return <ProductCard key={p.id} product={p} globalKeys={globalKeys}/>;
@@ -221,6 +212,5 @@ export default function Home() {
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
     </main>
-    {fitOpen&&fitProducts.length>1&&<FitStackDialog products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>}
   </div></TooltipProvider>;
 }
