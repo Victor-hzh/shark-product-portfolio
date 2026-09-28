@@ -55,6 +55,21 @@ export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
   specs:specsByModel[item.model]||{},
   firstSeen:seen,lastSeen:seen,
 }));
-// A verified announcement gives this release its date; all other dates stay unknown.
-const ionCurl=STARTER_PRODUCTS.find(p=>p.id==="HD840PU");
-if(ionCurl){ionCurl.releaseDate="2026-07-06";ionCurl.releasePrecision="day";ionCurl.releaseSource="https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/";}
+const releaseEvidence:Record<string,{date:string;source:string}>={
+  HD840PU:{date:"2026-07-06",source:"https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/"},
+  LC800J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+  LC900J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+  LC950J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+  AB2000J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/20260709-01"},
+  AB2111J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/20260709-01"},
+};
+export function withVerifiedReleaseDates(products:Product[]):Product[] {
+  return products.map(product=>{
+    const verified=releaseEvidence[(product.model||"").toUpperCase()];
+    return verified&&!product.releaseDate?{...product,releaseDate:verified.date,releasePrecision:"day",releaseSource:verified.source}:product;
+  });
+}
+for(const product of STARTER_PRODUCTS){
+  const verified=releaseEvidence[product.model||""];
+  if(verified){product.releaseDate=verified.date;product.releasePrecision="day";product.releaseSource=verified.source;}
+}
