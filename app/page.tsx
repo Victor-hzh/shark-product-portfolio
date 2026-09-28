@@ -3,12 +3,13 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties }
 import { ArrowUpRight, RefreshCw, Globe2, CalendarDays, Layers3, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, type Product } from "@/lib/catalog";
+import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, withVerifiedReleaseDates, type Product } from "@/lib/catalog";
 import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
+import { platformGroupFor, type PlatformGroup } from "@/lib/platform-groups";
 import { cardSpecs } from "@/lib/specs";
 
 const groupOrder=["地面清洁","个护","家居环境"];
-const fitModels=new Set(["LC100J","LC102J","LC103J","LC150J","LC152J"]);
+const latestLabel="最近上新";
 type Run = {source:string;added:number;checked?:number;status:string;detail?:string};
 const flag:Record<string,{file:string,name:string}>={
   US:{file:"us",name:"美国"},UK:{file:"gb",name:"英国"},DE:{file:"de",name:"德国"},
@@ -63,20 +64,20 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
   </article>;
 }
 
-function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
-  const cover=products.find(p=>p.model==="LC100J")||products[0];
+function StackPreview({products,group,onOpen}:{products:Product[];group:PlatformGroup;onOpen:()=>void}) {
+  const cover=products[0];
   const [imageFailed,setImageFailed]=useState(false);
   return <div className="stack-preview">
     <div className="stack-preview-layers" aria-hidden="true"><span/><span/><span/></div>
-    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
+    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 ${group.label} 合集，共 ${products.length} 个型号`}>
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
         <span className="stack-preview-count">{products.length} SKU</span>
       </div>
       <div className="stack-preview-content">
-        <span className="model-line">LC100J — LC152J</span>
-        <strong>EVOPOWER SYSTEM FIT / FIT+</strong>
+        <span className="model-line">{products[0].model} — {products[products.length-1].model}</span>
+        <strong>{group.label}</strong>
         <span className="stack-preview-models">{products.map(p=>p.model).join(" · ")}</span>
         <span className="stack-preview-action">查看合集 <ArrowUpRight size={16}/></span>
       </div>
@@ -84,7 +85,7 @@ function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
   </div>;
 }
 
-function FitStackInline({products,globalKeys,onClose}:{products:Product[];globalKeys:Set<string>;onClose:(restoreFocus?:boolean)=>void}) {
+function PlatformStackInline({products,group,globalKeys,onClose}:{products:Product[];group:PlatformGroup;globalKeys:Set<string>;onClose:(restoreFocus?:boolean)=>void}) {
   const [selected,setSelected]=useState(0);
   const lastWheel=useRef(0);
   const rootRef=useRef<HTMLElement>(null);
@@ -114,9 +115,9 @@ function FitStackInline({products,globalKeys,onClose}:{products:Product[];global
     root?.addEventListener("wheel",onWheel,{passive:false});
     return ()=>{window.removeEventListener("keydown",onKey);document.removeEventListener("pointerdown",onOutside);root?.removeEventListener("wheel",onWheel);};
   },[onClose,products.length]);
-  return <section ref={rootRef} className="stack-inline" role="region" aria-label="EVOPOWER SYSTEM FIT 产品合集">
+  return <section ref={rootRef} className="stack-inline" role="region" aria-label={`${group.label} 产品合集`}>
       <div className="stack-inline-top">
-        <div><span className="stack-inline-kicker">PRODUCT PLATFORM / EXPERIMENT</span><h2>EVOPOWER SYSTEM FIT <span>/ FIT+</span></h2><p>{products.length} 个型号 · 原位展开</p></div>
+        <div><span className="stack-inline-kicker">PRODUCT PLATFORM / SKU COLLECTION</span><h2>{group.label}</h2><p>{products.length} 个型号 · 原位展开</p></div>
         <button ref={closeRef} className="stack-close" type="button" onClick={()=>onClose()} aria-label="关闭合集"><X size={20}/></button>
       </div>
       <div className="stack-stage" aria-live="polite">
@@ -152,7 +153,7 @@ export default function Home() {
   const [runs,setRuns]=useState<Run[]>([]);
   const [loadError,setLoadError]=useState<string|null>(null);
   const [active,setActive]=useState<string>("全部");
-  const [fitOpen,setFitOpen]=useState(false);
+  const [openGroupId,setOpenGroupId]=useState<string|null>(null);
   const stackTrigger=useRef<HTMLButtonElement|null>(null);
   const globalKeys=useMemo(()=>globalSeriesKeys(products),[products]);
   async function load() {
@@ -160,7 +161,7 @@ export default function Home() {
       const response=await fetch("/api/products",{cache:"no-store"});
       const data=await response.json() as {products:Product[];lastRefresh:{at:string}|null;warning?:string;error?:string};
       if(!response.ok)throw new Error(data.error||"数据暂不可用");
-      setProducts(data.products);setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
+      setProducts(withVerifiedReleaseDates(data.products));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
     }catch(e){setLoadError(e instanceof Error?e.message:"读取失败");}
   }
   useEffect(()=>{void load();},[]);
@@ -180,9 +181,9 @@ export default function Home() {
     }
     setRunning(false);
   }
-  const filtered=useMemo(()=>active==="全部"?products:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products]);
-  const fitProducts=useMemo(()=>products.filter(p=>fitModels.has((p.model||"").toUpperCase())).sort((a,b)=>(a.model||"").localeCompare(b.model||"",undefined,{numeric:true})),[products]);
-  const closeFit=useCallback((restoreFocus=true)=>{setFitOpen(false);if(restoreFocus)requestAnimationFrame(()=>stackTrigger.current?.focus());},[]);
+  const latest=useMemo(()=>products.filter(isNew).sort((a,b)=>(b.releaseDate||"").localeCompare(a.releaseDate||"")),[products]);
+  const filtered=useMemo(()=>active==="全部"?products:active===latestLabel?latest:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products,latest]);
+  const closeGroup=useCallback((restoreFocus=true)=>{setOpenGroupId(null);if(restoreFocus)requestAnimationFrame(()=>stackTrigger.current?.focus());},[]);
   const groups=groupOrder.map(group=>({group,categories:CATEGORIES.filter(c=>c.group===group).map(c=>{
     const items=filtered.filter(p=>p.category===c.label);
     const bySeries=new Map<string,Product[]>();
@@ -204,16 +205,23 @@ export default function Home() {
         {!running&&failures.length>0&&<details><summary>查看未读取的来源</summary>{failures.map((r,i)=><p key={i}>{r.source}：{r.detail||"来源不可用"}</p>)}</details>}
       </div>}
       {loadError&&<div className="load-error">{loadError}。当前页面显示已核实的仓库快照。</div>}
-      <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder].map(g=><button key={g} onClick={()=>setActive(g)} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
+      <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder,latestLabel].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
+      {active===latestLabel&&<p className="latest-explainer">近 180 天内有可核实上市日期的产品。未核实日期的产品暂不列入；合集内保留每个 SKU 的日期来源。</p>}
+      {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
         {categories.map(({label,items,series})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
           {series.map(({name,items:members})=><div className="series" key={name}><div className="series-head"><h4>{name}</h4><span>{members.length}</span></div>
             <div className="product-grid">{members.map(p=>{
-              if(label==="无线吸尘器"&&name==="LC 系列"&&fitModels.has((p.model||"").toUpperCase())&&fitProducts.length>1){
-                if(p.model!==fitProducts[0].model)return null;
-                return <div key="lc-fit-stack" className={`stack-trigger ${fitOpen?"is-open":""}`} ref={node=>{stackTrigger.current=node?.querySelector(".stack-preview-face")||null;}}>
-                  {fitOpen?<FitStackInline products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>:<StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)}/>}
+              const platform=platformGroupFor(p.model);
+              if(platform?.category===label){
+                const collection=members.filter(item=>platform.models.includes(item.model||""));
+                if(collection.length>=2){
+                  if(p.id!==collection[0].id)return null;
+                  const open=openGroupId===platform.id;
+                  return <div key={platform.id} className={`stack-trigger ${open?"is-open":""}`} ref={node=>{if(open||node?.querySelector(".stack-preview-face"))stackTrigger.current=node?.querySelector(".stack-preview-face")||null;}}>
+                    {open?<PlatformStackInline products={collection} group={platform} globalKeys={globalKeys} onClose={closeGroup}/>:<StackPreview products={collection} group={platform} onOpen={()=>setOpenGroupId(platform.id)}/>}
                 </div>;
+                }
               }
               return <ProductCard key={p.id} product={p} globalKeys={globalKeys}/>;
             })}</div></div>)}
