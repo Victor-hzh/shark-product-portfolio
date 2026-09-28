@@ -99,3 +99,5 @@
 .stack-hint{margin-top:10px}
 @media(max-width:760px){.stack-inline{height:620px}.stack-stage{height:425px;margin:9px -12px 0}.stack-slide{width:min(300px,70vw);height:392px;transform:translateX(calc(-50% + var(--offset)*min(225px,57vw))) rotateY(calc(var(--offset)*-7deg)) scale(calc(1 - var(--depth)*.06))}.stack-slide .image-panel{height:155px}.stack-model-nav{gap:4px;margin-top:8px}.stack-model-nav button{padding:6px;font-size:9px}}
 @media(max-width:460px){.stack-inline{height:600px}.stack-stage{height:406px}.stack-slide{width:70vw;height:374px;transform:translateX(calc(-50% + var(--offset)*55vw)) rotateY(calc(var(--offset)*-7deg)) scale(calc(1 - var(--depth)*.07))}.stack-slide .image-panel{height:140px}.stack-slide .card-content{padding:10px}.stack-slide .card-content h3{font-size:12px}.stack-model-nav button{padding:5px 4px;font-size:8px}}
+.latest-explainer,.latest-empty{margin:17px 0 0;padding:14px 18px;border-radius:9px;background:#fff;border:1px solid #e0e5ea;color:#637487;font-size:13px;line-height:1.6}
+.latest-empty{padding:30px 18px;text-align:center}
