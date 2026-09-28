@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, RefreshCw, Globe2, CalendarDays, Layers3, ExternalLink } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { ArrowUpRight, RefreshCw, Globe2, CalendarDays, Layers3, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, type Product } from "@/lib/catalog";
@@ -8,6 +8,7 @@ import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
 import { cardSpecs } from "@/lib/specs";
 
 const groupOrder=["地面清洁","个护","家居环境"];
+const fitModels=new Set(["LC100J","LC102J","LC103J","LC150J","LC152J"]);
 type Run = {source:string;added:number;checked?:number;status:string;detail?:string};
 const flag:Record<string,{file:string,name:string}>={
   US:{file:"us",name:"美国"},UK:{file:"gb",name:"英国"},DE:{file:"de",name:"德国"},
@@ -29,7 +30,7 @@ function isNew(p:Product) {
   const days=(Date.now()-new Date(p.releaseDate+"T00:00:00Z").getTime())/86400000;
   return days>=0 && days<=180;
 }
-function ProductCard({product:p,globalKeys}:{product:Product;globalKeys:Set<string>}) {
+function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;globalKeys:Set<string>;inactive?:boolean}) {
   const shown=p.markets.slice(0,4), extra=p.markets.length-4;
   const global=useGlobalMark(p,globalKeys);
   const isRetailer=new URL(p.officialUrl).hostname.endsWith("target.com");
@@ -45,7 +46,7 @@ function ProductCard({product:p,globalKeys}:{product:Product;globalKeys:Set<stri
         {global?<span className="global-mark" title="此系列已在美国、英国、日本核实销售；各地区的具体型号和配置可能不同"><img src="/icons/globe.svg" alt="跨市场系列" width="25" height="25"/></span>:
           shown.length===1?<span className="market-chip only" title="目前只确认这个国家的销售记录">ONLY <Flag code={shown[0]}/></span>:
           shown.map(m=><span className="market-chip" title={flag[m]?.name||m} key={m}><Flag code={m}/></span>)}
-        {!global&&extra>0&&<Tooltip><TooltipTrigger asChild><button className="market-chip more" aria-label={`另有 ${extra} 个国家，查看全部`}>+{extra}</button></TooltipTrigger>
+        {!global&&extra>0&&<Tooltip><TooltipTrigger asChild><button className="market-chip more" tabIndex={inactive?-1:undefined} aria-label={`另有 ${extra} 个国家，查看全部`}>+{extra}</button></TooltipTrigger>
           <TooltipContent side="top" className="market-tooltip"><strong>已确认的市场</strong><div>{p.markets.map(m=><span key={m}><Flag code={m}/> {flag[m]?.name||m}</span>)}</div></TooltipContent></Tooltip>}
       </div>
     </div>
@@ -55,11 +56,92 @@ function ProductCard({product:p,globalKeys}:{product:Product;globalKeys:Set<stri
       <p className="spec-line" aria-label="产品关键参数">{specs.map((spec,index)=><span key={spec.label} className={spec.verified?"":"spec-unverified"}>
         {index>0&&<span className="spec-separator">{" | "}</span>}{spec.label} {spec.value}
       </span>)}</p>
-      <p className="release"><CalendarDays size={14}/>{dateLabel(p.releaseDate,p.releasePrecision)}{p.releaseSource&&<a href={p.releaseSource} target="_blank" rel="noopener noreferrer" title="查看发布日期来源" aria-label="查看发布日期来源"><ExternalLink size={13}/></a>}</p>
-      <div className="card-links"><a href={p.officialUrl} target="_blank" rel="noopener noreferrer">{isRetailer?"Target 商品页":"Shark 官网"} <ArrowUpRight size={14}/></a>
-        {p.amazonUrl&&<a href={p.amazonUrl} target="_blank" rel="noopener noreferrer">Amazon <ArrowUpRight size={14}/></a>}</div>
+      <p className="release"><CalendarDays size={14}/>{dateLabel(p.releaseDate,p.releasePrecision)}{p.releaseSource&&<a href={p.releaseSource} tabIndex={inactive?-1:undefined} target="_blank" rel="noopener noreferrer" title="查看发布日期来源" aria-label="查看发布日期来源"><ExternalLink size={13}/></a>}</p>
+      <div className="card-links"><a href={p.officialUrl} tabIndex={inactive?-1:undefined} target="_blank" rel="noopener noreferrer">{isRetailer?"Target 商品页":"Shark 官网"} <ArrowUpRight size={14}/></a>
+        {p.amazonUrl&&<a href={p.amazonUrl} tabIndex={inactive?-1:undefined} target="_blank" rel="noopener noreferrer">Amazon <ArrowUpRight size={14}/></a>}</div>
     </div>
   </article>;
+}
+
+function StackPreview({products,onOpen}:{products:Product[];onOpen:()=>void}) {
+  const cover=products.find(p=>p.model==="LC100J")||products[0];
+  const [imageFailed,setImageFailed]=useState(false);
+  return <div className="stack-preview">
+    <div className="stack-preview-layers" aria-hidden="true"><span/><span/></div>
+    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 EVOPOWER SYSTEM FIT 合集，共 ${products.length} 个型号`}>
+      <div className="stack-preview-image">
+        {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
+          <span className="stack-preview-fallback">SHARK</span>}
+        <span className="stack-preview-count">{products.length} SKU</span>
+      </div>
+      <div className="stack-preview-content">
+        <span className="model-line">LC100J — LC152J</span>
+        <strong>EVOPOWER SYSTEM FIT / FIT+</strong>
+        <span className="stack-preview-models">{products.map(p=>p.model).join(" · ")}</span>
+        <span className="stack-preview-action">查看合集 <ArrowUpRight size={16}/></span>
+      </div>
+    </button>
+  </div>;
+}
+
+function FitStackDialog({products,globalKeys,onClose}:{products:Product[];globalKeys:Set<string>;onClose:()=>void}) {
+  const [selected,setSelected]=useState(0);
+  const lastWheel=useRef(0);
+  const closeRef=useRef<HTMLButtonElement>(null);
+  const shift=(direction:number)=>setSelected(current=>(current+direction+products.length)%products.length);
+  useEffect(()=>{
+    const previousOverflow=document.body.style.overflow;
+    const main=document.querySelector<HTMLElement>(".app-shell main");
+    const previousInert=main?.inert;
+    document.body.style.overflow="hidden";
+    if(main)main.inert=true;
+    closeRef.current?.focus();
+    const onKey=(event:KeyboardEvent)=>{
+      if(event.key==="Escape"){event.preventDefault();onClose();}
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>(current+1)%products.length);}
+      if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>(current-1+products.length)%products.length);}
+      if(event.key==="Tab"){
+        const elements=Array.from(document.querySelectorAll<HTMLElement>(".stack-dialog button:not([tabindex='-1']), .stack-dialog a:not([tabindex='-1'])"));
+        const first=elements[0],last=elements[elements.length-1];
+        if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
+      }
+    };
+    window.addEventListener("keydown",onKey);
+    return ()=>{document.body.style.overflow=previousOverflow;if(main)main.inert=previousInert||false;window.removeEventListener("keydown",onKey);};
+  },[onClose,products.length]);
+  const onWheel=(event:React.WheelEvent)=>{
+    event.preventDefault();
+    if(Math.abs(event.deltaY)<5 || Date.now()-lastWheel.current<480)return;
+    lastWheel.current=Date.now();
+    shift(event.deltaY>0?1:-1);
+  };
+  return <div className="stack-backdrop" onClick={event=>{if(event.target===event.currentTarget)onClose();}} onWheel={onWheel}>
+    <section className="stack-dialog" role="dialog" aria-modal="true" aria-label="EVOPOWER SYSTEM FIT 产品合集">
+      <div className="stack-dialog-top">
+        <div><span className="stack-dialog-kicker">PRODUCT PLATFORM / EXPERIMENT</span><h2>EVOPOWER SYSTEM FIT <span>/ FIT+</span></h2><p>同一平台候选 · {products.length} 个 SKU</p></div>
+        <button ref={closeRef} className="stack-close" type="button" onClick={onClose} aria-label="关闭合集"><X size={22}/></button>
+      </div>
+      <div className="stack-stage" aria-live="polite" onClick={event=>{if(event.target===event.currentTarget)onClose();}}>
+        {products.map((product,index)=>{
+          let offset=index-selected;
+          if(offset>products.length/2)offset-=products.length;
+          if(offset< -products.length/2)offset+=products.length;
+          const style={"--offset":offset,"--depth":Math.abs(offset),zIndex:10-Math.abs(offset)} as CSSProperties;
+          return <div key={product.id} className={`stack-slide ${offset===0?"is-current":""}`} style={style}
+            onClick={()=>{if(offset!==0)setSelected(index);}} aria-hidden={offset!==0}>
+            <ProductCard product={product} globalKeys={globalKeys} inactive={offset!==0}/>
+          </div>;
+        })}
+      </div>
+      <div className="stack-controls">
+        <button type="button" onClick={()=>shift(-1)} aria-label="上一个型号"><ChevronLeft size={22}/></button>
+        <div className="stack-position"><strong>{products[selected].model}</strong><span>{selected+1} / {products.length}</span></div>
+        <button type="button" onClick={()=>shift(1)} aria-label="下一个型号"><ChevronRight size={22}/></button>
+      </div>
+      <p className="stack-hint">滚轮或方向键切换 · 点击外部或按 Esc 退出</p>
+    </section>
+  </div>;
 }
 
 export default function Home() {
@@ -70,6 +152,8 @@ export default function Home() {
   const [runs,setRuns]=useState<Run[]>([]);
   const [loadError,setLoadError]=useState<string|null>(null);
   const [active,setActive]=useState<string>("全部");
+  const [fitOpen,setFitOpen]=useState(false);
+  const stackTrigger=useRef<HTMLButtonElement|null>(null);
   const globalKeys=useMemo(()=>globalSeriesKeys(products),[products]);
   async function load() {
     try {
@@ -97,6 +181,8 @@ export default function Home() {
     setRunning(false);
   }
   const filtered=useMemo(()=>active==="全部"?products:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products]);
+  const fitProducts=useMemo(()=>products.filter(p=>fitModels.has((p.model||"").toUpperCase())).sort((a,b)=>(a.model||"").localeCompare(b.model||"",undefined,{numeric:true})),[products]);
+  const closeFit=()=>{setFitOpen(false);requestAnimationFrame(()=>stackTrigger.current?.focus());};
   const groups=groupOrder.map(group=>({group,categories:CATEGORIES.filter(c=>c.group===group).map(c=>{
     const items=filtered.filter(p=>p.category===c.label);
     const bySeries=new Map<string,Product[]>();
@@ -122,10 +208,19 @@ export default function Home() {
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
         {categories.map(({label,items,series})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
           {series.map(({name,items:members})=><div className="series" key={name}><div className="series-head"><h4>{name}</h4><span>{members.length}</span></div>
-            <div className="product-grid">{members.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>)}
+            <div className="product-grid">{members.map(p=>{
+              if(label==="无线吸尘器"&&name==="LC 系列"&&fitModels.has((p.model||"").toUpperCase())&&fitProducts.length>1){
+                if(p.model!==fitProducts[0].model)return null;
+                return <div key="lc-fit-stack" className="stack-trigger" ref={node=>{stackTrigger.current=node?.querySelector("button")||null;}}>
+                  <StackPreview products={fitProducts} onOpen={()=>setFitOpen(true)}/>
+                </div>;
+              }
+              return <ProductCard key={p.id} product={p} globalKeys={globalKeys}/>;
+            })}</div></div>)}
         </section>)}
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
     </main>
+    {fitOpen&&fitProducts.length>1&&<FitStackDialog products={fitProducts} globalKeys={globalKeys} onClose={closeFit}/>}
   </div></TooltipProvider>;
 }
