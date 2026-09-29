@@ -56,12 +56,21 @@ export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
   firstSeen:seen,lastSeen:seen,
 }));
 const releaseEvidence:Record<string,{date:string;source:string}>={
+  RVD120X1JP:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260915-01"},
+  HP062J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
+  HP162J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
+  WD563:{date:"2026-08-18",source:"https://newsroom.sharkninja.com/shark-launches-aquareach-the-first-vacuum-mop-system-with-extendable-wand-designed-to-clean-beyond-the-floor/"},
   HD840PU:{date:"2026-07-06",source:"https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/"},
+  HD840:{date:"2026-07-06",source:"https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/"},
+  LX5000:{date:"2026-06-30",source:"https://newsroom.sharkninja.com/sharkninja-launches-the-shark-powerdetect-transformer-three-vacuums-one-system-zero-compromises/"},
+  EX500:{date:"2026-06-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-the-shark-carpetforce-collection-reinventing-carpet-cleaning-for-everyday-life/"},
+  EX551:{date:"2026-06-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-the-shark-carpetforce-collection-reinventing-carpet-cleaning-for-everyday-life/"},
+  IW5271J:{date:"2026-06-04",source:"https://www.sharkninja.jp/blogs/news/20260521-01"},
+  IA3241:{date:"2026-04-14",source:"https://newsroom.sharkninja.com/sharkninja-introduces-shark-powerdetect-speed-clean-empty-system/"},
+  HP362:{date:"2026-04-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-shark-breatheclear-max-with-neverchange-proactive-purification-intelligent-air-analysis-purpose-built-to-act-before-air-quality-drops/"},
   LC800J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
   LC900J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
   LC950J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
-  AB2000J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/20260709-01"},
-  AB2111J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/20260709-01"},
 };
 export function withVerifiedReleaseDates(products:Product[]):Product[] {
   return products.map(product=>{
