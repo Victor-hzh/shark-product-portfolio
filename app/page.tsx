@@ -7,6 +7,7 @@ import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, withVerifiedReleaseDates, t
 import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
 import { platformGroupFor, type PlatformGroup } from "@/lib/platform-groups";
 import { cardSpecs } from "@/lib/specs";
+import fxSnapshot from "@/data/fx-snapshot.json";
 
 const groupOrder=["洗地机","布艺","机器人","吸尘器","蒸汽拖把","立式机","地毯清洗","吹叶机","个护","风扇","空净"];
 const latestLabel="最近上新";
@@ -32,6 +33,21 @@ function isNew(p:Product) {
   const days=(Date.now()-new Date(p.releaseDate+"T00:00:00Z").getTime())/86400000;
   return days>=0 && days<=180;
 }
+const fx=fxSnapshot as {asOf:string;rates:Record<string,number>;sourceUrl:string};
+function currencyAmount(amount:number,currency:string) {
+  return new Intl.NumberFormat("en-US",{style:"currency",currency,maximumFractionDigits:currency==="JPY"?0:2}).format(amount);
+}
+function PriceTag({product:p}:{product:Product}) {
+  const price=p.price;
+  if(!price)return <div className="price-line price-missing" title="官网未公开挂价，或该商品页暂时无法核实价格">官网价格待核实</div>;
+  const rate=fx.rates[price.currency],usdRate=fx.rates.USD;
+  const native=currencyAmount(price.amount,price.currency)+(price.amountMax?` – ${currencyAmount(price.amountMax,price.currency)}`:"");
+  const usd=rate&&usdRate?currencyAmount(price.amount/rate*usdRate,"USD")+(price.amountMax?` – ${currencyAmount(price.amountMax/rate*usdRate,"USD")}`:""):null;
+  return <div className="price-line" title={`官网价格采集：${price.checkedAt.slice(0,10)}；美元换算：欧洲央行 ${fx.asOf} 参考汇率`}>
+    <span>官网售价</span><strong>{native}</strong>{price.currency!=="USD"&&usd&&<small>约 {usd}</small>}
+    <span className="price-date">采集 {price.checkedAt.slice(0,10)}</span>
+  </div>;
+}
 function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;globalKeys:Set<string>;inactive?:boolean}) {
   const shown=p.markets.slice(0,4), extra=p.markets.length-4;
   const global=useGlobalMark(p,globalKeys);
@@ -55,6 +71,7 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
     <div className="card-content">
       <div className="model-line">{p.model||"型号待核实"}</div>
       <h3>{p.name}</h3>
+      <PriceTag product={p}/>
       <p className="spec-line" aria-label="产品关键参数">{specs.map((spec,index)=><span key={spec.label} className={spec.verified?"":"spec-unverified"}>
         {index>0&&<span className="spec-separator">{" | "}</span>}{spec.label} {spec.value}
       </span>)}</p>
