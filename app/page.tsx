@@ -64,18 +64,19 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
   </article>;
 }
 
-function StackPreview({products,group,onOpen}:{products:Product[];group:PlatformGroup;onOpen:()=>void}) {
+function StackPreview({products,group,onOpen,open=false}:{products:Product[];group:PlatformGroup;onOpen:()=>void;open?:boolean}) {
   const cover=products[0];
   const [imageFailed,setImageFailed]=useState(false);
   return <div className="stack-preview">
     <div className="stack-preview-layers" aria-hidden="true"><span/><span/><span/></div>
-    <button type="button" className="stack-preview-face" onClick={onOpen} aria-label={`展开 ${group.label} 合集，共 ${products.length} 个型号`}>
+    <button type="button" className="stack-preview-face" onClick={onOpen} aria-expanded={open} aria-label={`${open?"当前已展开":"展开"} ${group.label} 合集，共 ${products.length} 个型号`}>
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
         <span className="stack-preview-count">{products.length} SKU</span>
       </div>
       <div className="stack-preview-content">
+        <span className="stack-preview-series">{modelSeries(cover)}</span>
         <span className="model-line">{products[0].model} — {products[products.length-1].model}</span>
         <strong>{group.label}</strong>
         <span className="stack-preview-models">{products.map(p=>p.model).join(" · ")}</span>
@@ -154,8 +155,14 @@ export default function Home() {
   const [loadError,setLoadError]=useState<string|null>(null);
   const [active,setActive]=useState<string>("全部");
   const [openGroupId,setOpenGroupId]=useState<string|null>(null);
-  const stackTrigger=useRef<HTMLButtonElement|null>(null);
+  const [gridColumns,setGridColumns]=useState(4);
+  const stackTriggers=useRef(new Map<string,HTMLButtonElement>());
   const globalKeys=useMemo(()=>globalSeriesKeys(products),[products]);
+  useEffect(()=>{
+    const syncColumns=()=>setGridColumns(window.innerWidth<=760?2:window.innerWidth<=1100?3:4);
+    syncColumns();window.addEventListener("resize",syncColumns);
+    return ()=>window.removeEventListener("resize",syncColumns);
+  },[]);
   async function load() {
     try {
       const response=await fetch("/api/products",{cache:"no-store"});
@@ -183,14 +190,26 @@ export default function Home() {
   }
   const latest=useMemo(()=>products.filter(isNew).sort((a,b)=>(b.releaseDate||"").localeCompare(a.releaseDate||"")),[products]);
   const filtered=useMemo(()=>active==="全部"?products:active===latestLabel?latest:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products,latest]);
-  const closeGroup=useCallback((restoreFocus=true)=>{setOpenGroupId(null);if(restoreFocus)requestAnimationFrame(()=>stackTrigger.current?.focus());},[]);
+  const closeGroup=useCallback((restoreFocus=true)=>{
+    const previous=openGroupId;
+    setOpenGroupId(null);
+    if(restoreFocus&&previous)requestAnimationFrame(()=>stackTriggers.current.get(previous)?.focus());
+  },[openGroupId]);
   const groups=groupOrder.map(group=>({group,categories:CATEGORIES.filter(c=>c.group===group).map(c=>{
     const items=filtered.filter(p=>p.category===c.label);
-    const bySeries=new Map<string,Product[]>();
-    for(const p of items){const series=modelSeries(p);if(!bySeries.has(series))bySeries.set(series,[]);bySeries.get(series)!.push(p);}
-    const series=[...bySeries].map(([name,members])=>({name,items:members.sort((a,b)=>(a.model||"").localeCompare(b.model||"",undefined,{numeric:true}))}))
-      .sort((a,b)=>a.name==="型号待核实"?1:b.name==="型号待核实"?-1:a.name.localeCompare(b.name));
-    return {label:c.label,items,series};
+    const sorted=[...items].sort((a,b)=>(a.model||"").localeCompare(b.model||"",undefined,{numeric:true}));
+    const collections:{group:PlatformGroup;products:Product[]}[]=[];
+    const singles:Product[]=[];
+    const seen=new Set<string>();
+    for(const p of sorted){
+      const platform=platformGroupFor(p.model);
+      const collection=platform?.category===c.label?sorted.filter(item=>platform.models.includes(item.model||"")):[];
+      if(platform&&collection.length>=2){
+        if(!seen.has(platform.id)){collections.push({group:platform,products:collection});seen.add(platform.id);}
+      }else singles.push(p);
+    }
+    const collectionRows=Array.from({length:Math.ceil(collections.length/gridColumns)},(_,i)=>collections.slice(i*gridColumns,(i+1)*gridColumns));
+    return {label:c.label,items,collectionRows,collections,singles};
   }).filter(c=>c.items.length)})).filter(g=>g.categories.length);
   const failures=runs.filter(r=>r.status!=="ok");
   return <TooltipProvider><div className="app-shell">
@@ -209,22 +228,20 @@ export default function Home() {
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
-        {categories.map(({label,items,series})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
-          {series.map(({name,items:members})=><div className="series" key={name}><div className="series-head"><h4>{name}</h4><span>{members.length}</span></div>
-            <div className="product-grid">{members.map(p=>{
-              const platform=platformGroupFor(p.model);
-              if(platform?.category===label){
-                const collection=members.filter(item=>platform.models.includes(item.model||""));
-                if(collection.length>=2){
-                  if(p.id!==collection[0].id)return null;
-                  const open=openGroupId===platform.id;
-                  return <div key={platform.id} className={`stack-trigger ${open?"is-open":""}`} ref={node=>{if(open||node?.querySelector(".stack-preview-face"))stackTrigger.current=node?.querySelector(".stack-preview-face")||null;}}>
-                    {open?<PlatformStackInline products={collection} group={platform} globalKeys={globalKeys} onClose={closeGroup}/>:<StackPreview products={collection} group={platform} onOpen={()=>setOpenGroupId(platform.id)}/>}
-                </div>;
-                }
-              }
-              return <ProductCard key={p.id} product={p} globalKeys={globalKeys}/>;
-            })}</div></div>)}
+        {categories.map(({label,items,collectionRows,collections,singles})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
+          {collections.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">产品合集 <span>{collections.length}</span></div>
+            <div className="collection-rows">{collectionRows.map((row,index)=>{
+              const expanded=row.find(({group})=>group.id===openGroupId);
+              return <div className="collection-row" key={index}>
+                <div className="product-grid">{row.map(({group,products:members})=><div key={group.id} className={`stack-trigger ${openGroupId===group.id?"is-open":""}`} ref={node=>{
+                  const button=node?.querySelector<HTMLButtonElement>(".stack-preview-face");
+                  if(button)stackTriggers.current.set(group.id,button);else stackTriggers.current.delete(group.id);
+                }}><StackPreview products={members} group={group} open={openGroupId===group.id} onOpen={()=>setOpenGroupId(group.id)}/></div>)}</div>
+                {expanded&&<PlatformStackInline key={expanded.group.id} products={expanded.products} group={expanded.group} globalKeys={globalKeys} onClose={closeGroup}/>}
+              </div>;
+            })}</div>
+          </div>}
+          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
