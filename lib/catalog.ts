@@ -1,5 +1,10 @@
 import snapshot from "@/data/catalog-snapshot.json";
 import specSnapshot from "@/data/specs-snapshot.json";
+import priceSnapshot from "@/data/price-snapshot.json";
+
+export type OfficialPrice = {
+  amount: number; amountMax?: number; currency: string; checkedAt: string; sourceUrl: string;
+};
 
 export type Product = {
   id: string; name: string; model: string | null; category: string; family: string | null;
@@ -7,6 +12,7 @@ export type Product = {
   releaseDate: string | null; releasePrecision: string | null; releaseSource: string | null;
   markets: string[]; firstSeen: string; lastSeen: string;
   specs?: Record<string,string>;
+  price?: OfficialPrice | null;
 };
 
 const base = "https://www.sharkninja.com";
@@ -49,6 +55,7 @@ export const SCAN_SOURCES = [
 
 const seen="2026-09-23";
 const specsByModel=specSnapshot as Record<string,Record<string,string>>;
+const pricesByModel=priceSnapshot as Record<string,OfficialPrice|null>;
 // Normalize a few official-site taxonomy differences so the same hardware can sit together.
 const displayCategoryByModel:Record<string,string>={
   "SV2002":"立式吸尘器",
@@ -66,6 +73,7 @@ export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
   imageUrl:item.imageUrl,officialUrl:item.officialUrl,amazonUrl:null,
   releaseDate:null,releasePrecision:null,releaseSource:null,markets:item.markets,
   specs:specsByModel[item.model]||{},
+  price:pricesByModel[item.model]||null,
   firstSeen:seen,lastSeen:seen,
 }));
 const releaseEvidence:Record<string,{date:string;source:string;precision?:string}>={
@@ -93,7 +101,8 @@ export function withVerifiedReleaseDates(products:Product[]):Product[] {
   return products.map(product=>{
     const verified=releaseEvidence[(product.model||"").toUpperCase()];
     const category=categoryFor((product.model||"").toUpperCase(),product.category);
-    return verified?{...product,category,releaseDate:verified.date,releasePrecision:verified.precision||"day",releaseSource:verified.source}:{...product,category};
+    const price=pricesByModel[(product.model||"").toUpperCase()]||null;
+    return verified?{...product,category,price,releaseDate:verified.date,releasePrecision:verified.precision||"day",releaseSource:verified.source}:{...product,category,price};
   });
 }
 for(const product of STARTER_PRODUCTS){
