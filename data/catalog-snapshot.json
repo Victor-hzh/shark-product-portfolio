@@ -380,8 +380,28 @@
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/RV2720ZE_01.jpg"
   },
   {
+    "model": "WD551",
+    "name": "Shark AquaReach Essential Floor to Ceiling Vacuum Mop",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-aquareach-vacuum-mop/WD551.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/WD551_01.jpg"
+  },
+  {
+    "model": "WD561",
+    "name": "Shark AquaReach Pro Floor to Ceiling Vacuum Mop Bundle",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-aquareach-pro-vacuum-mop/WD561.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/WD561_01.jpg"
+  },
+  {
     "model": "WD563",
-    "name": "Shark AquaReach Floor to Ceiling Vacuum Mop",
+    "name": "Shark AquaReach Premium Floor to Ceiling Vacuum Mop Bundle",
     "category": "洗地机",
     "officialUrl": "https://www.sharkninja.com/shark-aquareach-pro-vacuum-mop/WD563.html",
     "markets": [
@@ -408,6 +428,16 @@
       "US"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/VM401BL_01.jpg"
+  },
+  {
+    "model": "VM401SN",
+    "name": "Shark VacMop Reveal Cordless Vacuum Mop Bundle",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-vacmop-reveal-cordless-floor-vacuum-and-spray-mop/VM401SN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/VM401SN_01.jpg"
   },
   {
     "model": "WW201",
