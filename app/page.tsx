@@ -8,7 +8,7 @@ import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
 import { platformGroupFor, type PlatformGroup } from "@/lib/platform-groups";
 import { cardSpecs } from "@/lib/specs";
 
-const groupOrder=["地面清洁","个护","家居环境"];
+const groupOrder=["洗地机","布艺","机器人","吸尘器","蒸汽拖把","立式机","地毯清洗","吹叶机","个护","风扇","空净"];
 const latestLabel="最近上新";
 type Run = {source:string;added:number;checked?:number;status:string;detail?:string};
 const flag:Record<string,{file:string,name:string}>={
@@ -24,6 +24,7 @@ function dateLabel(value:string|null,precision:string|null) {
   if(!value) return "发布日期待核实";
   if(precision==="year") return value.slice(0,4);
   if(precision==="month") return value.slice(0,7).replace("-",".");
+  if(new Date(value+"T00:00:00Z").getTime()>Date.now())return `预计 ${value.replaceAll("-",".")} 上市`;
   return value.replaceAll("-",".");
 }
 function isNew(p:Product) {
@@ -168,7 +169,9 @@ export default function Home() {
       const response=await fetch("/api/products",{cache:"no-store"});
       const data=await response.json() as {products:Product[];lastRefresh:{at:string}|null;warning?:string;error?:string};
       if(!response.ok)throw new Error(data.error||"数据暂不可用");
-      setProducts(withVerifiedReleaseDates(data.products));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
+      const remoteModels=new Set(data.products.map(product=>(product.model||"").toUpperCase()));
+      const localAdditions=STARTER_PRODUCTS.filter(product=>!remoteModels.has(product.model||""));
+      setProducts(withVerifiedReleaseDates([...data.products,...localAdditions]));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
     }catch(e){setLoadError(e instanceof Error?e.message:"读取失败");}
   }
   useEffect(()=>{void load();},[]);
@@ -227,7 +230,7 @@ export default function Home() {
       <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder,latestLabel].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
-      <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
+      <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{String(groupOrder.indexOf(group)+1).padStart(2,"0")}</span><h2>{group}</h2><div/></div>
         {categories.map(({label,items,collectionRows,collections,singles})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
           {collections.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">产品合集 <span>{collections.length}</span></div>
             <div className="collection-rows">{collectionRows.map((row,index)=>{
