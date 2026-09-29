@@ -1510,5 +1510,28 @@
     "runtime": "最长24小时",
     "charge": "5小时",
     "voltage": "240V"
+  },
+  "WD110UK": {
+    "weight": "7.34kg",
+    "cord": "7.62m",
+    "width": "21.84cm"
+  },
+  "WD210UK": {
+    "runtime": "最长25分钟",
+    "weight": "6.65kg",
+    "charge": "4小时",
+    "width": "33.02cm"
+  },
+  "VM200UK": {
+    "power": "85W",
+    "runtime": "最长9.5分钟",
+    "weight": "1.52kg",
+    "charge": "4小时"
+  },
+  "VM200UKPS": {
+    "power": "85W",
+    "runtime": "最长9.5分钟",
+    "weight": "1.52kg",
+    "charge": "4小时"
   }
 }
