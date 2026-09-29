@@ -206,7 +206,7 @@ export default function Home() {
       </div>}
       {loadError&&<div className="load-error">{loadError}。当前页面显示已核实的仓库快照。</div>}
       <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder,latestLabel].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
-      {active===latestLabel&&<p className="latest-explainer">近 180 天内有可核实上市日期的产品。未核实日期的产品暂不列入；合集内保留每个 SKU 的日期来源。</p>}
+      {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
         {categories.map(({label,items,series})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
