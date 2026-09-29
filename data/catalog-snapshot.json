@@ -380,8 +380,28 @@
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/RV2720ZE_01.jpg"
   },
   {
+    "model": "WD551",
+    "name": "Shark AquaReach Essential Floor to Ceiling Vacuum Mop",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-aquareach-vacuum-mop/WD551.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/WD551_01.jpg"
+  },
+  {
+    "model": "WD561",
+    "name": "Shark AquaReach Pro Floor to Ceiling Vacuum Mop Bundle",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-aquareach-pro-vacuum-mop/WD561.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/WD561_01.jpg"
+  },
+  {
     "model": "WD563",
-    "name": "Shark AquaReach Floor to Ceiling Vacuum Mop",
+    "name": "Shark AquaReach Premium Floor to Ceiling Vacuum Mop Bundle",
     "category": "洗地机",
     "officialUrl": "https://www.sharkninja.com/shark-aquareach-pro-vacuum-mop/WD563.html",
     "markets": [
@@ -410,6 +430,16 @@
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/VM401BL_01.jpg"
   },
   {
+    "model": "VM401SN",
+    "name": "Shark VacMop Reveal Cordless Vacuum Mop Bundle",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.com/shark-vacmop-reveal-cordless-floor-vacuum-and-spray-mop/VM401SN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/VM401SN_01.jpg"
+  },
+  {
     "model": "WW201",
     "name": "Shark HydroDuo Wet Dry Hard Floor Cleaner",
     "category": "洗地机",
@@ -428,6 +458,38 @@
       "US"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/WD161_01.jpg"
+  },
+  {
+    "model": "WD110UK",
+    "name": "Shark HydroVac Corded Hard Floor Cleaner",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-hydrovac-corded-hard-floor-cleaner-wd110uk/WD110UK.html",
+    "markets": ["UK"],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/WD110UK_01.jpg"
+  },
+  {
+    "model": "WD210UK",
+    "name": "Shark HydroVac Cordless Hard Floor Cleaner",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-hydrovac-cordless-hard-floor-cleaner-wd210uk/WD210UK.html",
+    "markets": ["UK"],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/WD210UK_01.jpg"
+  },
+  {
+    "model": "VM200UK",
+    "name": "Shark VacMop 2-in-1 Cordless Vacuum Mop with Targeted Spray",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-vacmop-2-in-1-cordless-vacuum-mop-with-targeted-spray-vm200uk/VM200UK.html",
+    "markets": ["UK"],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/VM200UK_01.jpg"
+  },
+  {
+    "model": "VM200UKPS",
+    "name": "Shark VacMop 2-in-1 Cordless Vacuum Mop Complete Kit",
+    "category": "洗地机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-vacmop-2-in-1-cordless-vacuum-mop-with-targeted-spray-complete-kit/VM200UKPS.html",
+    "markets": ["UK"],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/VM200UKPS_01.jpg"
   },
   {
     "model": "SD201",
@@ -1368,6 +1430,16 @@
       "JP"
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/files/ab2000j_01_01.jpg?v=1787121823"
+  },
+  {
+    "model": "AB2111BL",
+    "name": "Shark BlastBoss Air Blower with BlastBroom in Sky Blue",
+    "category": "吹叶机",
+    "officialUrl": "https://www.sharkninja.com/shark-blastboss-indoor-outdoor-air-blasting-system-sky/AB2111BL.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AB2111BL_01.jpg"
   },
   {
     "model": "HP062J",

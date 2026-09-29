@@ -321,6 +321,24 @@
     "autoEmpty": "支持",
     "mode": "吸拖一体"
   },
+  "WD551": {
+    "power": "150W",
+    "weight": "12.61lb",
+    "runtime": "最长45分钟",
+    "cord": "5.9ft",
+    "charge": "3小时",
+    "voltage": "21.6V",
+    "height": "43.9in"
+  },
+  "WD561": {
+    "power": "150W",
+    "weight": "12.81lb",
+    "runtime": "最长60分钟",
+    "cord": "5.9ft",
+    "charge": "3小时",
+    "voltage": "25.2V",
+    "height": "43.9in"
+  },
   "WD563": {
     "power": "150W",
     "weight": "12.81lb",
@@ -336,6 +354,12 @@
   },
   "VM401": {
     "weight": "4.41lb",
+    "height": "47.72in"
+  },
+  "VM401SN": {
+    "power": "85W",
+    "weight": "4.41lb",
+    "voltage": "10.8V",
     "height": "47.72in"
   },
   "WW201": {
@@ -1510,5 +1534,28 @@
     "runtime": "最长24小时",
     "charge": "5小时",
     "voltage": "240V"
+  },
+  "WD110UK": {
+    "weight": "7.34kg",
+    "cord": "7.62m",
+    "width": "21.84cm"
+  },
+  "WD210UK": {
+    "runtime": "最长25分钟",
+    "weight": "6.65kg",
+    "charge": "4小时",
+    "width": "33.02cm"
+  },
+  "VM200UK": {
+    "power": "85W",
+    "runtime": "最长9.5分钟",
+    "weight": "1.52kg",
+    "charge": "4小时"
+  },
+  "VM200UKPS": {
+    "power": "85W",
+    "runtime": "最长9.5分钟",
+    "weight": "1.52kg",
+    "charge": "4小时"
   }
 }

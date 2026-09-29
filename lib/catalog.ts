@@ -1,5 +1,10 @@
 import snapshot from "@/data/catalog-snapshot.json";
 import specSnapshot from "@/data/specs-snapshot.json";
+import priceSnapshot from "@/data/price-snapshot.json";
+
+export type OfficialPrice = {
+  amount: number; amountMax?: number; currency: string; checkedAt: string; sourceUrl: string;
+};
 
 export type Product = {
   id: string; name: string; model: string | null; category: string; family: string | null;
@@ -7,27 +12,29 @@ export type Product = {
   releaseDate: string | null; releasePrecision: string | null; releaseSource: string | null;
   markets: string[]; firstSeen: string; lastSeen: string;
   specs?: Record<string,string>;
+  price?: OfficialPrice | null;
 };
 
 const base = "https://www.sharkninja.com";
 export const CATEGORIES = [
-  {label:"无线吸尘器",group:"地面清洁",path:"/vacuums-air-care/vacuum-cleaners/cordless-vacuums"},
-  {label:"有线杆式吸尘器",group:"地面清洁",path:"/vacuums-air-care/vacuum-cleaners/corded-stick-vacuums"},
-  {label:"立式吸尘器",group:"地面清洁",path:"/vacuums-air-care/vacuum-cleaners/upright-vacuums"},
-  {label:"手持吸尘器",group:"地面清洁",path:"/vacuums-air-care/vacuum-cleaners/handheld-vacuums"},
-  {label:"扫地机器人",group:"地面清洁",path:"/vacuums-air-care/vacuum-cleaners/robot-vacuums"},
-  {label:"洗地机",group:"地面清洁",path:"/vacuums-air-care/floor-carpet-cleaners/wet-dry-cleaners"},
-  {label:"布艺清洗机",group:"地面清洁",path:"/vacuums-air-care/floor-carpet-cleaners/carpet-spot-cleaners"},
-  {label:"蒸汽清洁",group:"地面清洁",path:"/vacuums-air-care/floor-carpet-cleaners/steam-mops"},
-  {label:"美发造型",group:"个护",path:"/beauty/haircare/hair-stylers"},
+  {label:"洗地机",group:"洗地机",path:"/vacuums-air-care/floor-carpet-cleaners/wet-dry-cleaners"},
+  {label:"布艺清洗机",group:"布艺",path:"/vacuums-air-care/floor-carpet-cleaners/carpet-spot-cleaners"},
+  {label:"扫地机器人",group:"机器人",path:"/vacuums-air-care/vacuum-cleaners/robot-vacuums"},
+  {label:"无线吸尘器",group:"吸尘器",path:"/vacuums-air-care/vacuum-cleaners/cordless-vacuums"},
+  {label:"有线杆式吸尘器",group:"吸尘器",path:"/vacuums-air-care/vacuum-cleaners/corded-stick-vacuums"},
+  {label:"手持吸尘器",group:"吸尘器",path:"/vacuums-air-care/vacuum-cleaners/handheld-vacuums"},
+  {label:"蒸汽清洁",group:"蒸汽拖把",path:"/vacuums-air-care/floor-carpet-cleaners/steam-mops"},
+  {label:"立式吸尘器",group:"立式机",path:"/vacuums-air-care/vacuum-cleaners/upright-vacuums"},
+  {label:"地毯清洗机",group:"地毯清洗",path:""},
+  {label:"吹叶机",group:"吹叶机",path:""},
   {label:"吹风机",group:"个护",path:"/beauty/haircare/hair-dryers"},
+  {label:"美发造型",group:"个护",path:"/beauty/haircare/hair-stylers"},
   {label:"直发器",group:"个护",path:"/beauty/haircare/wet-to-dry-straighteners"},
   {label:"热风梳",group:"个护",path:"/beauty/haircare/blow-dry-brushes"},
   {label:"美容仪",group:"个护",path:"/beauty/skincare/facial-devices"},
   {label:"光疗面罩",group:"个护",path:"/beauty/skincare/led-face-masks"},
-  {label:"空气净化器",group:"家居环境",path:"/vacuums-air-care/air-purifiers-fans/air-purifiers"},
-  {label:"风扇",group:"家居环境",path:"/vacuums-air-care/air-purifiers-fans/fans"},
-  {label:"吹叶机",group:"家居环境",path:""},
+  {label:"风扇",group:"风扇",path:"/vacuums-air-care/air-purifiers-fans/fans"},
+  {label:"空气净化器",group:"空净",path:"/vacuums-air-care/air-purifiers-fans/air-purifiers"},
 ] as const;
 
 export const SCAN_SOURCES = [
@@ -48,20 +55,32 @@ export const SCAN_SOURCES = [
 
 const seen="2026-09-23";
 const specsByModel=specSnapshot as Record<string,Record<string,string>>;
+const pricesByModel=priceSnapshot as Record<string,OfficialPrice|null>;
 // Normalize a few official-site taxonomy differences so the same hardware can sit together.
 const displayCategoryByModel:Record<string,string>={
-  "SV2000UK-MASTER":"无线吸尘器",
-  "SD200UK":"洗地机",
+  "SV2002":"立式吸尘器",
+  "SV2000UK-MASTER":"立式吸尘器",
+  "SD200UK":"蒸汽清洁",
+  "SD201":"蒸汽清洁",
+  "VS101":"布艺清洗机",
   "HD6052S":"美发造型",
 };
+function categoryFor(model:string,original:string):string {
+  return displayCategoryByModel[model]||(/^WD\d/.test(model)?"洗地机":/^EX\d/.test(model)?"地毯清洗机":original);
+}
 export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
-  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:displayCategoryByModel[item.model.toUpperCase()]||item.category,family:null,
+  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:categoryFor(item.model.toUpperCase(),item.category),family:null,
   imageUrl:item.imageUrl,officialUrl:item.officialUrl,amazonUrl:null,
   releaseDate:null,releasePrecision:null,releaseSource:null,markets:item.markets,
   specs:specsByModel[item.model]||{},
+  price:pricesByModel[item.model]||null,
   firstSeen:seen,lastSeen:seen,
 }));
-const releaseEvidence:Record<string,{date:string;source:string}>={
+const releaseEvidence:Record<string,{date:string;source:string;precision?:string}>={
+  AB2000J:{date:"2026-10-15",source:"https://www.sharkninja.jp/blogs/news/news260910-01"},
+  AB2111J:{date:"2026-10-15",source:"https://www.sharkninja.jp/blogs/news/news260910-01"},
+  SV2002:{date:"2025-10-01",precision:"month",source:"https://www.techradar.com/home/vacuums/shark-freestyle-max-cordless-upright-review"},
+  "SV2000UK-MASTER":{date:"2025-10-01",precision:"month",source:"https://www.techradar.com/home/vacuums/shark-freestyle-max-cordless-upright-review"},
   RVD120X1JP:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260915-01"},
   HP062J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
   HP162J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
@@ -81,11 +100,12 @@ const releaseEvidence:Record<string,{date:string;source:string}>={
 export function withVerifiedReleaseDates(products:Product[]):Product[] {
   return products.map(product=>{
     const verified=releaseEvidence[(product.model||"").toUpperCase()];
-    const category=displayCategoryByModel[(product.model||"").toUpperCase()]||product.category;
-    return verified&&!product.releaseDate?{...product,category,releaseDate:verified.date,releasePrecision:"day",releaseSource:verified.source}:{...product,category};
+    const category=categoryFor((product.model||"").toUpperCase(),product.category);
+    const price=pricesByModel[(product.model||"").toUpperCase()]||null;
+    return verified?{...product,category,price,releaseDate:verified.date,releasePrecision:verified.precision||"day",releaseSource:verified.source}:{...product,category,price};
   });
 }
 for(const product of STARTER_PRODUCTS){
   const verified=releaseEvidence[product.model||""];
-  if(verified){product.releaseDate=verified.date;product.releasePrecision="day";product.releaseSource=verified.source;}
+  if(verified){product.releaseDate=verified.date;product.releasePrecision=verified.precision||"day";product.releaseSource=verified.source;}
 }

@@ -7,8 +7,9 @@ import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, withVerifiedReleaseDates, t
 import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
 import { platformGroupFor, type PlatformGroup } from "@/lib/platform-groups";
 import { cardSpecs } from "@/lib/specs";
+import fxSnapshot from "@/data/fx-snapshot.json";
 
-const groupOrder=["地面清洁","个护","家居环境"];
+const groupOrder=["洗地机","布艺","机器人","吸尘器","蒸汽拖把","立式机","地毯清洗","吹叶机","个护","风扇","空净"];
 const latestLabel="最近上新";
 type Run = {source:string;added:number;checked?:number;status:string;detail?:string};
 const flag:Record<string,{file:string,name:string}>={
@@ -24,12 +25,28 @@ function dateLabel(value:string|null,precision:string|null) {
   if(!value) return "发布日期待核实";
   if(precision==="year") return value.slice(0,4);
   if(precision==="month") return value.slice(0,7).replace("-",".");
+  if(new Date(value+"T00:00:00Z").getTime()>Date.now())return `预计 ${value.replaceAll("-",".")} 上市`;
   return value.replaceAll("-",".");
 }
 function isNew(p:Product) {
   if(!p.releaseDate || p.releasePrecision!=="day") return false;
   const days=(Date.now()-new Date(p.releaseDate+"T00:00:00Z").getTime())/86400000;
   return days>=0 && days<=180;
+}
+const fx=fxSnapshot as {asOf:string;rates:Record<string,number>;sourceUrl:string};
+function currencyAmount(amount:number,currency:string) {
+  return new Intl.NumberFormat("en-US",{style:"currency",currency,maximumFractionDigits:currency==="JPY"?0:2}).format(amount);
+}
+function PriceTag({product:p}:{product:Product}) {
+  const price=p.price;
+  if(!price)return <div className="price-line price-missing" title="官网未公开挂价，或该商品页暂时无法核实价格">官网价格待核实</div>;
+  const rate=fx.rates[price.currency],usdRate=fx.rates.USD;
+  const native=currencyAmount(price.amount,price.currency)+(price.amountMax?` – ${currencyAmount(price.amountMax,price.currency)}`:"");
+  const usd=rate&&usdRate?currencyAmount(price.amount/rate*usdRate,"USD")+(price.amountMax?` – ${currencyAmount(price.amountMax/rate*usdRate,"USD")}`:""):null;
+  return <div className="price-line" title={`官网价格采集：${price.checkedAt.slice(0,10)}；美元换算：欧洲央行 ${fx.asOf} 参考汇率`}>
+    <span>官网售价</span><strong>{native}</strong>{price.currency!=="USD"&&usd&&<small>约 {usd}</small>}
+    <span className="price-date">采集 {price.checkedAt.slice(0,10)}</span>
+  </div>;
 }
 function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;globalKeys:Set<string>;inactive?:boolean}) {
   const shown=p.markets.slice(0,4), extra=p.markets.length-4;
@@ -54,6 +71,7 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
     <div className="card-content">
       <div className="model-line">{p.model||"型号待核实"}</div>
       <h3>{p.name}</h3>
+      <PriceTag product={p}/>
       <p className="spec-line" aria-label="产品关键参数">{specs.map((spec,index)=><span key={spec.label} className={spec.verified?"":"spec-unverified"}>
         {index>0&&<span className="spec-separator">{" | "}</span>}{spec.label} {spec.value}
       </span>)}</p>
@@ -88,27 +106,30 @@ function StackPreview({products,group,onOpen,open=false}:{products:Product[];gro
 
 function PlatformStackInline({products,group,globalKeys,onClose}:{products:Product[];group:PlatformGroup;globalKeys:Set<string>;onClose:(restoreFocus?:boolean)=>void}) {
   const [selected,setSelected]=useState(0);
+  const selectedRef=useRef(selected);
+  selectedRef.current=selected;
   const lastWheel=useRef(0);
   const rootRef=useRef<HTMLElement>(null);
   const closeRef=useRef<HTMLButtonElement>(null);
-  const shift=(direction:number)=>setSelected(current=>(current+direction+products.length)%products.length);
+  const shift=(direction:number)=>setSelected(current=>Math.max(0,Math.min(products.length-1,current+direction)));
   useEffect(()=>{
     closeRef.current?.focus();
     const onKey=(event:KeyboardEvent)=>{
       if(event.key==="Escape"){event.preventDefault();onClose();}
-      if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>(current+1)%products.length);}
-      if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>(current-1+products.length)%products.length);}
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>Math.min(products.length-1,current+1));}
+      if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>Math.max(0,current-1));}
     };
     const onOutside=(event:PointerEvent)=>{
       if(event.button===0&&!rootRef.current?.contains(event.target as Node))onClose(false);
     };
     const onWheel=(event:WheelEvent)=>{
       if(Math.abs(event.deltaY)<5&&Math.abs(event.deltaX)<5)return;
+      const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
+      if((delta>0&&selectedRef.current===products.length-1)||(delta<0&&selectedRef.current===0))return;
       event.preventDefault();
       if(Date.now()-lastWheel.current<480)return;
       lastWheel.current=Date.now();
-      const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
-      setSelected(current=>(current+(delta>0?1:-1)+products.length)%products.length);
+      setSelected(current=>Math.max(0,Math.min(products.length-1,current+(delta>0?1:-1))));
     };
     window.addEventListener("keydown",onKey);
     document.addEventListener("pointerdown",onOutside);
@@ -123,9 +144,7 @@ function PlatformStackInline({products,group,globalKeys,onClose}:{products:Produ
       </div>
       <div className="stack-stage" aria-live="polite">
         {products.map((product,index)=>{
-          let offset=index-selected;
-          if(offset>products.length/2)offset-=products.length;
-          if(offset< -products.length/2)offset+=products.length;
+          const offset=index-selected;
           const depth=Math.abs(offset);
           const style={"--offset":offset,"--depth":depth,zIndex:10-depth} as CSSProperties;
           return <div key={product.id} className={`stack-slide ${depth===0?"is-current":""}`} style={style}
@@ -135,9 +154,9 @@ function PlatformStackInline({products,group,globalKeys,onClose}:{products:Produ
         })}
       </div>
       <div className="stack-controls">
-        <button type="button" onClick={()=>shift(-1)} aria-label="上一个型号"><ChevronLeft size={22}/></button>
+        <button type="button" onClick={()=>shift(-1)} disabled={selected===0} aria-label="上一个型号"><ChevronLeft size={22}/></button>
         <div className="stack-position"><strong>{products[selected].model}</strong><span>{selected+1} / {products.length}</span></div>
-        <button type="button" onClick={()=>shift(1)} aria-label="下一个型号"><ChevronRight size={22}/></button>
+        <button type="button" onClick={()=>shift(1)} disabled={selected===products.length-1} aria-label="下一个型号"><ChevronRight size={22}/></button>
       </div>
       <div className="stack-model-nav" aria-label="选择型号">
         {products.map((product,index)=><button key={product.id} type="button" className={index===selected?"is-selected":""} onClick={()=>setSelected(index)} aria-current={index===selected?"true":undefined}>{product.model}</button>)}
@@ -168,7 +187,9 @@ export default function Home() {
       const response=await fetch("/api/products",{cache:"no-store"});
       const data=await response.json() as {products:Product[];lastRefresh:{at:string}|null;warning?:string;error?:string};
       if(!response.ok)throw new Error(data.error||"数据暂不可用");
-      setProducts(withVerifiedReleaseDates(data.products));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
+      const remoteModels=new Set(data.products.map(product=>(product.model||"").toUpperCase()));
+      const localAdditions=STARTER_PRODUCTS.filter(product=>!remoteModels.has(product.model||""));
+      setProducts(withVerifiedReleaseDates([...data.products,...localAdditions]));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
     }catch(e){setLoadError(e instanceof Error?e.message:"读取失败");}
   }
   useEffect(()=>{void load();},[]);
@@ -227,7 +248,7 @@ export default function Home() {
       <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder,latestLabel].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
-      <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{group==="地面清洁"?"01":group==="个护"?"02":"03"}</span><h2>{group}</h2><div/></div>
+      <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{String(groupOrder.indexOf(group)+1).padStart(2,"0")}</span><h2>{group}</h2><div/></div>
         {categories.map(({label,items,collectionRows,collections,singles})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
           {collections.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">产品合集 <span>{collections.length}</span></div>
             <div className="collection-rows">{collectionRows.map((row,index)=>{
@@ -241,7 +262,7 @@ export default function Home() {
               </div>;
             })}</div>
           </div>}
-          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
+          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=>p.model==="RVD120X1JP"&&singles.length===1?<div className="single-grid-end" key={p.id}><ProductCard product={p} globalKeys={globalKeys}/></div>:<ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
