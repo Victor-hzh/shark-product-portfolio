@@ -59,7 +59,7 @@ const displayCategoryByModel:Record<string,string>={
   "HD6052S":"美发造型",
 };
 function categoryFor(model:string,original:string):string {
-  return displayCategoryByModel[model]||(/^EX\d/.test(model)?"地毯清洗机":original);
+  return displayCategoryByModel[model]||(/^WD\d/.test(model)?"洗地机":/^EX\d/.test(model)?"地毯清洗机":original);
 }
 export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
   id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:categoryFor(item.model.toUpperCase(),item.category),family:null,
