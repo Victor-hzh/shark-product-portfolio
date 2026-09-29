@@ -48,8 +48,14 @@ export const SCAN_SOURCES = [
 
 const seen="2026-09-23";
 const specsByModel=specSnapshot as Record<string,Record<string,string>>;
+// Normalize a few official-site taxonomy differences so the same hardware can sit together.
+const displayCategoryByModel:Record<string,string>={
+  "SV2000UK-MASTER":"无线吸尘器",
+  "SD200UK":"洗地机",
+  "HD6052S":"美发造型",
+};
 export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
-  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:item.category,family:null,
+  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:displayCategoryByModel[item.model.toUpperCase()]||item.category,family:null,
   imageUrl:item.imageUrl,officialUrl:item.officialUrl,amazonUrl:null,
   releaseDate:null,releasePrecision:null,releaseSource:null,markets:item.markets,
   specs:specsByModel[item.model]||{},
@@ -75,7 +81,8 @@ const releaseEvidence:Record<string,{date:string;source:string}>={
 export function withVerifiedReleaseDates(products:Product[]):Product[] {
   return products.map(product=>{
     const verified=releaseEvidence[(product.model||"").toUpperCase()];
-    return verified&&!product.releaseDate?{...product,releaseDate:verified.date,releasePrecision:"day",releaseSource:verified.source}:product;
+    const category=displayCategoryByModel[(product.model||"").toUpperCase()]||product.category;
+    return verified&&!product.releaseDate?{...product,category,releaseDate:verified.date,releasePrecision:"day",releaseSource:verified.source}:{...product,category};
   });
 }
 for(const product of STARTER_PRODUCTS){
