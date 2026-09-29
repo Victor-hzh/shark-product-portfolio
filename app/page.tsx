@@ -89,27 +89,30 @@ function StackPreview({products,group,onOpen,open=false}:{products:Product[];gro
 
 function PlatformStackInline({products,group,globalKeys,onClose}:{products:Product[];group:PlatformGroup;globalKeys:Set<string>;onClose:(restoreFocus?:boolean)=>void}) {
   const [selected,setSelected]=useState(0);
+  const selectedRef=useRef(selected);
+  selectedRef.current=selected;
   const lastWheel=useRef(0);
   const rootRef=useRef<HTMLElement>(null);
   const closeRef=useRef<HTMLButtonElement>(null);
-  const shift=(direction:number)=>setSelected(current=>(current+direction+products.length)%products.length);
+  const shift=(direction:number)=>setSelected(current=>Math.max(0,Math.min(products.length-1,current+direction)));
   useEffect(()=>{
     closeRef.current?.focus();
     const onKey=(event:KeyboardEvent)=>{
       if(event.key==="Escape"){event.preventDefault();onClose();}
-      if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>(current+1)%products.length);}
-      if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>(current-1+products.length)%products.length);}
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();setSelected(current=>Math.min(products.length-1,current+1));}
+      if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();setSelected(current=>Math.max(0,current-1));}
     };
     const onOutside=(event:PointerEvent)=>{
       if(event.button===0&&!rootRef.current?.contains(event.target as Node))onClose(false);
     };
     const onWheel=(event:WheelEvent)=>{
       if(Math.abs(event.deltaY)<5&&Math.abs(event.deltaX)<5)return;
+      const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
+      if((delta>0&&selectedRef.current===products.length-1)||(delta<0&&selectedRef.current===0))return;
       event.preventDefault();
       if(Date.now()-lastWheel.current<480)return;
       lastWheel.current=Date.now();
-      const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
-      setSelected(current=>(current+(delta>0?1:-1)+products.length)%products.length);
+      setSelected(current=>Math.max(0,Math.min(products.length-1,current+(delta>0?1:-1))));
     };
     window.addEventListener("keydown",onKey);
     document.addEventListener("pointerdown",onOutside);
@@ -124,9 +127,7 @@ function PlatformStackInline({products,group,globalKeys,onClose}:{products:Produ
       </div>
       <div className="stack-stage" aria-live="polite">
         {products.map((product,index)=>{
-          let offset=index-selected;
-          if(offset>products.length/2)offset-=products.length;
-          if(offset< -products.length/2)offset+=products.length;
+          const offset=index-selected;
           const depth=Math.abs(offset);
           const style={"--offset":offset,"--depth":depth,zIndex:10-depth} as CSSProperties;
           return <div key={product.id} className={`stack-slide ${depth===0?"is-current":""}`} style={style}
@@ -136,9 +137,9 @@ function PlatformStackInline({products,group,globalKeys,onClose}:{products:Produ
         })}
       </div>
       <div className="stack-controls">
-        <button type="button" onClick={()=>shift(-1)} aria-label="上一个型号"><ChevronLeft size={22}/></button>
+        <button type="button" onClick={()=>shift(-1)} disabled={selected===0} aria-label="上一个型号"><ChevronLeft size={22}/></button>
         <div className="stack-position"><strong>{products[selected].model}</strong><span>{selected+1} / {products.length}</span></div>
-        <button type="button" onClick={()=>shift(1)} aria-label="下一个型号"><ChevronRight size={22}/></button>
+        <button type="button" onClick={()=>shift(1)} disabled={selected===products.length-1} aria-label="下一个型号"><ChevronRight size={22}/></button>
       </div>
       <div className="stack-model-nav" aria-label="选择型号">
         {products.map((product,index)=><button key={product.id} type="button" className={index===selected?"is-selected":""} onClick={()=>setSelected(index)} aria-current={index===selected?"true":undefined}>{product.model}</button>)}
