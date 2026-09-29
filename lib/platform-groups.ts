@@ -22,6 +22,7 @@ export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"ip-stick",label:"PowerDetect Cordless / Clean & Empty",category:"无线吸尘器",models:["IP1251","IP1251UK","IP1251UKT","IP3251","IP3251UKT","IP3256"],rationale:"用户圈选：PowerDetect Cordless 基础款、Pet、Clean & Empty 及 Reveal 配置合并。"},
   {id:"bu-empty",label:"PowerLite / Clean & Empty",category:"无线吸尘器",models:["BU1621","BU3521","BU3621UKT","BU3626"],rationale:"用户圈选：PowerLite 基础款与 Clean & Empty 自动集尘配置合并。"},
   {id:"iy-pet",label:"Pet Cordless",category:"无线吸尘器",models:["IY143H","IY143HUK"],rationale:"用户圈选：IY143H 美英市场型号合并，市场和配件差异保留在型号卡片中。"},
+  {id:"iz-powerpro",label:"PowerPro 系列",category:"无线吸尘器",models:["IZ373H","IZ380UKFDB","IZ380UKT","IZ381UK","IZ381UKT","IZ382H"],rationale:"用户圈选：PowerPro 美英市场型号合并，Pet、Reveal、Flex 与配置差异保留在型号卡片中。"},
   {id:"iz-stratos",label:"Stratos Anti Hair Wrap Plus",category:"无线吸尘器",models:["IZ400UK","IZ400UKT","IZ420UKT"],rationale:"同系列单／双电池及 Pet 配置。"},
   {id:"wv-dx",label:"EVOPOWER DX",category:"手持吸尘器",models:["WV515J","WV516J","WV517J"],rationale:"同系列 WV51 相邻配置型号。"},
   {id:"ex-150",label:"CarpetXpert Deep",category:"布艺清洗机",models:["EX150UK","EX150UKCP"],rationale:"EX150 基础型号与配色变体。"},
