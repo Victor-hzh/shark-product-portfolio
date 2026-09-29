@@ -12,8 +12,7 @@ export type PlatformGroup = {
 export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"lc-fit",label:"EVOPOWER SYSTEM FIT / FIT+",category:"无线吸尘器",models:["LC100J","LC102J","LC103J","LC150J","LC152J"],rationale:"FIT 与 FIT+ 同系列，机身型号相邻，配置以 SKU 区分。"},
   {id:"lc-neo",label:"EVOPOWER SYSTEM NEO / NEO II",category:"无线吸尘器",models:["LC200J","LC400J"],rationale:"用户指定合并 NEO 与 NEO II；关键参数一致，代际差异保留在各型号卡片中。"},
-  {id:"lc-boost",label:"EVOPOWER SYSTEM BOOST",category:"无线吸尘器",models:["LC600J","LC602J"],rationale:"同一 BOOST 比较表中的颜色／配置型号。",evidence:"https://www.sharkninja.jp/pages/shark-stickcleaner-evopowersystem_boost-spec"},
-  {id:"lc-boost-plus",label:"EVOPOWER SYSTEM BOOST+",category:"无线吸尘器",models:["LC701J","LC702J","LC751J"],rationale:"同一 BOOST+ 比较表中的配置型号。",evidence:"https://www.sharkninja.jp/pages/shark-stickcleaner-evopowersystem_boost-spec"},
+  {id:"lc-boost",label:"EVOPOWER SYSTEM BOOST / BOOST+",category:"无线吸尘器",models:["LC600J","LC602J","LC701J","LC702J","LC751J"],rationale:"用户圈选：BOOST 与 BOOST+ 合并为一组，各配置和差异保留在型号卡片中。",evidence:"https://www.sharkninja.jp/pages/shark-stickcleaner-evopowersystem_boost-spec"},
   {id:"lc-acticlean",label:"Shark ActiClean",category:"无线吸尘器",models:["LC800J","LC900J","LC950J"],rationale:"同一 ActiClean 系列的配置型号。",evidence:"https://www.sharkninja.jp/blogs/news/news260820-01"},
   {id:"cs-std",label:"EVOPOWER SYSTEM STD / STD+ / ADV",category:"无线吸尘器",models:["CS100J","CS102J","CS150JAE","CS601J"],rationale:"用户圈选：STD、STD+ 与 ADV 合为同一 EVOPOWER SYSTEM 合集，具体配置保留在型号卡片中。"},
   {id:"iw-cleansense",label:"CleanSense iQ / iQ+",category:"无线吸尘器",models:["IW2241J","IW3241J"],rationale:"用户蓝框圈选：CleanSense iQ 与 iQ+ 分别展示基础款与带自动集尘底座的配置。"},
@@ -24,6 +23,8 @@ export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"iy-pet",label:"Pet Cordless",category:"无线吸尘器",models:["IY143H","IY143HUK"],rationale:"用户圈选：IY143H 美英市场型号合并，市场和配件差异保留在型号卡片中。"},
   {id:"iz-powerpro",label:"PowerPro 系列",category:"无线吸尘器",models:["IZ373H","IZ380UKFDB","IZ380UKT","IZ381UK","IZ381UKT","IZ382H"],rationale:"用户圈选：PowerPro 美英市场型号合并，Pet、Reveal、Flex 与配置差异保留在型号卡片中。"},
   {id:"iz-stratos",label:"Stratos Anti Hair Wrap Plus",category:"无线吸尘器",models:["IZ400UK","IZ400UKT","IZ420UKT"],rationale:"同系列单／双电池及 Pet 配置。"},
+  {id:"hv-rocket",label:"Rocket / Rocket Pro",category:"有线杆式吸尘器",models:["HV251","HV371"],rationale:"用户上框圈选：HV Rocket 与 Rocket Pro 合并展示，各型号保留原商品名称和参数。"},
+  {id:"hz-corded",label:"HZ 有线杆式系列",category:"有线杆式吸尘器",models:["HZ4002","HZ702","HZ752"],rationale:"用户下框圈选：HZ 三款有线杆式产品合并展示，Pet Pro、Detect、PowerDetect 子系列差异保留在型号卡片中。"},
   {id:"wv-dx",label:"EVOPOWER DX",category:"手持吸尘器",models:["WV515J","WV516J","WV517J"],rationale:"同系列 WV51 相邻配置型号。"},
   {id:"ex-150",label:"CarpetXpert Deep",category:"布艺清洗机",models:["EX150UK","EX150UKCP"],rationale:"EX150 基础型号与配色变体。"},
   {id:"ex-force",label:"CarpetForce Upright",category:"布艺清洗机",models:["EX500","EX502","EX500UK"],rationale:"EX500 系列跨市场基础配置。"},
