@@ -25,6 +25,7 @@ export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"iz-stratos",label:"Stratos Anti Hair Wrap Plus",category:"无线吸尘器",models:["IZ400UK","IZ400UKT","IZ420UKT"],rationale:"同系列单／双电池及 Pet 配置。"},
   {id:"hv-rocket",label:"Rocket / Rocket Pro",category:"有线杆式吸尘器",models:["HV251","HV371"],rationale:"用户上框圈选：HV Rocket 与 Rocket Pro 合并展示，各型号保留原商品名称和参数。"},
   {id:"hz-corded",label:"HZ 有线杆式系列",category:"有线杆式吸尘器",models:["HZ4002","HZ702","HZ752"],rationale:"用户下框圈选：HZ 三款有线杆式产品合并展示，Pet Pro、Detect、PowerDetect 子系列差异保留在型号卡片中。"},
+  {id:"lx-transformer",label:"PowerDetect Transformer",category:"立式吸尘器",models:["LX5000","LX5000UKT","LX5001UKT"],rationale:"用户圈选：PowerDetect Transformer 美英市场型号及英国配色配置合并，型号差异保留在卡片中。"},
   {id:"wv-dx",label:"EVOPOWER DX",category:"手持吸尘器",models:["WV515J","WV516J","WV517J"],rationale:"同系列 WV51 相邻配置型号。"},
   {id:"ex-150",label:"CarpetXpert Deep",category:"布艺清洗机",models:["EX150UK","EX150UKCP"],rationale:"EX150 基础型号与配色变体。"},
   {id:"ex-force",label:"CarpetForce Upright",category:"布艺清洗机",models:["EX500","EX502","EX500UK"],rationale:"EX500 系列跨市场基础配置。"},
