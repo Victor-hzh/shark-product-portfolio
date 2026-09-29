@@ -321,6 +321,24 @@
     "autoEmpty": "支持",
     "mode": "吸拖一体"
   },
+  "WD551": {
+    "power": "150W",
+    "weight": "12.61lb",
+    "runtime": "最长45分钟",
+    "cord": "5.9ft",
+    "charge": "3小时",
+    "voltage": "21.6V",
+    "height": "43.9in"
+  },
+  "WD561": {
+    "power": "150W",
+    "weight": "12.81lb",
+    "runtime": "最长60分钟",
+    "cord": "5.9ft",
+    "charge": "3小时",
+    "voltage": "25.2V",
+    "height": "43.9in"
+  },
   "WD563": {
     "power": "150W",
     "weight": "12.81lb",
@@ -336,6 +354,12 @@
   },
   "VM401": {
     "weight": "4.41lb",
+    "height": "47.72in"
+  },
+  "VM401SN": {
+    "power": "85W",
+    "weight": "4.41lb",
+    "voltage": "10.8V",
     "height": "47.72in"
   },
   "WW201": {
