@@ -29,6 +29,12 @@
 .collection-row .stack-trigger.is-open{grid-column:auto}
 .single-grid-end{grid-column:-2/-1;min-width:0}
 .single-grid-end>.product-card{height:100%}
+.price-line{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 7px;margin:-4px 0 9px;color:#41546a;font-size:11px;line-height:1.35}
+.price-line strong{color:#17283a;font-size:16px;font-weight:800}
+.price-line small{color:#b34a3f;font-size:12px;font-weight:750}
+.price-date{width:100%;color:#8995a1;font-size:10px}
+.price-missing{color:#909ba5;margin:0 0 13px}
+.stack-slide .price-line{margin:0 0 5px}.stack-slide .price-line strong{font-size:13px}.stack-slide .price-date{font-size:9px}
 .stack-preview-series{font-size:10px;font-weight:800;letter-spacing:.08em;color:#677d8d}
 .global-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#ffffffeb;box-shadow:0 2px 6px #00000022}
 .global-mark img{display:block;width:23px;height:23px}
