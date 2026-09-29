@@ -48,13 +48,44 @@ export const SCAN_SOURCES = [
 
 const seen="2026-09-23";
 const specsByModel=specSnapshot as Record<string,Record<string,string>>;
+// Normalize a few official-site taxonomy differences so the same hardware can sit together.
+const displayCategoryByModel:Record<string,string>={
+  "SV2000UK-MASTER":"无线吸尘器",
+  "SD200UK":"洗地机",
+  "HD6052S":"美发造型",
+};
 export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
-  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:item.category,family:null,
+  id:item.model.toUpperCase(),model:item.model.toUpperCase(),name:item.name,category:displayCategoryByModel[item.model.toUpperCase()]||item.category,family:null,
   imageUrl:item.imageUrl,officialUrl:item.officialUrl,amazonUrl:null,
   releaseDate:null,releasePrecision:null,releaseSource:null,markets:item.markets,
   specs:specsByModel[item.model]||{},
   firstSeen:seen,lastSeen:seen,
 }));
-// A verified announcement gives this release its date; all other dates stay unknown.
-const ionCurl=STARTER_PRODUCTS.find(p=>p.id==="HD840PU");
-if(ionCurl){ionCurl.releaseDate="2026-07-06";ionCurl.releasePrecision="day";ionCurl.releaseSource="https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/";}
+const releaseEvidence:Record<string,{date:string;source:string}>={
+  RVD120X1JP:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260915-01"},
+  HP062J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
+  HP162J:{date:"2026-09-25",source:"https://www.sharkninja.jp/blogs/news/news260820-03"},
+  WD563:{date:"2026-08-18",source:"https://newsroom.sharkninja.com/shark-launches-aquareach-the-first-vacuum-mop-system-with-extendable-wand-designed-to-clean-beyond-the-floor/"},
+  HD840PU:{date:"2026-07-06",source:"https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/"},
+  HD840:{date:"2026-07-06",source:"https://newsroom.sharkninja.com/shark-beauty-launches-flexstyle-ioncurl-the-most-powerful-multi-styler-yet/"},
+  LX5000:{date:"2026-06-30",source:"https://newsroom.sharkninja.com/sharkninja-launches-the-shark-powerdetect-transformer-three-vacuums-one-system-zero-compromises/"},
+  EX500:{date:"2026-06-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-the-shark-carpetforce-collection-reinventing-carpet-cleaning-for-everyday-life/"},
+  EX551:{date:"2026-06-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-the-shark-carpetforce-collection-reinventing-carpet-cleaning-for-everyday-life/"},
+  IW5271J:{date:"2026-06-04",source:"https://www.sharkninja.jp/blogs/news/20260521-01"},
+  IA3241:{date:"2026-04-14",source:"https://newsroom.sharkninja.com/sharkninja-introduces-shark-powerdetect-speed-clean-empty-system/"},
+  HP362:{date:"2026-04-08",source:"https://newsroom.sharkninja.com/sharkninja-introduces-shark-breatheclear-max-with-neverchange-proactive-purification-intelligent-air-analysis-purpose-built-to-act-before-air-quality-drops/"},
+  LC800J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+  LC900J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+  LC950J:{date:"2026-09-07",source:"https://www.sharkninja.jp/blogs/news/news260820-01"},
+};
+export function withVerifiedReleaseDates(products:Product[]):Product[] {
+  return products.map(product=>{
+    const verified=releaseEvidence[(product.model||"").toUpperCase()];
+    const category=displayCategoryByModel[(product.model||"").toUpperCase()]||product.category;
+    return verified&&!product.releaseDate?{...product,category,releaseDate:verified.date,releasePrecision:"day",releaseSource:verified.source}:{...product,category};
+  });
+}
+for(const product of STARTER_PRODUCTS){
+  const verified=releaseEvidence[product.model||""];
+  if(verified){product.releaseDate=verified.date;product.releasePrecision="day";product.releaseSource=verified.source;}
+}
