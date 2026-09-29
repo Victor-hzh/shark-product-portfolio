@@ -68,6 +68,7 @@
 .stack-inline-top p{margin:0;font-size:11px;color:#687b8b}
 .stack-close,.stack-controls button{flex:none;display:grid;place-items:center;width:36px;height:36px;border:1px solid #bbcbd7;border-radius:50%;background:#fff;color:#213d52;cursor:pointer;transition:transform .2s,background .2s}
 .stack-close:hover,.stack-controls button:hover{transform:scale(1.08);background:#d9eef2}
+.stack-controls button:disabled{opacity:.35;cursor:default;transform:none;background:#fff}
 .stack-stage{position:relative;height:426px;margin:7px 0 0;perspective:900px}
 .stack-slide{position:absolute;top:9px;left:8px;width:calc(100% - 80px);height:391px;transform:translate(calc(var(--depth)*18px),calc(var(--depth)*-2px)) rotate(calc(var(--depth)*2.2deg)) scale(calc(1 - var(--depth)*.035));transform-origin:50% 60%;box-shadow:0 15px 25px #263d4b28;border-radius:11px;transition:transform .58s cubic-bezier(.15,.85,.2,1),filter .58s,opacity .58s;cursor:pointer}
 .stack-slide:nth-child(5n + 1){background:#b9eaf0}.stack-slide:nth-child(5n + 2){background:#edc1de}.stack-slide:nth-child(5n + 3){background:#ddd5f2}.stack-slide:nth-child(5n + 4){background:#b8dce7}.stack-slide:nth-child(5n){background:#cbd7ea}
