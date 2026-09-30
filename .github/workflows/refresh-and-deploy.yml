@@ -1,0 +1,83 @@
+name: Refresh Shark data and deploy OSS
+
+on:
+  schedule:
+    # 03:25 UTC = 11:25 Asia/Shanghai
+    - cron: "25 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: shark-oss-production
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-build-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      ALIYUN_OSS_ACCESS_KEY_ID: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_ID }}
+      ALIYUN_OSS_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_SECRET }}
+      ALIYUN_OSS_BUCKET: shark-product-portfolio
+      ALIYUN_OSS_REGION: cn-beijing
+      SHARK_DATA_ORIGIN: https://shark-portfolio-victor.jg749nmqt5.chatgpt.site
+    steps:
+      - name: Check out the current main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: pnpm
+
+      - name: Verify deployment credentials
+        run: |
+          test -n "$ALIYUN_OSS_ACCESS_KEY_ID"
+          test -n "$ALIYUN_OSS_ACCESS_KEY_SECRET"
+
+      - name: Refresh known prices and discover review candidates
+        run: python scripts/refresh_data.py
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type-check and build the static site
+        run: |
+          pnpm typecheck
+          pnpm build
+          test -s out/index.html
+
+      - name: Upload static export to Alibaba Cloud OSS
+        run: python scripts/upload_oss.py out
+
+      - name: Verify the production website
+        run: |
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 4 --retry-all-errors \
+            "https://shark.uwant.cc/?run=${GITHUB_RUN_ID}" \
+            | grep -q "Shark 产品线"
+
+      - name: Commit refreshed snapshots
+        run: |
+          git add data/catalog-snapshot.json data/price-snapshot.json data/fx-snapshot.json \
+            data/pending-products.json data/discovery-report.json data/refresh-status.json
+          if ! git diff --cached --quiet; then
+            git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "Refresh Shark catalog snapshots"
+            git push origin HEAD:main
+          fi

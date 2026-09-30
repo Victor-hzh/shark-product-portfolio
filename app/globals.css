@@ -120,3 +120,7 @@
 @media(max-width:460px){.stack-inline{height:600px}.stack-stage{height:406px}.stack-slide{width:70vw;height:374px;transform:translateX(calc(-50% + var(--offset)*55vw)) rotateY(calc(var(--offset)*-7deg)) scale(calc(1 - var(--depth)*.07))}.stack-slide .image-panel{height:140px}.stack-slide .card-content{padding:10px}.stack-slide .card-content h3{font-size:12px}.stack-model-nav button{padding:5px 4px;font-size:8px}}
 .latest-explainer,.latest-empty{margin:17px 0 0;padding:14px 18px;border-radius:9px;background:#fff;border:1px solid #e0e5ea;color:#637487;font-size:13px;line-height:1.6}
 .latest-empty{padding:30px 18px;text-align:center}
+.auto-refresh-badge{height:48px;display:flex;align-items:center;gap:8px;padding:0 19px;border-radius:8px;background:#d85040;color:#fff;font-size:14px;font-weight:800;box-shadow:0 6px 15px #d8504024}
+.auto-refresh-badge svg{animation:autoPulse 3s ease-in-out infinite}
+@keyframes autoPulse{0%,100%{transform:rotate(0);opacity:.8}50%{transform:rotate(180deg);opacity:1}}
+@media(prefers-reduced-motion:reduce){.auto-refresh-badge svg{animation:none}}

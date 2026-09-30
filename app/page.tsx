@@ -1,17 +1,16 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { ArrowUpRight, RefreshCw, Globe2, CalendarDays, Layers3, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { CATEGORIES, SCAN_SOURCES, STARTER_PRODUCTS, withVerifiedReleaseDates, type Product } from "@/lib/catalog";
+import { CATEGORIES, STARTER_PRODUCTS, type Product } from "@/lib/catalog";
 import { globalSeriesKeys, modelSeries, useGlobalMark } from "@/lib/series";
 import { platformGroupFor, type PlatformGroup } from "@/lib/platform-groups";
 import { cardSpecs } from "@/lib/specs";
 import fxSnapshot from "@/data/fx-snapshot.json";
+import refreshStatus from "@/data/refresh-status.json";
 
 const groupOrder=["洗地机","布艺","机器人","吸尘器","蒸汽拖把","立式机","地毯清洗","吹叶机","个护","风扇","空净"];
 const latestLabel="最近上新";
-type Run = {source:string;added:number;checked?:number;status:string;detail?:string};
 const flag:Record<string,{file:string,name:string}>={
   US:{file:"us",name:"美国"},UK:{file:"gb",name:"英国"},DE:{file:"de",name:"德国"},
   FR:{file:"fr",name:"法国"},IT:{file:"it",name:"意大利"},JP:{file:"jp",name:"日本"},
@@ -34,6 +33,11 @@ function isNew(p:Product) {
   return days>=0 && days<=180;
 }
 const fx=fxSnapshot as {asOf:string;rates:Record<string,number>;sourceUrl:string};
+const update=refreshStatus as {updatedAt:string|null;catalogCount:number;pricedCount:number;pendingCount:number;fxAsOf:string|null};
+function updateLabel(value:string|null) {
+  if(!value)return "等待首次自动更新";
+  return new Date(value).toLocaleString("zh-CN",{timeZone:"Asia/Shanghai",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
+}
 function currencyAmount(amount:number,currency:string) {
   return new Intl.NumberFormat("en-US",{style:"currency",currency,maximumFractionDigits:currency==="JPY"?0:2}).format(amount);
 }
@@ -57,7 +61,7 @@ function ProductCard({product:p,globalKeys,inactive=false}:{product:Product;glob
   useEffect(()=>setImageFailed(false),[p.imageUrl]);
   return <article className="product-card">
     <div className="image-panel">
-      {!imageFailed ? <img src={p.imageUrl||`/api/image?id=${encodeURIComponent(p.id)}`} alt={p.name} loading="lazy" onError={()=>setImageFailed(true)}/> :
+      {!imageFailed&&p.imageUrl ? <img src={p.imageUrl} alt={p.name} loading="lazy" onError={()=>setImageFailed(true)}/> :
         <div className="image-fallback" aria-label="暂无产品图片"><span>SHARK</span><strong>{p.model||"PRODUCT"}</strong></div>}
       {isNew(p)&&<span className="new-tag">NEW RELEASE</span>}
       <div className="market-row" aria-label="已确认销售国家">
@@ -89,7 +93,7 @@ function StackPreview({products,group,onOpen,open=false}:{products:Product[];gro
     <div className="stack-preview-layers" aria-hidden="true"><span/><span/><span/></div>
     <button type="button" className="stack-preview-face" onClick={onOpen} aria-expanded={open} aria-label={`${open?"当前已展开":"展开"} ${group.label} 合集，共 ${products.length} 个型号`}>
       <div className="stack-preview-image">
-        {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
+        {!imageFailed&&cover.imageUrl?<img src={cover.imageUrl} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
         {products.some(isNew)&&<span className="new-tag">NEW RELEASE</span>}
         <span className="stack-preview-count">{products.length} SKU</span>
@@ -167,12 +171,7 @@ function PlatformStackInline({products,group,globalKeys,onClose}:{products:Produ
 }
 
 export default function Home() {
-  const [products,setProducts]=useState<Product[]>(STARTER_PRODUCTS);
-  const [last,setLast]=useState<string|null>(null);
-  const [running,setRunning]=useState(false);
-  const [index,setIndex]=useState(0);
-  const [runs,setRuns]=useState<Run[]>([]);
-  const [loadError,setLoadError]=useState<string|null>(null);
+  const products=STARTER_PRODUCTS;
   const [active,setActive]=useState<string>("全部");
   const [openGroupId,setOpenGroupId]=useState<string|null>(null);
   const [gridColumns,setGridColumns]=useState(4);
@@ -183,33 +182,6 @@ export default function Home() {
     syncColumns();window.addEventListener("resize",syncColumns);
     return ()=>window.removeEventListener("resize",syncColumns);
   },[]);
-  async function load() {
-    try {
-      const response=await fetch("/api/products",{cache:"no-store"});
-      const data=await response.json() as {products:Product[];lastRefresh:{at:string}|null;warning?:string;error?:string};
-      if(!response.ok)throw new Error(data.error||"数据暂不可用");
-      const remoteModels=new Set(data.products.map(product=>(product.model||"").toUpperCase()));
-      const localAdditions=STARTER_PRODUCTS.filter(product=>!remoteModels.has(product.model||""));
-      setProducts(withVerifiedReleaseDates([...data.products,...localAdditions]));setLast(data.lastRefresh?.at||null);setLoadError(data.warning||null);
-    }catch(e){setLoadError(e instanceof Error?e.message:"读取失败");}
-  }
-  useEffect(()=>{void load();},[]);
-  async function refresh(){
-    if(running)return;
-    setRunning(true);setRuns([]);setIndex(0);
-    const results:Run[]=[];
-    for(let i=0;i<SCAN_SOURCES.length;i++){
-      setIndex(i+1);
-      try{
-        const response=await fetch("/api/refresh",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({categoryIndex:i})});
-        const data=await response.json() as Run & {error?:string};
-        results.push(response.ok?data:{source:SCAN_SOURCES[i].label,added:0,status:"error",detail:data.error||"请求失败"});
-      }catch(e){results.push({source:SCAN_SOURCES[i].label,added:0,status:"error",detail:e instanceof Error?e.message:"网络错误"});}
-      setRuns([...results]);
-      await load();
-    }
-    setRunning(false);
-  }
   const latest=useMemo(()=>products.filter(isNew).sort((a,b)=>(b.releaseDate||"").localeCompare(a.releaseDate||"")),[products]);
   const filtered=useMemo(()=>active==="全部"?products:active===latestLabel?latest:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===active),[active,products,latest]);
   const closeGroup=useCallback((restoreFocus=true)=>{
@@ -236,19 +208,13 @@ export default function Home() {
     if(inlineProducts.length>0&&collections.length%gridColumns===0)collectionRows.push([]);
     return {label:c.label,items,collectionRows,collections,singles:remainingSingles,inlineProducts};
   }).filter(c=>c.items.length)})).filter(g=>g.categories.length);
-  const failures=runs.filter(r=>r.status!=="ok");
   return <TooltipProvider><div className="app-shell">
     <header className="topbar"><div className="brand-mark">S<span>•</span></div><div className="brand-copy"><strong>SHARK</strong><span>PRODUCT PORTFOLIO</span></div><div className="topbar-right">BRAND MONITOR <span className="topbar-sep"/> SHARK ONLY</div></header>
     <main>
       <section className="intro"><div><div className="eyebrow"><span className="pulse-dot"/> PRODUCT INTELLIGENCE / 01</div><h1>Shark 产品线</h1><p>按品类查看已核实的产品、上市时间和销售市场。</p></div>
-        <div className="refresh-box"><div className="refresh-meta">{last?`上次检查 ${new Date(last).toLocaleString("zh-CN",{timeZone:"Asia/Shanghai"})}`:"尚未检查公开来源"}</div>
-        <Button onClick={refresh} disabled={running} className="refresh-button"><RefreshCw size={17} className={running?"spin":""}/>{running?`正在检查 ${index}/${SCAN_SOURCES.length}`:"刷新 Shark 产品"}</Button></div></section>
+        <div className="refresh-box"><div className="refresh-meta">最近更新 {updateLabel(update.updatedAt)}</div>
+        <div className="auto-refresh-badge" title={`已核实价格 ${update.pricedCount} 个；待审核新品 ${update.pendingCount} 个`}><RefreshCw size={17}/>每日自动更新</div></div></section>
       <section className="status-strip" aria-live="polite"><div><Layers3 size={17}/><strong>{products.length}</strong><span>已收录产品</span></div><div><Globe2 size={17}/><span>当前已核实市场</span><strong className="status-flags">{[...new Set(products.flatMap(p=>p.markets))].map(m=><Flag code={m} key={m}/>)}</strong></div><p>收录 Shark 官网及其他零售渠道可核实的型号，覆盖范围持续扩充。</p></section>
-      {(running||runs.length>0)&&<div className="scan-report" role="status"><strong>{running?`正在检查：${SCAN_SOURCES[Math.max(0,index-1)].label}`:`本次检查完成 · 新增 ${runs.reduce((n,r)=>n+r.added,0)} 件`}</strong>
-        <span>{runs.filter(r=>r.status==="ok").length}/{SCAN_SOURCES.length} 个来源读取成功{failures.length>0?` · ${failures.length} 个来源未读取`:""}</span>
-        {!running&&failures.length>0&&<details><summary>查看未读取的来源</summary>{failures.map((r,i)=><p key={i}>{r.source}：{r.detail||"来源不可用"}</p>)}</details>}
-      </div>}
-      {loadError&&<div className="load-error">{loadError}。当前页面显示已核实的仓库快照。</div>}
       <nav className="group-nav" aria-label="产品分组">{[latestLabel,"全部",...groupOrder].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} aria-pressed={active===g} className={`${active===g?"selected":""} ${g===latestLabel?"latest-nav":""}`}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
@@ -269,7 +235,7 @@ export default function Home() {
           {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
-      <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
+      <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。数据由 GitHub 定时核验，审核通过后自动构建并同步至 OSS。</p></footer>
     </main>
   </div></TooltipProvider>;
 }
