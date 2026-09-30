@@ -91,6 +91,7 @@ function StackPreview({products,group,onOpen,open=false}:{products:Product[];gro
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
+        {products.some(isNew)&&<span className="new-tag">NEW RELEASE</span>}
         <span className="stack-preview-count">{products.length} SKU</span>
       </div>
       <div className="stack-preview-content">
