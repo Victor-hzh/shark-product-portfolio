@@ -91,6 +91,7 @@ function StackPreview({products,group,onOpen,open=false}:{products:Product[];gro
       <div className="stack-preview-image">
         {!imageFailed?<img src={cover.imageUrl||`/api/image?id=${encodeURIComponent(cover.id)}`} alt="" loading="lazy" onError={()=>setImageFailed(true)}/>:
           <span className="stack-preview-fallback">SHARK</span>}
+        {products.some(isNew)&&<span className="new-tag">NEW RELEASE</span>}
         <span className="stack-preview-count">{products.length} SKU</span>
       </div>
       <div className="stack-preview-content">
@@ -248,7 +249,7 @@ export default function Home() {
         {!running&&failures.length>0&&<details><summary>查看未读取的来源</summary>{failures.map((r,i)=><p key={i}>{r.source}：{r.detail||"来源不可用"}</p>)}</details>}
       </div>}
       {loadError&&<div className="load-error">{loadError}。当前页面显示已核实的仓库快照。</div>}
-      <nav className="group-nav" aria-label="产品分组">{["全部",...groupOrder,latestLabel].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} className={active===g?"selected":""}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
+      <nav className="group-nav" aria-label="产品分组">{[latestLabel,"全部",...groupOrder].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} aria-pressed={active===g} className={`${active===g?"selected":""} ${g===latestLabel?"latest-nav":""}`}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{String(groupOrder.indexOf(group)+1).padStart(2,"0")}</span><h2>{group}</h2><div/></div>
@@ -265,7 +266,7 @@ export default function Home() {
               </div>;
             })}</div>
           </div>}
-          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=>p.model==="RVD120X1JP"&&singles.length===1?<div className="single-grid-end" key={p.id}><ProductCard product={p} globalKeys={globalKeys}/></div>:<ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
+          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
