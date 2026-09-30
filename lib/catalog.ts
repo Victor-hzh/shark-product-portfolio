@@ -102,7 +102,11 @@ export function withVerifiedReleaseDates(products:Product[]):Product[] {
     const verified=releaseEvidence[(product.model||"").toUpperCase()];
     const category=categoryFor((product.model||"").toUpperCase(),product.category);
     const price=pricesByModel[(product.model||"").toUpperCase()]||null;
-    return verified?{...product,category,price,releaseDate:verified.date,releasePrecision:verified.precision||"day",releaseSource:verified.source}:{...product,category,price};
+    // The live feed may still carry a stale WD563 image; use the verified catalog image.
+    const imageUrl=(product.model||"").toUpperCase()==="WD563"
+      ? STARTER_PRODUCTS.find(item=>item.model==="WD563")?.imageUrl||product.imageUrl
+      : product.imageUrl;
+    return verified?{...product,category,price,imageUrl,releaseDate:verified.date,releasePrecision:verified.precision||"day",releaseSource:verified.source}:{...product,category,price,imageUrl};
   });
 }
 for(const product of STARTER_PRODUCTS){
