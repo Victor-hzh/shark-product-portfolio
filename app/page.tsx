@@ -229,8 +229,11 @@ export default function Home() {
         if(!seen.has(platform.id)){collections.push({group:platform,products:collection});seen.add(platform.id);}
       }else singles.push(p);
     }
+    const inlineProducts=collections.length>0?singles.filter(p=>p.model==="RVD120X1JP"):[];
+    const remainingSingles=singles.filter(p=>!inlineProducts.includes(p));
     const collectionRows=Array.from({length:Math.ceil(collections.length/gridColumns)},(_,i)=>collections.slice(i*gridColumns,(i+1)*gridColumns));
-    return {label:c.label,items,collectionRows,collections,singles};
+    if(inlineProducts.length>0&&collections.length%gridColumns===0)collectionRows.push([]);
+    return {label:c.label,items,collectionRows,collections,singles:remainingSingles,inlineProducts};
   }).filter(c=>c.items.length)})).filter(g=>g.categories.length);
   const failures=runs.filter(r=>r.status!=="ok");
   return <TooltipProvider><div className="app-shell">
@@ -249,7 +252,7 @@ export default function Home() {
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
       {active===latestLabel&&latest.length===0&&<div className="latest-empty">目前没有符合日期条件的产品。核实到新的上市日期后会在这里显示。</div>}
       <div className="catalog">{groups.map(({group,categories})=><section className="group" key={group}><div className="group-head"><span>{String(groupOrder.indexOf(group)+1).padStart(2,"0")}</span><h2>{group}</h2><div/></div>
-        {categories.map(({label,items,collectionRows,collections,singles})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
+        {categories.map(({label,items,collectionRows,collections,singles,inlineProducts})=><section className="category" key={label}><div className="category-head"><h3>{label}</h3><span>{String(items.length).padStart(2,"0")} PRODUCTS</span></div>
           {collections.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">产品合集 <span>{collections.length}</span></div>
             <div className="collection-rows">{collectionRows.map((row,index)=>{
               const expanded=row.find(({group})=>group.id===openGroupId);
@@ -257,7 +260,7 @@ export default function Home() {
                 <div className="product-grid">{row.map(({group,products:members})=><div key={group.id} className={`stack-trigger ${openGroupId===group.id?"is-open":""}`} ref={node=>{
                   const button=node?.querySelector<HTMLButtonElement>(".stack-preview-face");
                   if(button)stackTriggers.current.set(group.id,button);else stackTriggers.current.delete(group.id);
-                }}><StackPreview products={members} group={group} open={openGroupId===group.id} onOpen={()=>setOpenGroupId(group.id)}/></div>)}</div>
+                }}><StackPreview products={members} group={group} open={openGroupId===group.id} onOpen={()=>setOpenGroupId(group.id)}/></div>)}{index===collectionRows.length-1&&inlineProducts.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div>
                 {expanded&&<PlatformStackInline key={expanded.group.id} products={expanded.products} group={expanded.group} globalKeys={globalKeys} onClose={closeGroup}/>}
               </div>;
             })}</div>
