@@ -265,7 +265,7 @@ export default function Home() {
               </div>;
             })}</div>
           </div>}
-          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=>p.model==="RVD120X1JP"&&singles.length===1?<div className="single-grid-end" key={p.id}><ProductCard product={p} globalKeys={globalKeys}/></div>:<ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
+          {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
       <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。在线刷新通过原站的数据服务运行；若原站停用，需迁移数据库后继续使用。</p></footer>
