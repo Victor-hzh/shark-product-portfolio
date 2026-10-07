@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-06T10:30:52Z",
+  "checkedAt": "2026-10-07T10:24:05Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -9,6 +9,6 @@
   "remoteProductCount": 262,
   "publishedProductCount": 245,
   "knownProductsUpdated": 0,
-  "newCandidates": 5,
+  "newCandidates": 0,
   "pendingReviewCount": 25
 }
