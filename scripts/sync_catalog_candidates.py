@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the published catalog from Shark's scanned product pages.
+"""Refresh the published catalog directly from official Shark product pages.
 
 Known products keep their manually curated fields. Valid new Shark products are
 published as individual cards; rejected records remain in the exception queue.
@@ -10,75 +10,24 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
-import os
-import urllib.error
 import urllib.parse
-import urllib.request
 from pathlib import Path
+
+from scan_official_products import SOURCES, scan_sources
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data/catalog-snapshot.json"
 PENDING = ROOT / "data/pending-products.json"
 REPORT = ROOT / "data/discovery-report.json"
-DEFAULT_ORIGIN = "https://shark-portfolio-victor.jg749nmqt5.chatgpt.site"
-DEFAULT_SOURCE_COUNT = 26
 VALID_CATEGORIES = {
     "洗地机", "布艺清洗机", "扫地机器人", "无线吸尘器", "有线杆式吸尘器",
     "手持吸尘器", "蒸汽清洁", "立式吸尘器", "地毯清洗机", "吹叶机",
     "吹风机", "美发造型", "直发器", "热风梳", "美容仪", "光疗面罩", "风扇", "空气净化器",
 }
 OFFICIAL_HOSTS = {"www.sharkninja.com", "www.sharkninja.co.uk", "www.sharkninja.jp"}
-HEADERS = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "User-Agent": "SharkPortfolioAutomation/1.0",
-}
-
-
 def utc_now() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
-
-
-def endpoint(origin: str, path: str) -> str:
-    parsed = urllib.parse.urlsplit(origin)
-    if parsed.scheme != "https" or not parsed.netloc:
-        raise ValueError("SHARK_DATA_ORIGIN must be an https URL")
-    return urllib.parse.urljoin(origin.rstrip("/") + "/", path.lstrip("/"))
-
-
-def request_json(url: str, *, payload: dict | None = None, timeout: int = 40) -> dict:
-    body = json.dumps(payload).encode() if payload is not None else None
-    request = urllib.request.Request(url, data=body, method="POST" if body else "GET", headers=HEADERS)
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        if response.status < 200 or response.status >= 300:
-            raise RuntimeError(f"HTTP {response.status}")
-        data = json.load(response)
-    if not isinstance(data, dict):
-        raise ValueError("upstream response is not an object")
-    return data
-
-
-def refresh_sources(origin: str, count: int) -> tuple[int, list[str]]:
-    succeeded = 0
-    failures: list[str] = []
-    refresh_url = endpoint(origin, "/api/refresh")
-    for index in range(count):
-        try:
-            result = request_json(refresh_url, payload={"categoryIndex": index})
-            label = str(result.get("source") or f"source {index + 1}")
-            status = str(result.get("status") or "unknown")
-            if status == "ok":
-                succeeded += 1
-                print(f"[{index + 1}/{count}] {label}: ok")
-            else:
-                detail = str(result.get("detail") or status)
-                failures.append(f"{label}: {detail}")
-                print(f"[{index + 1}/{count}] {label}: {detail}")
-        except (OSError, ValueError, RuntimeError, urllib.error.HTTPError) as error:
-            failures.append(f"source {index + 1}: {type(error).__name__}: {error}")
-            print(f"[{index + 1}/{count}] failed: {type(error).__name__}: {error}")
-    return succeeded, failures
 
 
 def normalized_model(value: object) -> str:
@@ -173,32 +122,29 @@ def reconcile(remote_products: list, catalog: list, previous_pending: list, chec
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--skip-source-refresh", action="store_true", help="Read the upstream snapshot without triggering its scanners")
+    parser.add_argument("--skip-source-refresh", action="store_true", help="Check local snapshots without requesting official sources")
     args = parser.parse_args()
 
-    origin = os.environ.get("SHARK_DATA_ORIGIN", DEFAULT_ORIGIN).rstrip("/")
-    source_count = int(os.environ.get("SHARK_SCAN_SOURCE_COUNT", DEFAULT_SOURCE_COUNT))
+    sources = json.loads(SOURCES.read_text())
+    source_count = len(sources)
     checked_at = utc_now()
-    succeeded = 0
-    failures: list[str] = []
-    if not args.skip_source_refresh:
-        succeeded, failures = refresh_sources(origin, source_count)
-        if succeeded == 0:
-            raise RuntimeError("No upstream catalog source refreshed successfully; keeping the published snapshot unchanged")
-
-    upstream = request_json(endpoint(origin, "/api/products"), timeout=45)
-    remote_products = upstream.get("products")
-    if not isinstance(remote_products, list) or not remote_products:
-        raise ValueError("upstream catalog is empty")
-
     catalog = json.loads(CATALOG.read_text())
     pending = json.loads(PENDING.read_text()) if PENDING.exists() else []
     if not isinstance(catalog, list) or not isinstance(pending, list):
         raise ValueError("catalog or pending product file has an invalid format")
 
-    catalog, pending_output, added, known_updates = reconcile(remote_products, catalog, pending, checked_at)
-    CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
-    PENDING.write_text(json.dumps(pending_output, ensure_ascii=False, indent=2) + "\n")
+    succeeded, failures, missing_images, remote_products = 0, [], 0, []
+    added, known_updates = 0, 0
+    pending_output = pending
+    if not args.skip_source_refresh:
+        remote_products, succeeded, failures, missing_images = scan_sources(
+            {normalized_model(item.get("model")) for item in catalog}, sources)
+        if succeeded == 0:
+            raise RuntimeError("No official Shark source could be scanned; keeping the published snapshot unchanged")
+        catalog, pending_output, added, known_updates = reconcile(remote_products, catalog, pending, checked_at)
+        CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
+        PENDING.write_text(json.dumps(pending_output, ensure_ascii=False, indent=2) + "\n")
+
     REPORT.write_text(json.dumps({
         "checkedAt": checked_at,
         "sourceRefreshSkipped": args.skip_source_refresh,
@@ -206,6 +152,7 @@ def main() -> int:
         "sourcesSucceeded": succeeded,
         "sourceFailures": failures,
         "remoteProductCount": len(remote_products),
+        "skippedMissingImageCount": missing_images,
         "publishedProductCount": len(catalog),
         "knownProductsUpdated": known_updates,
         "autoPublished": added,

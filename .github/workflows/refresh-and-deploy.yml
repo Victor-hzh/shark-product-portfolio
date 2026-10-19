@@ -24,7 +24,6 @@ jobs:
       ALIYUN_OSS_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_OSS_ACCESS_KEY_SECRET }}
       ALIYUN_OSS_BUCKET: shark-product-portfolio
       ALIYUN_OSS_REGION: cn-beijing
-      SHARK_DATA_ORIGIN: https://shark-portfolio-victor.jg749nmqt5.chatgpt.site
     steps:
       - name: Check out the current main branch
         uses: actions/checkout@v4
@@ -52,7 +51,7 @@ jobs:
           test -n "$ALIYUN_OSS_ACCESS_KEY_ID"
           test -n "$ALIYUN_OSS_ACCESS_KEY_SECRET"
 
-      - name: Refresh known prices and discover review candidates
+      - name: Scan official stores and refresh product data
         run: python scripts/refresh_data.py
 
       - name: Install frontend dependencies

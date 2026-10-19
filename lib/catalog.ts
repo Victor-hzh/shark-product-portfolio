@@ -1,6 +1,7 @@
 import snapshot from "@/data/catalog-snapshot.json";
 import specSnapshot from "@/data/specs-snapshot.json";
 import priceSnapshot from "@/data/price-snapshot.json";
+import scanSources from "@/data/scan-sources.json";
 
 export type OfficialPrice = {
   amount: number; amountMax?: number; currency: string; checkedAt: string; sourceUrl: string;
@@ -15,7 +16,6 @@ export type Product = {
   price?: OfficialPrice | null;
 };
 
-const base = "https://www.sharkninja.com";
 export const CATEGORIES = [
   {label:"洗地机",group:"洗地机",path:"/vacuums-air-care/floor-carpet-cleaners/wet-dry-cleaners"},
   {label:"布艺清洗机",group:"布艺",path:"/vacuums-air-care/floor-carpet-cleaners/carpet-spot-cleaners"},
@@ -37,21 +37,7 @@ export const CATEGORIES = [
   {label:"空气净化器",group:"空净",path:"/vacuums-air-care/air-purifiers-fans/air-purifiers"},
 ] as const;
 
-export const SCAN_SOURCES = [
-  ...CATEGORIES.filter(category => category.path).map(category => ({label:`美国 · ${category.label}`,url:`${base}${category.path}`,market:"US",category:category.label,format:"sfcc"})),
-  ...[
-    ["无线吸尘器","/home-cleaning/vacuum-cleaners/cordless-vacuums"],
-    ["立式吸尘器","/home-cleaning/vacuum-cleaners/upright-vacuums"],
-    ["手持吸尘器","/home-cleaning/vacuum-cleaners/handheld-vacuums"],
-    ["扫地机器人","/home-cleaning/vacuum-cleaners/robot-vacuums"],
-    ["布艺清洗机","/home-cleaning/floor-carpet-cleaners/carpet-spot-cleaners"],
-    ["蒸汽清洁","/home-cleaning/floor-carpet-cleaners/steam-mops"],
-    ["吹风机","/beauty/haircare/hair-dryers"],
-    ["美发造型","/beauty/haircare/hair-stylers"],
-    ["空气净化器","/home-cleaning/air-treatment/air-purifiers"],
-  ].map(([category,path])=>({label:`英国 · ${category}`,url:`https://www.sharkninja.co.uk${path}`,market:"UK",category,format:"sfcc"})),
-  {label:"日本 · Shark 产品",url:"https://www.sharkninja.jp/collections/shark/products.json?limit=250",market:"JP",category:"自动分类",format:"shopify"},
-] as const;
+export const SCAN_SOURCES = scanSources;
 
 const seen="2026-09-23";
 const specsByModel=specSnapshot as Record<string,Record<string,string>>;

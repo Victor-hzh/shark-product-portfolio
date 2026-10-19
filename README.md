@@ -8,7 +8,7 @@ Shark 产品卡片目录，按品类与平台合集展示已核实型号、官�
 
 默认分支中的 GitHub Actions 每天北京时间 11:25 自动执行；推送到 `main` 时也会立即运行：
 
-1. 调用公开产品数据服务检查美国、英国和日本来源。
+1. 仓库内的 Python 扫描器直接检查美国、英国和日本 Shark 官网；来源清单在 `data/scan-sources.json`，不依赖 ChatGPT Site。
 2. 更新已知 SKU 的市场信息、官方价格和欧洲央行参考汇率。
 3. 将有官网商品页、型号、品类和市场信息的新 SKU 自动加入正式目录。相同商品页只收录一次；无法核实的记录写入 `data/pending-products.json`。
 4. 运行 TypeScript 检查并生成 Next.js 静态导出目录 `out/`。
@@ -39,7 +39,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-只读取远端现有快照、不触发完整来源扫描的本地数据检查：
+只检查本地快照、不请求官网的本地数据检查：
 
 ```bash
 python3 scripts/refresh_data.py --skip-source-refresh
