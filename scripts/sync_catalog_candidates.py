@@ -65,6 +65,13 @@ def display_category(model: str, category: str) -> str:
 
 
 def reconcile(remote_products: list, catalog: list, previous_pending: list, checked_at: str) -> tuple[list, list, int, int]:
+    # SFCC also advertises a -MASTER alias for a SKU already in the catalog.
+    # Remove aliases from earlier runs once the concrete base model is present.
+    models = {normalized_model(item.get("model")) for item in catalog}
+    catalog[:] = [item for item in catalog if not (
+        normalized_model(item.get("model")).endswith("-MASTER")
+        and normalized_model(item.get("model"))[:-7] in models
+    )]
     catalog_by_model = {normalized_model(item.get("model")): item for item in catalog if normalized_model(item.get("model"))}
     catalog_urls = {canonical_url(item.get("officialUrl")) for item in catalog}
     previous_by_model = {normalized_model(item.get("model")): item for item in previous_pending}
@@ -77,6 +84,8 @@ def reconcile(remote_products: list, catalog: list, previous_pending: list, chec
                          key=lambda item: normalized_model(item.get("model")).endswith("-MASTER")):
         model = normalized_model(remote.get("model"))
         if not model:
+            continue
+        if model.endswith("-MASTER") and model[:-7] in catalog_by_model:
             continue
         if model in catalog_by_model:
             local = catalog_by_model[model]
@@ -133,7 +142,7 @@ def main() -> int:
     if not isinstance(catalog, list) or not isinstance(pending, list):
         raise ValueError("catalog or pending product file has an invalid format")
 
-    succeeded, failures, missing_images, remote_products = 0, [], 0, []
+    succeeded, failures, missing_images, remote_products = 0, [], [], []
     added, known_updates = 0, 0
     pending_output = pending
     if not args.skip_source_refresh:
@@ -152,7 +161,8 @@ def main() -> int:
         "sourcesSucceeded": succeeded,
         "sourceFailures": failures,
         "remoteProductCount": len(remote_products),
-        "skippedMissingImageCount": missing_images,
+        "missingImageCount": len(missing_images),
+        "missingImageModels": missing_images,
         "publishedProductCount": len(catalog),
         "knownProductsUpdated": known_updates,
         "autoPublished": added,

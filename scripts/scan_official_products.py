@@ -128,8 +128,8 @@ def sfcc_products(page: str, source: dict) -> list[dict]:
     return list(found.values())
 
 
-def scan_sources(known_models: set[str], sources: list[dict] | None = None) -> tuple[list[dict], int, list[str], int]:
-    """Return discovered products, successful sources, failures and missing images."""
+def scan_sources(known_models: set[str], sources: list[dict] | None = None) -> tuple[list[dict], int, list[str], list[str]]:
+    """Return products, successful sources, failures and models needing photos."""
     sources = sources if sources is not None else json.loads(SOURCES.read_text())
     found: dict[str, dict] = {}
     failures: list[str] = []
@@ -162,13 +162,12 @@ def scan_sources(known_models: set[str], sources: list[dict] | None = None) -> t
             print(f"{item['model']}: image lookup failed: {error}", flush=True)
         return item, bool(item.get("imageUrl"))
 
-    missing_images = 0
+    missing_images = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         results = pool.map(with_image, found.values())
         products = []
         for item, has_image in results:
-            if has_image:
-                products.append(item)
-            else:
-                missing_images += 1
+            products.append(item)
+            if not has_image:
+                missing_images.append(item["model"])
     return products, succeeded, failures, missing_images
