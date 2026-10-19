@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-19T03:55:36Z",
+  "checkedAt": "2026-10-19T09:04:26Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -7,24 +7,10 @@
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
   "remoteProductCount": 240,
-  "missingImageCount": 13,
-  "missingImageModels": [
-    "EX301B",
-    "EX201B",
-    "IZ382HBAT",
-    "LX501UPG1",
-    "HD500RWSN",
-    "HD500-BYOB",
-    "HD800BRSN3",
-    "HD800BRSN",
-    "HD800SN3",
-    "HD400BKSN",
-    "HD400TGSN",
-    "HD6000SN",
-    "HD501UKBYO"
-  ],
+  "missingImageCount": 0,
+  "missingImageModels": [],
   "publishedProductCount": 293,
   "knownProductsUpdated": 0,
-  "autoPublished": 13,
+  "autoPublished": 0,
   "unverifiedCount": 0
 }
