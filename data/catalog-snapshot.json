@@ -2800,63 +2800,133 @@
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/TH202_01.jpg"
   },
   {
-    "model": "RV2820ZE-MASTER",
-    "name": "Shark PowerDetect NeverTouch Pro Robot Vacuum and Mop",
-    "category": "扫地机器人",
-    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-2-in-1-robot-vacuum-and-mop-with-nevertouch-pro-base/RV2820ZE.html",
+    "model": "EX301B",
+    "name": "Shark CarpetXpert HairPro Carpet Cleaner Pet Formula",
+    "category": "地毯清洗机",
+    "officialUrl": "https://www.sharkninja.com/shark-carpetxpert-hairpro-with-stainstriker/EX301B.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/RV2820ZE_01.jpg"
+    "imageUrl": null
   },
   {
-    "model": "SV2002-MASTER",
-    "name": "Shark Freestyle Max Cordless Vacuum in Nordic Blue",
+    "model": "EX201B",
+    "name": "Shark CarpetXpert Carpet Cleaner Deep Clean Pro Formula",
+    "category": "地毯清洗机",
+    "officialUrl": "https://www.sharkninja.com/shark-carpetxpert-with-stainstriker-upright-deep-carpet-cleaner/EX201B.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "IZ382HBAT",
+    "name": "Shark PowerPro Flex Reveal Plus Cordless Vacuum with Extra Battery",
     "category": "无线吸尘器",
-    "officialUrl": "https://www.sharkninja.com/freestyle-max/SV2002.html",
+    "officialUrl": "https://www.sharkninja.com/shark-powerpro-flex-reveal-plus-cordless-vacuum/IZ382HBAT.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/SV2002_01.jpg"
+    "imageUrl": null
   },
   {
-    "model": "HD6051S-MASTER",
-    "name": "Shark Glam 6-in-1 Multi-Styler, Air Straightener & Hair Dryer",
+    "model": "LX501UPG1",
+    "name": "Shark PowerDetect Transformer Upright Vacuum with TruePet Attachments",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-transformer-true-pet-upright-vacuum/LX501UPG1.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD500RWSN",
+    "name": "Build Your Own Shark SpeedStyle Pro Flex Hair Dryer in Blush",
+    "category": "吹风机",
+    "officialUrl": "https://www.sharkninja.com/build-your-own-shark-speedstyle-pro-flex-hair-dryer-system-cosmic-blush/HD500RWSN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD500-BYOB",
+    "name": "Build Your Own Shark SpeedStyle Pro Flex Hair Dryer in Mocha",
+    "category": "吹风机",
+    "officialUrl": "https://www.sharkninja.com/build-your-own-shark-speedstyle-pro-flex/HD500-byob.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD800BRSN3",
+    "name": "Shark FlexStyle NextGen: IonCurl 4-in-1 Air Styler, Curler & Hair Dryer Build Your Own, Bronze",
     "category": "美发造型",
-    "officialUrl": "https://www.sharkninja.com/shark-glam-ceramic-powerful-air-styling-drying-system/HD6051S.html",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-ioncurl-air-styler-curler-build-your-own/HD800BRSN3.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD6051S_01.jpg"
+    "imageUrl": null
   },
   {
-    "model": "FH310-MASTER",
-    "name": "Shark FacialPro Glow At Home Hydrating Facial System",
-    "category": "美容仪",
-    "officialUrl": "https://www.sharkninja.com/shark-facial-pro-at-home-hydrating-facial-system/FH310.html",
+    "model": "HD800BRSN",
+    "name": "Shark FlexStyle NextGen: IonCurl 3-in-1 Air Styler, Curler & Hair Dryer Build Your Own, Bronze",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-ioncurl-air-styler-curler-build-your-own/HD800BRSN.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FH310_01.jpg"
+    "imageUrl": null
   },
   {
-    "model": "FH320-MASTER",
-    "name": "Shark FacialPro Glow & Depuffi At-Home Hydrating Facial System",
-    "category": "美容仪",
-    "officialUrl": "https://www.sharkninja.com/shark-facialpro-glow-at-home-hydro-powered-facial-system-blue/FH320.html",
+    "model": "HD800SN3",
+    "name": "Shark FlexStyle IonCurl Air Styler & Curler Build Your Own in Rain Drop",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-ioncurl-air-styler-curler-build-your-own/HD800SN3.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FH320_01.jpg"
+    "imageUrl": null
   },
   {
-    "model": "FW312-MASTER",
-    "name": "Shark CryoGlow LED Face Mask",
-    "category": "光疗面罩",
-    "officialUrl": "https://www.sharkninja.com/shark-cryoglow-red-blue-infrared-iqled-face-mask-under-eye-cooling---blue-frost/FW312.html",
+    "model": "HD400BKSN",
+    "name": "Shark FlexStyle 4-in-1 Air Styler & Hair Dryer Build Your Own, Black",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/build-your-own-shark-flexstyle-air-styling-drying-system-black/HD400BKSN.html",
     "markets": [
       "US"
     ],
-    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FW312_01.jpg"
+    "imageUrl": null
+  },
+  {
+    "model": "HD400TGSN",
+    "name": "Shark FlexStyle 4-in-1 Air Styler & Hair Dryer Build Your Own, Spearmint",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-spearmint/HD400TGSN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD6000SN",
+    "name": "Shark Glam 5-in-1 Multi-Styler, Air Straightener & Hair Dryer Build Your Own, Gold",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/build-your-own-shark-glam-hot-tool-air-styling-drying-system/HD6000SN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD501UKBYO",
+    "name": "Shark SpeedStyle Pro FLEX Build Your Own Hair Dryer System",
+    "category": "吹风机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-speedstyle-pro-flex-build-your-own-hair-dryer-system/HD501UKBYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": null
   }
 ]
