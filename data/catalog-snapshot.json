@@ -2798,5 +2798,65 @@
       "US"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/TH202_01.jpg"
+  },
+  {
+    "model": "RV2820ZE-MASTER",
+    "name": "Shark PowerDetect NeverTouch Pro Robot Vacuum and Mop",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-2-in-1-robot-vacuum-and-mop-with-nevertouch-pro-base/RV2820ZE.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/RV2820ZE_01.jpg"
+  },
+  {
+    "model": "SV2002-MASTER",
+    "name": "Shark Freestyle Max Cordless Vacuum in Nordic Blue",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.com/freestyle-max/SV2002.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/SV2002_01.jpg"
+  },
+  {
+    "model": "HD6051S-MASTER",
+    "name": "Shark Glam 6-in-1 Multi-Styler, Air Straightener & Hair Dryer",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-glam-ceramic-powerful-air-styling-drying-system/HD6051S.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD6051S_01.jpg"
+  },
+  {
+    "model": "FH310-MASTER",
+    "name": "Shark FacialPro Glow At Home Hydrating Facial System",
+    "category": "美容仪",
+    "officialUrl": "https://www.sharkninja.com/shark-facial-pro-at-home-hydrating-facial-system/FH310.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FH310_01.jpg"
+  },
+  {
+    "model": "FH320-MASTER",
+    "name": "Shark FacialPro Glow & Depuffi At-Home Hydrating Facial System",
+    "category": "美容仪",
+    "officialUrl": "https://www.sharkninja.com/shark-facialpro-glow-at-home-hydro-powered-facial-system-blue/FH320.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FH320_01.jpg"
+  },
+  {
+    "model": "FW312-MASTER",
+    "name": "Shark CryoGlow LED Face Mask",
+    "category": "光疗面罩",
+    "officialUrl": "https://www.sharkninja.com/shark-cryoglow-red-blue-infrared-iqled-face-mask-under-eye-cooling---blue-frost/FW312.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FW312_01.jpg"
   }
 ]
