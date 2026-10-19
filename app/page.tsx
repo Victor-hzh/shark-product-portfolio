@@ -213,7 +213,7 @@ export default function Home() {
     <main>
       <section className="intro"><div><div className="eyebrow"><span className="pulse-dot"/> PRODUCT INTELLIGENCE / 01</div><h1>Shark 产品线</h1><p>按品类查看已核实的产品、上市时间和销售市场。</p></div>
         <div className="refresh-box"><div className="refresh-meta">最近更新 {updateLabel(update.updatedAt)}</div>
-        <div className="auto-refresh-badge" title={`已核实价格 ${update.pricedCount} 个；待审核新品 ${update.pendingCount} 个`}><RefreshCw size={17}/>每日自动更新</div></div></section>
+        <div className="auto-refresh-badge" title={`已核实价格 ${update.pricedCount} 个；无法自动核实的记录 ${update.pendingCount} 个`}><RefreshCw size={17}/>每日自动更新</div></div></section>
       <section className="status-strip" aria-live="polite"><div><Layers3 size={17}/><strong>{products.length}</strong><span>已收录产品</span></div><div><Globe2 size={17}/><span>当前已核实市场</span><strong className="status-flags">{[...new Set(products.flatMap(p=>p.markets))].map(m=><Flag code={m} key={m}/>)}</strong></div><p>收录 Shark 官网及其他零售渠道可核实的型号，覆盖范围持续扩充。</p></section>
       <nav className="group-nav" aria-label="产品分组">{[latestLabel,"全部",...groupOrder].map(g=><button key={g} onClick={()=>{setOpenGroupId(null);setActive(g);}} aria-pressed={active===g} className={`${active===g?"selected":""} ${g===latestLabel?"latest-nav":""}`}>{g}<span>{g==="全部"?products.length:g===latestLabel?latest.length:products.filter(p=>CATEGORIES.find(c=>c.label===p.category)?.group===g).length}</span></button>)}</nav>
       {active===latestLabel&&<p className="latest-explainer">根据各市场 Shark 官方新闻与产品页核实，展示近 180 天内已上市的型号。公告发布日不等于上市日；延期或尚未核实上市日期的型号暂不列入。合集内保留每个 SKU 的日期来源。</p>}
@@ -235,7 +235,7 @@ export default function Home() {
           {singles.length>0&&<div className="catalog-subsection"><div className="catalog-subhead">独立型号 <span>{singles.length}</span></div><div className="product-grid">{singles.map(p=><ProductCard key={p.id} product={p} globalKeys={globalKeys}/>)}</div></div>}
         </section>)}
       </section>)}</div>
-      <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。数据由 GitHub 定时核验，审核通过后自动构建并同步至 OSS。</p></footer>
+      <footer><span>SHARK PRODUCT PORTFOLIO</span><p>参数来自对应型号的商品页，重量与续航受配置和测试条件影响；待核实表示尚无可靠数值。地球表示同系列在美、英、日均有销售记录，具体型号可能不同；ONLY 表示目前只确认一个国家。Shark 官网新型号经来源与品类检查后每日自动发布；无法核实的记录保留供检查。</p></footer>
     </main>
   </div></TooltipProvider>;
 }

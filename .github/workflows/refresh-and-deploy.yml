@@ -1,6 +1,8 @@
 name: Refresh Shark data and deploy OSS
 
 on:
+  push:
+    branches: [main]
   schedule:
     # 03:25 UTC = 11:25 Asia/Shanghai
     - cron: "25 3 * * *"

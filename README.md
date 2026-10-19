@@ -6,11 +6,11 @@ Shark 产品卡片目录，按品类与平台合集展示已核实型号、官�
 
 ## 自动更新
 
-默认分支中的 GitHub Actions 每天北京时间 11:25 自动执行：
+默认分支中的 GitHub Actions 每天北京时间 11:25 自动执行；推送到 `main` 时也会立即运行：
 
 1. 调用公开产品数据服务检查美国、英国和日本来源。
 2. 更新已知 SKU 的市场信息、官方价格和欧洲央行参考汇率。
-3. 将未知 SKU 写入 `data/pending-products.json`，不自动加入正式目录或平台合集。
+3. 将有官网商品页、型号、品类和市场信息的新 SKU 自动加入正式目录。相同商品页只收录一次；无法核实的记录写入 `data/pending-products.json`。
 4. 运行 TypeScript 检查并生成 Next.js 静态导出目录 `out/`。
 5. 将静态文件上传至阿里云 OSS，并检查正式域名是否可访问。
 6. 上线成功后，把数据快照提交回 `main`。
@@ -24,9 +24,11 @@ Shark 产品卡片目录，按品类与平台合集展示已核实型号、官�
 
 AccessKey 应来自只允许维护 `shark-product-portfolio` Bucket 的 RAM 用户，不应写入代码、日志或提交历史。
 
-## 新品审核
+## 新品收录
 
-自动扫描发现的新型号只进入 `data/pending-products.json`。审核品类、上市信息和平台归属后，再将对应产品加入 `data/catalog-snapshot.json`；平台合集规则继续在 `lib/platform-groups.ts` 中维护。
+自动扫描发现的新型号直接加入 `data/catalog-snapshot.json` 并随当天静态构建发布。默认在官网品类中独立展示；需要合并的平台合集在 `lib/platform-groups.ts` 中调整。`data/pending-products.json` 仅保留缺少可信来源或分类的异常记录。
+
+首次抓取时间不等同上市日期。`NEW RELEASE` 和“最近上新”只依据 `lib/catalog.ts` 中有来源的上市日期展示；新品即使缺少日期也会出现在对应品类。
 
 ## 本地运行
 

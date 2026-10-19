@@ -77,6 +77,7 @@ export const STARTER_PRODUCTS: Product[] = snapshot.map(item => ({
   firstSeen:seen,lastSeen:seen,
 }));
 const releaseEvidence:Record<string,{date:string;source:string;precision?:string}>={
+  RVA120E2:{date:"2026-09-29",source:"https://ir.sharkninja.com/news/news-details/2026/Shark-Expands-Its-Robot-Vacuum-Lineup-with-Navigator-2-in-1-Robot-Vacuum-and-Mop/default.aspx"},
   AB2000J:{date:"2026-10-15",source:"https://www.sharkninja.jp/blogs/news/news260910-01"},
   AB2111J:{date:"2026-10-15",source:"https://www.sharkninja.jp/blogs/news/news260910-01"},
   SV2002:{date:"2025-10-01",precision:"month",source:"https://www.techradar.com/home/vacuums/shark-freestyle-max-cordless-upright-review"},

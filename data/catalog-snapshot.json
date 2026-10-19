@@ -2448,5 +2448,355 @@
       "UK"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/FA220UK_01.jpg"
+  },
+  {
+    "model": "HD700UK-BYO",
+    "name": "Shark SpeedStyle Pro Build Your Own Hair Dryer System",
+    "category": "吹风机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-speedstyle-pro-build-your-own-hair-dryer-system/HD700UK-BYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD700UK-BYO_01.jpg"
+  },
+  {
+    "model": "HD500UK-BYO",
+    "name": "Shark SpeedStyle Pro FLEX Build Your Own Hair Dryer System",
+    "category": "吹风机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-speedstyle-pro-flex-build-your-own-hair-dryer-system/HD500UK-BYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD500UK-BYO_01.jpg"
+  },
+  {
+    "model": "EX300UKC",
+    "name": "Shark CarpetXpert HairPro Deep Carpet Cleaner with Built-In StainStriker - Copper",
+    "category": "地毯清洗机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-carpetxpert-hairpro-deep-carpet-cleaner-with-built-in-stainstriker---copper/EX300UKC.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/EX300UKC_01.jpg"
+  },
+  {
+    "model": "PX200UKGY",
+    "name": "Shark StainStriker Stain & Spot Cleaner - Charcoal",
+    "category": "布艺清洗机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stainstriker-stain-spot-cleaner---charcoal/PX200UKGY.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/PX200UKGY_01.jpg"
+  },
+  {
+    "model": "WV416J",
+    "name": "Shark EVOPOWER EX  充電式ハンディクリーナー WV416J",
+    "category": "手持吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/wv416j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/files/iw3241j_01.jpg?v=1685584342"
+  },
+  {
+    "model": "WV415J",
+    "name": "Shark EVOPOWER EX 充電式ハンディクリーナー WV415J",
+    "category": "手持吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/wv415j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/products/wv415j_01_2x_de23c814-4223-4477-b5f2-d33ef41e0b1e.jpg?v=1680153372"
+  },
+  {
+    "model": "WV251J",
+    "name": "Shark EVOPOWER W30 充電式ハンディクリーナー",
+    "category": "手持吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/wv251j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/products/wv251j_01_817ec8d7-70a3-4d3f-9635-8d8046e1e364.jpg?v=1653964000"
+  },
+  {
+    "model": "RVA120E2",
+    "name": "Shark Navigator 2-in-1 Robot Vacuum and Mop in Black",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-navigator-2-in-1-robot-vacuum-mop/RVA120E2.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/RVA120E2_01.jpg"
+  },
+  {
+    "model": "RVA120E2UK",
+    "name": "Shark Navigator 2-in-1 Robot Vacuum and Mop – Black",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-navigator-2-in-1-robot-vacuum-and-mop-black/RVA120E2UK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/RVA120E2UK_01.jpg"
+  },
+  {
+    "model": "IW3145J",
+    "name": "Shark CleanSense iQ+ コードレススティッククリーナー IW3145J",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/iw3145j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/files/iw3145jbk_20260928_00_v1.png?v=1790851635"
+  },
+  {
+    "model": "CS851J",
+    "name": "Shark EVOPOWER SYSTEM iQ コードレススティッククリーナー CS851J",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/cs851j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/products/cs851j_notext_01.jpg?v=1662010838"
+  },
+  {
+    "model": "IP1223UKTDB",
+    "name": "Shark PowerDetect Cordless Pet Vacuum Cleaner - Black IP1223UKTDB",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerdetect-cordless-pet-vacuum-cleaner-black-ip1223uktdb/IP1223UKTDB.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IP1223UKTDB_01.jpg"
+  },
+  {
+    "model": "IP3266",
+    "name": "Shark PowerDetect Reveal Pro Cordless Vacuum Clean & Empty System in Travertine",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-xl-reveal-cordless-vacuum-clean-empty/IP3266.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/IP3266_01.jpg"
+  },
+  {
+    "model": "IA1241UKTRD",
+    "name": "Shark PowerDetect Speed Pet Cordless Vacuum – Cherry Red",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerdetect-speed-cordless-vacuum-cherry-red/IA1241UKTRD.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IA1241UKTRD_01.jpg"
+  },
+  {
+    "model": "IA1241UKT",
+    "name": "Shark PowerDetect Speed Pet Cordless Vacuum – Ultramarine IA1241UKT",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerdetect-speed-pet-cordless-vacuum-ultramarine-ia1241ukt/IA1241UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IA1241UKT_01.jpg"
+  },
+  {
+    "model": "BU3623UK",
+    "name": "Shark PowerLite Clean & Empty Cordless Vacuum - Dark Sage",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerlite-clean-empty-cordless-vacuum---dark-sage/BU3623UK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/BU3623UK_01.jpg"
+  },
+  {
+    "model": "IZ380UKDB",
+    "name": "Shark PowerPro Cordless Stick Vacuum with Anti Hair Wrap & Floor Detect - Charcoal",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerpro-cordless-stick-vacuum-with-anti-hair-wrap-floor-detect---charcoal/IZ380UKDB.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IZ380UKDB_01.jpg"
+  },
+  {
+    "model": "IZ380UK",
+    "name": "Shark PowerPro Cordless Stick Vacuum, with Anti Hair Wrap & Floor Detect IZ380UK",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-powerpro-cordless-stick-vacuum-with-anti-hair-wrap-floor-detect-iz380uk/IZ380UK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IZ380UK_01.jpg"
+  },
+  {
+    "model": "IZ411UKT",
+    "name": "Shark Stratos Cordless Stick Vacuum with Clean Sense IQ and Anti-Hair Wrap Plus IZ411UKT",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stratos-cordless-stick-vacuum-with-clean-sense-iq-and-anti-hair-wrap-plus-iz411ukt/IZ411UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/IZ411UKT_01.jpg"
+  },
+  {
+    "model": "NV603UKT",
+    "name": "Shark Classic Upright Pet Vacuum NV603UKT",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-classic-upright-pet-vacuum-nv603ukt/NV603UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/NV603UKT_01.jpg"
+  },
+  {
+    "model": "LA790UKT",
+    "name": "Shark Detect XL Car + Pet Expert Corded Upright Vacuum LA790UKT",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-detect-xl-car-pet-expert-corded-upright-vacuum-la790ukt/LA790UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/LA790UKT_01.jpg"
+  },
+  {
+    "model": "LA400UKT",
+    "name": "Shark DuoClean Lift-Away Upright Vacuum – Navy",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-duoclean-lift-away-upright-vacuum-navy/LA400UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/LA400UKT_01.jpg"
+  },
+  {
+    "model": "NV180UK",
+    "name": "Shark Navigator Upright Corded Vacuum NV180UK",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-navigator-upright-corded-vacuum-nv180uk/NV180UK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/NV180UK_01.jpg"
+  },
+  {
+    "model": "AZ3000UKT",
+    "name": "Shark Stratos Pet Pro Anti Hair Wrap Plus Anti-Odour XL Upright Vacuum [AZ3000UKT]",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stratos-pet-pro-anti-hair-wrap-plus-anti-odour-xl-upright-vacuum-az3000ukt/AZ3000UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/AZ3000UKT_01.jpg"
+  },
+  {
+    "model": "HD841PU",
+    "name": "FlexStyle IonCurl Air Styler & Curler with Diffuser in Lilac",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/flexstyle-ioncurl-ion-hair-styler-with-diffuser-in-lilac/HD841PU.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD841PU_01.jpg"
+  },
+  {
+    "model": "HD450BRUK",
+    "name": "Shark FlexStyle Air Styler & Hair Dryer, 4-in-1 - Mocha Silver",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-4-in-1-air-style-hair-dryer-mocha-silver/HD450BRUK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD450BRUK_01.jpg"
+  },
+  {
+    "model": "HD436SLUK",
+    "name": "Shark FlexStyle Air Styler & Hair Dryer, 4-in-1 - Stone",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-4-in-1-air-styler-hair-dryer-stone-hd436sluk/HD436SLUK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD436SLUK_01.jpg"
+  },
+  {
+    "model": "HD486UKBL",
+    "name": "Shark FlexStyle Air Styler & Hair Dryer, 6-in-1 - Celestial Skies",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-6-in-1-styler-hair-dryer-celestial-skies/HD486UKBL.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD486UKBL_01.jpg"
+  },
+  {
+    "model": "HD400UK-BYO",
+    "name": "Shark FlexStyle Air Styler & Hair Dryer, Build Your Own 4-in-1 - Black",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-build-your-own-air-styling-hair-drying-system-black/HD400UK-BYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD400UK-BYO_01.jpg"
+  },
+  {
+    "model": "HD800PUSN3",
+    "name": "Shark FlexStyle IonCurl Air Styler & Curler Build Your Own in Lilac",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-ioncurl-air-styler-curler-build-your-own/HD800PUSN3.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD800PUSN3_01.png"
+  },
+  {
+    "model": "HD800PUSN",
+    "name": "Shark FlexStyle IonCurl Air Styler & Curler Build Your Own in Lilac",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-flexstyle-ioncurl-air-styler-curler-build-your-own/HD800PUSN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD800PUSN_01.png"
+  },
+  {
+    "model": "HD6055BL",
+    "name": "Shark Glam Hair Styler & Diffuser - Celestial Skies",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.com/shark-glam-hair-styler-diffuser---celestial-skies/HD6055BL.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD6055BL_01.jpg"
+  },
+  {
+    "model": "FA022PK2",
+    "name": "Shark ChillPill Personal Fan and Cooling System",
+    "category": "风扇",
+    "officialUrl": "https://www.sharkninja.com/shark-chillpill-personal-fan-and-cooling-system/FA022PK2.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FA022PK2_01.jpg"
+  },
+  {
+    "model": "AV2620WAUK-MASTER",
+    "name": "Shark Matrix Plus 2-in-1 Self-Empty Robot Vacuum & Mop",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.co.uk/shark%C2%A0matrix-plus-2-in-1-self-empty-robot-vacuum-mop/AV2620WAUK-MASTER.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/AV2620WAUKGR_01.jpg"
+  },
+  {
+    "model": "TH202-MASTER",
+    "name": "Shark TurboBlade Tower Fan and Heater",
+    "category": "风扇",
+    "officialUrl": "https://www.sharkninja.com/shark-turboblade-cool-heat-charcoal/TH202.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/TH202_01.jpg"
   }
 ]

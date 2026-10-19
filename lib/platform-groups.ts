@@ -30,7 +30,7 @@ export const PLATFORM_GROUPS:readonly PlatformGroup[]=[
   {id:"az-powerdetect",label:"PowerDetect 立式系列",category:"立式吸尘器",models:["AZ3900UKT-MASTER","AZ3901"],rationale:"AZ39 PowerDetect 跨市场型号，Pet 套装与配件差异保留在单品卡。"},
   {id:"lu-rotator",label:"Rotator LU25 立式系列",category:"立式吸尘器",models:["LU250UK","LU250UKT","LU251UK","LU251UKT","LU252"],rationale:"LU25 Rotator 同系列，英国普通款、Pet／Pet Pro 套装与美国款分别列为 SKU。"},
   {id:"sv-freestyle",label:"Freestyle Max / Pro 无线立式",category:"立式吸尘器",models:["SV2000UK-MASTER","SV2002"],rationale:"英美官网均定位为 cordless upright；2025 年 10 月已有上市记录，按跨市场型号展示。"},
-  {id:"rv-navigator",label:"Navigator 扫地机器人",category:"扫地机器人",models:["RV2110AEUK","RV2120AE"],rationale:"用户红框圈选：Navigator 基础款与自动集尘底座配置合并，型号细节保留在卡片中。"},
+  {id:"rv-navigator",label:"Navigator 扫地机器人",category:"扫地机器人",models:["RV2110AEUK","RV2120AE","RVA120E2","RVA120E2UK"],rationale:"Navigator 基础吸尘款与 2-in-1 吸拖款同属 Navigator 机器人阵列；功能及集尘底座差异保留在型号卡片中。"},
   {id:"rv-matrix",label:"Matrix / Matrix Plus 扫地机器人",category:"扫地机器人",models:["RV2310AE","RV2610WA","RV2620WAUK-MASTER","RV2620WDUK-MASTER"],rationale:"用户绿框圈选：Matrix 与 Matrix Plus 跨市场及洗地、自动集尘配置合并，功能差异保留在卡片中。"},
   {id:"rv-powerdetect",label:"PowerDetect 扫地机器人",category:"扫地机器人",models:["RV2800ZEUK-MASTER","RV2820ZE","AV2800ZEUKWH","AV2810ZEUKWH","AV2820ZEUKWH","RV2900XEUK-MASTER","RV2920XE","AV2910XEUKWH","AV2820AE","AV2820VEUKWH","AV3010XEUKWH","AV3020XEUK","RV2720ZE"],rationale:"用户指定将 RV2720ZE Stratos 也放进此机器人合集，并将所有 PowerDetect 机器人放在一起。各 SKU 保留原商品名称、配置与参数；这是展示合集，不表示 Stratos 属于 PowerDetect 产品线或硬件完全相同。"},
   {id:"sd-steampickup",label:"SteamPickUp 蒸汽拖把",category:"蒸汽清洁",models:["SD200UK","SD201"],rationale:"英美官网描述为吸尘、擦洗与蒸汽消毒三合一；按蒸汽拖把展示。"},
