@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-19T09:04:26Z",
+  "checkedAt": "2026-10-20T08:41:35Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -9,8 +9,8 @@
   "remoteProductCount": 240,
   "missingImageCount": 0,
   "missingImageModels": [],
-  "publishedProductCount": 293,
+  "publishedProductCount": 294,
   "knownProductsUpdated": 0,
-  "autoPublished": 0,
+  "autoPublished": 1,
   "unverifiedCount": 0
 }
