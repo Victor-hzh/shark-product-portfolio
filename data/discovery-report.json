@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25T08:33:18Z",
+  "checkedAt": "2026-10-26T09:07:39Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -7,10 +7,12 @@
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
   "remoteProductCount": 239,
-  "missingImageCount": 0,
-  "missingImageModels": [],
-  "publishedProductCount": 295,
+  "missingImageCount": 1,
+  "missingImageModels": [
+    "FW322SLS"
+  ],
+  "publishedProductCount": 296,
   "knownProductsUpdated": 0,
-  "autoPublished": 0,
+  "autoPublished": 1,
   "unverifiedCount": 0
 }
