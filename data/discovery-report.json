@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-26T09:07:39Z",
+  "checkedAt": "2026-10-27T09:09:27Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -9,10 +9,10 @@
   "remoteProductCount": 239,
   "missingImageCount": 1,
   "missingImageModels": [
-    "FW322SLS"
+    "RVA120S1UK-MASTER"
   ],
-  "publishedProductCount": 296,
+  "publishedProductCount": 298,
   "knownProductsUpdated": 0,
-  "autoPublished": 1,
+  "autoPublished": 2,
   "unverifiedCount": 0
 }

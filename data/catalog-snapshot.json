@@ -2958,5 +2958,25 @@
       "US"
     ],
     "imageUrl": null
+  },
+  {
+    "model": "FW322SL",
+    "name": "Shark CryoGlow LED Face Mask, Kevin Hart Collab",
+    "category": "光疗面罩",
+    "officialUrl": "https://www.sharkninja.com/shark-cryoglow-led-face-mask/FW322SL.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FW322SL_01.jpg"
+  },
+  {
+    "model": "RVA120S1UK-MASTER",
+    "name": "Shark Navigator 2-in-1 Robot Vacuum and Mop",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-navigator-2-in-1-robot-vacuum-and-mop/RVA120S1UK-MASTER.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": null
   }
 ]
