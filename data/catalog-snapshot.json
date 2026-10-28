@@ -2978,5 +2978,35 @@
       "UK"
     ],
     "imageUrl": null
+  },
+  {
+    "model": "HD6000UKPK-BYO",
+    "name": "Shark Glam Air Styler, Straightener & Dryer System, Build Your Own 3-in-1 - Pink",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/build-your-own-shark-glam-ceramic-powerful-air-styling-drying-system-pink/HD6000UKPK-BYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD6000UKPK-BYO_01.jpg"
+  },
+  {
+    "model": "HP062UKREF",
+    "name": "Shark BreatheClear Compact Air Purifier with NeverChange6 - Dove | REFURB | HP062UK",
+    "category": "空气净化器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-breatheclear-compact-air-purifier-with-neverchange6---dove-%7C-refurb-%7C-hp062uk/HP062UKREF.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HP062UKREF_01.jpg"
+  },
+  {
+    "model": "HP062UKBKREF",
+    "name": "Shark BreatheClear Compact Air Purifier with NeverChange6 - Charcoal | REFURB | HP062UKBK",
+    "category": "空气净化器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-breatheclear-compact-air-purifier-with-neverchange6---charcoal-%7C-refurb-%7C-hp062ukbk/HP062UKBKREF.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HP062UKBKREF_01.jpg"
   }
 ]

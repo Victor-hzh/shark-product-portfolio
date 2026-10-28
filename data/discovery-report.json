@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-27T09:09:27Z",
+  "checkedAt": "2026-10-28T09:50:33Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -7,12 +7,10 @@
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
   "remoteProductCount": 239,
-  "missingImageCount": 1,
-  "missingImageModels": [
-    "RVA120S1UK-MASTER"
-  ],
-  "publishedProductCount": 298,
+  "missingImageCount": 0,
+  "missingImageModels": [],
+  "publishedProductCount": 301,
   "knownProductsUpdated": 0,
-  "autoPublished": 2,
+  "autoPublished": 3,
   "unverifiedCount": 0
 }
