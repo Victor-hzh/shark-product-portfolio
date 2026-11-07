@@ -1,16 +1,16 @@
 {
-  "checkedAt": "2026-11-06T11:08:20Z",
+  "checkedAt": "2026-11-07T10:26:12Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
   "sourceFailures": [
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
-  "remoteProductCount": 237,
+  "remoteProductCount": 236,
   "missingImageCount": 0,
   "missingImageModels": [],
   "publishedProductCount": 308,
   "knownProductsUpdated": 0,
-  "autoPublished": 1,
+  "autoPublished": 0,
   "unverifiedCount": 0
 }
