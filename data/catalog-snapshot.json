@@ -3088,5 +3088,35 @@
       "US"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HD332_01.jpg"
+  },
+  {
+    "model": "AV2610WA",
+    "name": "Shark Matrix Plus 2-in-1 Robot Self-Empty XL",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-matrix-plus-2-in-1-robot-self-empty-xl/AV2610WA.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AV2610WA_01.jpg"
+  },
+  {
+    "model": "AV2820S",
+    "name": "Shark PowerDetect Self-Emptying Robot Vacuum AV2820S",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-self-emptying-robot-vacuum-av2820s/AV2820S.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AV2820S_01.jpg"
+  },
+  {
+    "model": "AZ4000",
+    "name": "Shark POWERDETECT Upright Vacuum",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-upright-vacuum/AZ4000.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AZ4000_01.jpg"
   }
 ]
