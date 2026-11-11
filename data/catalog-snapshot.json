@@ -3118,5 +3118,35 @@
       "US"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/AZ4000_01.jpg"
+  },
+  {
+    "model": "HX100UKT",
+    "name": "Shark StainForce Cordless Stain-Destroying Spot Cleaner HX100UKT",
+    "category": "布艺清洗机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stainforce-cordless-stain-destroying-spot-cleaner-hx100ukt/HX100UKT.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HX100UKT_01.jpg"
+  },
+  {
+    "model": "HX100UKCP",
+    "name": "Shark StainForce Cordless Stain-Destroying Spot Cleaner HX100UKCP",
+    "category": "布艺清洗机",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stainforce-cordless-stain-destroying-spot-cleaner-hx100ukcp/HX100UKCP.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HX100UKCP_01.jpg"
+  },
+  {
+    "model": "HD800UKPKBYO",
+    "name": "Shark FlexStyle Next Gen IonCurl Air Styler & Hair Dryer - Pink",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-ioncurl-build-your-own-hair-styler-and-dryer/HD800UKPKBYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": null
   }
 ]
