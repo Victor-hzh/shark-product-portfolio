@@ -3148,5 +3148,35 @@
       "UK"
     ],
     "imageUrl": null
+  },
+  {
+    "model": "S8202SN",
+    "name": "Shark Steam & Scrub Automatic Steam Mop, Blue",
+    "category": "蒸汽清洁",
+    "officialUrl": "https://www.sharkninja.com/shark-steam-scrub-automatic-steam-mop-blue/S8202SN.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "HD400SLUK-BYO",
+    "name": "Shark FlexStyle Air Styler & Hair Dryer, Build Your Own 4-in-1 - Stone",
+    "category": "美发造型",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-flexstyle-build-your-own-air-styling-hair-drying-system/HD400SLUK-BYO.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/HD400SLUK-BYO_01.jpg"
+  },
+  {
+    "model": "LC050J",
+    "name": "Shark GlideClean コードレススティッククリーナー LC050J",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.jp/products/lc050j",
+    "markets": [
+      "JP"
+    ],
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/files/1240_1240_thumbnail_LC050J_WH_01.jpg?v=1793775762"
   }
 ]
