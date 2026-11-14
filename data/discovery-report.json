@@ -1,17 +1,15 @@
 {
-  "checkedAt": "2026-11-13T11:13:49Z",
+  "checkedAt": "2026-11-14T10:39:32Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
   "sourceFailures": [
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
-  "remoteProductCount": 239,
-  "missingImageCount": 1,
-  "missingImageModels": [
-    "S8202SN"
-  ],
-  "publishedProductCount": 318,
+  "remoteProductCount": 240,
+  "missingImageCount": 0,
+  "missingImageModels": [],
+  "publishedProductCount": 321,
   "knownProductsUpdated": 0,
   "autoPublished": 3,
   "unverifiedCount": 0

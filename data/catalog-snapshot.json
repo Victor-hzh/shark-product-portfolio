@@ -3178,5 +3178,35 @@
       "JP"
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/files/1240_1240_thumbnail_LC050J_WH_01.jpg?v=1793775762"
+  },
+  {
+    "model": "UR2350S",
+    "name": "Shark Matrix Self Emptying Robot Vacuum",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-matrix-self-emptying-robot-vacuum/UR2350S.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/UR2350S_01.jpg"
+  },
+  {
+    "model": "TV300",
+    "name": "Shark Rocket Turbo with Self-Cleaning Brushroll",
+    "category": "有线杆式吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-rocket-turbo-with-self-cleaning-brushroll/TV300.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/TV300_01.jpg"
+  },
+  {
+    "model": "AZ3000UKTBK",
+    "name": "Shark Stratos XL Pet Complete Upright Vacuum Cleaner",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.co.uk/shark-stratos-xl-pet-complete-upright-vacuum-cleaner/AZ3000UKTBK.html",
+    "markets": [
+      "UK"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/AZ3000UKTBK_01.jpg"
   }
 ]
