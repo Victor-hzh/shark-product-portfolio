@@ -3208,5 +3208,25 @@
       "UK"
     ],
     "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-EU/AZ3000UKTBK_01.jpg"
+  },
+  {
+    "model": "RV2310AEBB1",
+    "name": "Shark Matrix Self-Empty Robot Vacuum with Free BlastBoss Air Blower",
+    "category": "扫地机器人",
+    "officialUrl": "https://www.sharkninja.com/shark-matrix-self-empty-robot-vacuum/RV2310AEBB1.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
+  },
+  {
+    "model": "IP3251BB1",
+    "name": "Shark PowerDetect Cordless Clean & Empty Vacuum with Free SteamSpot",
+    "category": "无线吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-cordless-powerdetect-clean-empty-system/IP3251BB1.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": null
   }
 ]
