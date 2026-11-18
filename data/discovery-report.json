@@ -1,16 +1,28 @@
 {
-  "checkedAt": "2026-11-17T12:04:15Z",
+  "checkedAt": "2026-11-18T11:55:27Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
-  "sourcesSucceeded": 25,
+  "sourcesSucceeded": 13,
   "sourceFailures": [
-    "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
+    "美国 · 洗地机: HTTP Error 403: Forbidden",
+    "美国 · 布艺清洗机: HTTP Error 403: Forbidden",
+    "美国 · 扫地机器人: HTTP Error 403: Forbidden",
+    "美国 · 无线吸尘器: HTTP Error 403: Forbidden",
+    "美国 · 有线杆式吸尘器: HTTP Error 403: Forbidden",
+    "美国 · 手持吸尘器: HTTP Error 403: Forbidden",
+    "美国 · 立式吸尘器: HTTP Error 403: Forbidden",
+    "美国 · 吹风机: HTTP Error 403: Forbidden",
+    "美国 · 美发造型: HTTP Error 403: Forbidden",
+    "美国 · 直发器: HTTP Error 403: Forbidden",
+    "美国 · 热风梳: HTTP Error 403: Forbidden",
+    "美国 · 风扇: HTTP Error 403: Forbidden",
+    "美国 · 空气净化器: HTTP Error 403: Forbidden"
   ],
-  "remoteProductCount": 241,
+  "remoteProductCount": 151,
   "missingImageCount": 0,
   "missingImageModels": [],
-  "publishedProductCount": 323,
+  "publishedProductCount": 324,
   "knownProductsUpdated": 0,
-  "autoPublished": 0,
+  "autoPublished": 1,
   "unverifiedCount": 0
 }
