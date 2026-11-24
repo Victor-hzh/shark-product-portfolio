@@ -3248,5 +3248,55 @@
       "JP"
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0616/7589/7017/products/cs851j_plus_01.jpg?v=1662010891"
+  },
+  {
+    "model": "HX104",
+    "name": "Shark StainForce Cordless Portable Stain Cleaner",
+    "category": "布艺清洗机",
+    "officialUrl": "https://www.sharkninja.com/shark-stainforce-cordless-portable-stain-cleaner/HX104.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/HX104_01.jpg"
+  },
+  {
+    "model": "LX5000TTK",
+    "name": "Shark PowerDetect Transformer Upright Vacuum",
+    "category": "立式吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-powerdetect-transformer-upright-vacuum/LX5000TTK.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/LX5000TTK_01.jpg"
+  },
+  {
+    "model": "FA222WH",
+    "name": "Shark FlexBreeze Outdoor & Indoor Fan",
+    "category": "风扇",
+    "officialUrl": "https://www.sharkninja.com/shark-flexbreeze-outdoor-indoor-fan/FA222WH.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/FA222WH_01.jpg"
+  },
+  {
+    "model": "TF200",
+    "name": "Shark TurboBlade Tower Fan",
+    "category": "风扇",
+    "officialUrl": "https://www.sharkninja.com/turbobreeze-xl/TF200.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/TF200_01.jpg"
+  },
+  {
+    "model": "EW101-MASTER",
+    "name": "Shark RazorVac Cordless Hand Vacuum",
+    "category": "手持吸尘器",
+    "officialUrl": "https://www.sharkninja.com/shark-razorvac-cordless-hand-vacuum/EW101.html",
+    "markets": [
+      "US"
+    ],
+    "imageUrl": "https://assets.sharkninja.com/image/upload/f_auto/q_auto/SharkNinja-NA/EW101_01.jpg"
   }
 ]

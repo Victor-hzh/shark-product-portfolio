@@ -1,28 +1,16 @@
 {
-  "checkedAt": "2026-11-23T13:12:16Z",
+  "checkedAt": "2026-11-24T13:56:44Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
-  "sourcesSucceeded": 13,
+  "sourcesSucceeded": 25,
   "sourceFailures": [
-    "美国 · 洗地机: HTTP Error 403: Forbidden",
-    "美国 · 布艺清洗机: HTTP Error 403: Forbidden",
-    "美国 · 扫地机器人: HTTP Error 403: Forbidden",
-    "美国 · 无线吸尘器: HTTP Error 403: Forbidden",
-    "美国 · 有线杆式吸尘器: HTTP Error 403: Forbidden",
-    "美国 · 手持吸尘器: HTTP Error 403: Forbidden",
-    "美国 · 立式吸尘器: HTTP Error 403: Forbidden",
-    "美国 · 吹风机: HTTP Error 403: Forbidden",
-    "美国 · 美发造型: HTTP Error 403: Forbidden",
-    "美国 · 直发器: HTTP Error 403: Forbidden",
-    "美国 · 热风梳: HTTP Error 403: Forbidden",
-    "美国 · 风扇: HTTP Error 403: Forbidden",
-    "美国 · 空气净化器: HTTP Error 403: Forbidden"
+    "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
-  "remoteProductCount": 150,
+  "remoteProductCount": 241,
   "missingImageCount": 0,
   "missingImageModels": [],
-  "publishedProductCount": 325,
+  "publishedProductCount": 330,
   "knownProductsUpdated": 0,
-  "autoPublished": 0,
+  "autoPublished": 5,
   "unverifiedCount": 0
 }
