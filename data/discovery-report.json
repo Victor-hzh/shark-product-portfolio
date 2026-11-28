@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-27T12:44:44Z",
+  "checkedAt": "2026-11-28T11:59:08Z",
   "sourceRefreshSkipped": false,
   "sourceCount": 26,
   "sourcesSucceeded": 25,
@@ -7,12 +7,10 @@
     "美国 · 热风梳: 来源没有可识别的 Shark 主机商品"
   ],
   "remoteProductCount": 240,
-  "missingImageCount": 1,
-  "missingImageModels": [
-    "FW350PKS"
-  ],
+  "missingImageCount": 0,
+  "missingImageModels": [],
   "publishedProductCount": 332,
   "knownProductsUpdated": 0,
-  "autoPublished": 1,
+  "autoPublished": 0,
   "unverifiedCount": 0
 }
